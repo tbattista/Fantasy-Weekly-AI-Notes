@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NFL Week 9 — DK GPP Report (Sneat Mobile)</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Sneat-inspired variables -->
+  <style>
+    :root{
+      --sneat-bg:#0f1115;
+      --sneat-card:#151923;
+      --sneat-border:#242a39;
+      --sneat-text:#e7eaf0;
+      --sneat-muted:#aab2c0;
+      --sneat-accent:#4cc9f0;
+      --sneat-accent-2:#f72585;
+      --sneat-ok:#2ec4b6;
+      --sneat-warn:#f1c40f;
+      --sneat-bad:#e74c3c;
+    }
+    body{background:var(--sneat-bg);color:var(--sneat-text);}
+    .navbar{background:rgba(21,25,35,.85);backdrop-filter: blur(8px);border-bottom:1px solid var(--sneat-border);}
+    .card{background:var(--sneat-card);border-color:var(--sneat-border);}
+    .table thead th{position:sticky;top:56px;background:#1a2030;z-index:5}
+    @media (min-width: 992px){ .table thead th{top:70px} }
+    .badge-outline{border:1px solid var(--sneat-border);color:var(--sneat-muted);background:transparent}
+    .badge-core{border-color:var(--sneat-ok);color:var(--sneat-ok)}
+    .badge-contrarian{border-color:var(--sneat-accent-2);color:var(--sneat-accent-2)}
+    .badge-secondary{border-color:var(--sneat-accent);color:var(--sneat-accent)}
+    .muted{color:var(--sneat-muted)}
+    .link-accent{color:var(--sneat-accent)!important}
+    .offcanvas{background:var(--sneat-card);}
+    .form-control{background:#0f141f;border-color:#2b3244;color:var(--sneat-text)}
+    .form-control::placeholder{color:#8a93a3}
+    .section-title{display:flex;align-items:center;gap:.5rem}
+    .section-title .bi{color:var(--sneat-accent)}
+    .table-responsive{border:1px solid var(--sneat-border);border-radius:.75rem}
+    .copy{white-space:pre-line}
+  </style>
+</head>
+<body>
+  <!-- Top Nav -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+      <button class="btn btn-outline-light d-lg-none me-2" data-bs-toggle="offcanvas" data-bs-target="#toc"><i class="bi bi-list"></i></button>
+      <a class="navbar-brand fw-semibold" href="#">NFL Week 9 — DK GPP</a>
+      <div class="d-none d-lg-flex gap-3">
+        <a class="nav-link link-accent" href="#overview">Overview</a>
+        <a class="nav-link link-accent" href="#positions">Positions</a>
+        <a class="nav-link link-accent" href="#stacks">Stacks</a>
+        <a class="nav-link link-accent" href="#props">Props</a>
+        <a class="nav-link link-accent" href="#value">Value</a>
+        <a class="nav-link link-accent" href="#fades">Fades</a>
+        <a class="nav-link link-accent" href="#sources">Sources</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Offcanvas TOC -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="toc">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Table of Contents</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action" href="#overview" data-bs-dismiss="offcanvas">1) Overview</a>
+        <a class="list-group-item list-group-item-action" href="#positions" data-bs-dismiss="offcanvas">2) Position Reports</a>
+        <a class="list-group-item list-group-item-action" href="#stacks" data-bs-dismiss="offcanvas">3) Stacks & Correlations</a>
+        <a class="list-group-item list-group-item-action" href="#props" data-bs-dismiss="offcanvas">4) Player Props</a>
+        <a class="list-group-item list-group-item-action" href="#value" data-bs-dismiss="offcanvas">5) Value & Leverage</a>
+        <a class="list-group-item list-group-item-action" href="#fades" data-bs-dismiss="offcanvas">6) Fades & Risk</a>
+        <a class="list-group-item list-group-item-action" href="#sources" data-bs-dismiss="offcanvas">7) Sources</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="container-xxl py-3 py-lg-4">
+    <!-- Header summary -->
+    <div class="row g-3 align-items-center mb-2">
+      <div class="col">
+        <h1 class="h4 mb-0">Sunday, <span class="fw-bold">Nov 2, 2025</span> — Main Slate (No TNF/SNF/MNF/Intl)</h1>
+        <p class="muted mb-0">Optimized for DraftKings GPPs. Use inactives & late line moves 90 min pre-lock.</p>
+      </div>
+    </div>
+
+    <!-- 1) Overview -->
+    <section id="overview" class="mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="section-title mb-2"><i class="bi bi-grid"></i><h2 class="h5 mb-0">1) Slate Overview</h2></div>
+          <p class="small muted mb-3">
+            Lines snapshot (Sun AM ET). Weather is mostly benign; GB has mild wind/cold risk.
+            <span class="badge rounded-pill badge-outline">[Fox 2025-11-01]</span>
+            <span class="badge rounded-pill badge-outline">[DK 2025-11-02]</span>
+            <span class="badge rounded-pill badge-outline">[RG Wx 2025-11-02]</span>
+          </p>
+
+          <div class="input-group input-group-sm mb-2">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="search" class="form-control" placeholder="Filter games…" oninput="filterTable(this,'games-table')">
+          </div>
+
+          <div class="table-responsive">
+            <table id="games-table" class="table table-sm table-hover align-middle mb-2">
+              <thead class="text-uppercase small">
+                <tr>
+                  <th>Game</th><th class="text-end">Spread</th><th class="text-end">Total</th><th>Implied</th><th>Pace (neutral)</th><th>Weather</th><th>Key injuries</th>
+                </tr>
+              </thead>
+              <tbody class="small">
+                <tr><td><strong>CHI @ CIN</strong></td><td class="text-end">CHI -2.5</td><td class="text-end">50.5</td><td>26.5 / 24.0</td><td>Avg; CIN slower <span class="badge rounded-pill badge-outline">[Sharp]</span></td><td>Low wind</td><td>CIN: Chase OK; CHI OL dings <span class="badge rounded-pill badge-outline">[Rotowire]</span></td></tr>
+                <tr><td><strong>ATL @ NE</strong></td><td class="text-end">NE -4.5</td><td class="text-end">45.5</td><td>25.0 / 20.5</td><td>Pats faster; ATL ↑ pace <span class="badge rounded-pill badge-outline">[FDR]</span></td><td>Minimal</td><td>Cousins Q; London Q <span class="badge rounded-pill badge-outline">[Rotowire]</span></td></tr>
+                <tr><td><strong>SF @ NYG</strong></td><td class="text-end">SF -2.5</td><td class="text-end">48.5</td><td>25.5 / 23.0</td><td>SF top-5 pace <span class="badge rounded-pill badge-outline">[TR]</span></td><td>Cool/light wind</td><td>QB status; CMC full; NYG thin CB <span class="badge rounded-pill badge-outline">[Rotowire]</span></td></tr>
+                <tr><td><strong>CAR @ GB</strong></td><td class="text-end">GB -13.5</td><td class="text-end">44.5</td><td>29.0 / 15.5</td><td>Slowish <span class="badge rounded-pill badge-outline">[Sharp]</span></td><td>41°F, drizzle</td><td>CAR WR thin; rookie QB vol <span class="badge rounded-pill badge-outline">[Rotowire]</span></td></tr>
+                <tr><td><strong>DEN @ HOU</strong></td><td class="text-end">HOU -1.5</td><td class="text-end">40.5</td><td>21.0 / 19.5</td><td>Slow, run-lean</td><td>Indoors</td><td>Surtain out; HOU WRs OK <span class="badge rounded-pill badge-outline">[ESPN]</span></td></tr>
+                <tr><td><strong>JAX @ LV</strong></td><td class="text-end">JAX +3</td><td class="text-end">44.5</td><td>20.8 / 23.8</td><td>LV slow</td><td>Indoors</td><td>JAX OL issues; LV pass D weak (EPA)</td></tr>
+                <tr><td><strong>MIN @ DET</strong></td><td class="text-end">DET -8.5</td><td class="text-end">48.0</td><td>28.3 / 19.8</td><td>Dome; DET med-fast</td><td>Indoors</td><td>DET healthy; MIN QB ?</td></tr>
+                <tr><td><strong>NO @ LAR</strong></td><td class="text-end">LAR -14</td><td class="text-end">44.5</td><td>29.3 / 15.3</td><td>Rams fast</td><td>Indoors</td><td>Kyren usage; Puka back</td></tr>
+                <tr><td><strong>LAC @ TEN</strong></td><td class="text-end">LAC -3</td><td class="text-end">42.5</td><td>22.8 / 19.8</td><td>LAC neutral-fast; TEN slow</td><td>Roof likely closed</td><td>LAC WR thin; TEN rush middling</td></tr>
+                <tr><td><strong>IND @ PIT</strong></td><td class="text-end">IND -3.5</td><td class="text-end">51.5</td><td>27.5 / 24.0</td><td>Fast trend; IND PROE ↑</td><td>Low</td><td>PIT secondary issues</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row g-3 mt-2">
+            <div class="col-12 col-lg-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h6 class="card-title">Top Over #1 — IND–PIT (51.5)</h6>
+                  <p class="card-text small">PIT tempo ↑ + IND pass aggressiveness. DFS: Jones–Pittman; bring back Pickens. <span class="badge rounded-pill badge-outline">[FDR]</span> <span class="badge rounded-pill badge-outline">[PFF]</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h6 class="card-title">Top Over #2 — SF–NYG (48.5)</h6>
+                  <p class="card-text small">SF pace + mild weather. DFS: CMC + Aiyuk; bring back Wan’Dale. <span class="badge rounded-pill badge-outline">[TR]</span> <span class="badge rounded-pill badge-outline">[BBV]</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h6 class="card-title">Top Over #3 — MIN–DET (48.0)</h6>
+                  <p class="card-text small">Dome + DET efficiency. DFS: Goff + ARSB/Laporta; bring back Addison. <span class="badge rounded-pill badge-outline">[PFF]</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) Positions -->
+    <section id="positions" class="mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="section-title mb-2"><i class="bi bi-people"></i><h2 class="h5 mb-0">2) Position Reports</h2></div>
+
+          <!-- QB -->
+          <h6 class="mt-2">Quarterback</h6>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover align-middle">
+              <thead class="text-uppercase small"><tr>
+                <th>Player</th><th>Opp</th><th>DK $</th><th>Role Trend</th><th>Matchup Edge</th><th>Recent Form</th><th>Own%</th><th>Leverage</th><th>Risk</th><th>Tag</th>
+              </tr></thead>
+              <tbody class="small">
+                <tr>
+                  <td>Daniel Jones (IND)</td><td>@ PIT</td><td>6.5k</td><td>EPA/db ↑; PROE ↑ <span class="badge rounded-pill badge-outline">[PFF]</span></td>
+                  <td>PIT pace ↑; secondary thin <span class="badge rounded-pill badge-outline">[FDR]</span></td>
+                  <td>PFF top-tier offense</td><td>8–12</td><td>Stack Pittman; bring-back Pickens</td><td>Road total reliance</td>
+                  <td><span class="badge rounded-pill badge-core">Core</span></td>
+                </tr>
+                <tr>
+                  <td>Jared Goff (DET)</td><td>vs MIN</td><td>6.9k</td><td>35–40 att baseline</td><td>Dome; CBs exploitable</td><td>Stable eff</td><td>10–14</td><td>Double ARSB + Laporta</td><td>RB TDs</td>
+                  <td><span class="badge rounded-pill badge-secondary">Secondary</span></td>
+                </tr>
+                <tr>
+                  <td>Brock Purdy (SF)</td><td>@ NYG</td><td>6.6k</td><td>Hyper-efficient (when active)</td><td>Pace boost</td><td>High YPA w/ CMC/Aiyuk</td><td>5–8</td><td>Purdy+Aiyuk</td><td>Status volatility</td>
+                  <td><span class="badge rounded-pill badge-contrarian">Contrarian</span></td>
+                </tr>
+                <tr>
+                  <td>Caleb Williams (CHI)</td><td>@ CIN</td><td>7.2k</td><td>Explosive rate ↑; scramble ceiling</td><td>50.5 total</td><td>>21 pts baseline</td><td>9–13</td><td>Stack DJM; bring-back Chase</td><td>TO variance</td>
+                  <td><span class="badge rounded-pill badge-secondary">Secondary</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- RB -->
+          <h6 class="mt-3">Running Back</h6>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover align-middle">
+              <thead class="text-uppercase small"><tr>
+                <th>Player</th><th>Opp</th><th>DK $</th><th>Role Trend</th><th>Matchup Edge</th><th>Recent</th><th>Own%</th><th>Leverage</th><th>Risk</th><th>Tag</th>
+              </tr></thead>
+              <tbody class="small">
+                <tr>
+                  <td>Christian McCaffrey (SF)</td><td>@ NYG</td><td>9.5k</td><td>Bell-cow snaps + RZ</td><td>NYG mid front; mild wx</td><td>All-purpose</td><td>18–25</td><td>Pair w/ Aiyuk</td><td>Salary</td>
+                  <td><span class="badge rounded-pill badge-core">Core</span></td>
+                </tr>
+                <tr>
+                  <td>Kyren Williams (LAR)</td><td>vs NO</td><td>7.8k</td><td>Workhorse when active</td><td>-14 spread → rush script</td><td>High rush share</td><td>10–15</td><td>With LAR DST</td><td>Committee risk</td>
+                  <td><span class="badge rounded-pill badge-secondary">Secondary</span></td>
+                </tr>
+                <tr>
+                  <td>Jonathan Taylor (IND)</td><td>@ PIT</td><td>7.4k</td><td>RZ steady; rec usage ↑</td><td>High total leverage</td><td>Explosive</td><td>6–9</td><td>Pivot in IND stacks</td><td>Timeshare</td>
+                  <td><span class="badge rounded-pill badge-contrarian">Contrarian</span></td>
+                </tr>
+                <tr>
+                  <td>Aaron Jones (GB)</td><td>vs CAR</td><td>6.6k</td><td>60–70% snaps + RZ</td><td>Fav + weather tilt</td><td>Ceiling when healthy</td><td>14–20</td><td>GB onslaught</td><td>Wx/health</td>
+                  <td><span class="badge rounded-pill badge-core">Core</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- WR -->
+          <h6 class="mt-3">Wide Receiver</h6>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover align-middle">
+              <thead class="text-uppercase small"><tr>
+                <th>Player</th><th>Opp</th><th>DK $</th><th>Role Trend</th><th>Matchup Edge</th><th>Recent</th><th>Own%</th><th>Leverage</th><th>Risk</th><th>Tag</th>
+              </tr></thead>
+              <tbody class="small">
+                <tr>
+                  <td>Amon-Ra St. Brown (DET)</td><td>vs MIN</td><td>8.6k</td><td>Alpha share; elite YPRR</td><td>Dome; beatable CBs</td><td>High floor/ceiling</td><td>16–22</td><td>Double w/ Laporta</td><td>RB TDs</td>
+                  <td><span class="badge rounded-pill badge-core">Core</span></td>
+                </tr>
+                <tr>
+                  <td>Brandon Aiyuk (SF)</td><td>@ NYG</td><td>7.7k</td><td>Air-yards spike</td><td>Pace; mild wx</td><td>Explosive</td><td>10–14</td><td>Purdy doubles or CMC+Aiyuk</td><td>QB status</td>
+                  <td><span class="badge rounded-pill badge-secondary">Secondary</span></td>
+                </tr>
+                <tr>
+                  <td>DJ Moore (CHI)</td><td>@ CIN</td><td>7.3k</td><td>25–30% tgt share</td><td>50.5 total</td><td>Consistent</td><td>12–16</td><td>Moore + Chase mini</td><td>Volatility</td>
+                  <td><span class="badge rounded-pill badge-secondary">Secondary</span></td>
+                </tr>
+                <tr>
+                  <td>George Pickens (PIT)</td><td>vs IND</td><td>6.2k</td><td>Air-yards hog; man splits</td><td>Shootout script</td><td>Spike profile</td><td>7–10</td><td>Bring-back vs IND</td><td>Volatile</td>
+                  <td><span class="badge rounded-pill badge-contrarian">Contrarian</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- TE -->
+          <h6 class="mt-3">Tight End</h6>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover align-middle">
+              <thead class="text-uppercase small"><tr>
+                <th>Player</th><th>Opp</th><th>DK $</th><th>Role Trend</th><th>Matchup Edge</th><th>Recent</th><th>Own%</th><th>Leverage</th><th>Risk</th><th>Tag</th>
+              </tr></thead>
+              <tbody class="small">
+                <tr>
+                  <td>Sam LaPorta (DET)</td><td>vs MIN</td><td>6.1k</td><td>Elite routes + RZ</td><td>Dome; LB/S targetable</td><td>Consistent</td><td>12–18</td><td>DET doubles</td><td>TD variance</td>
+                  <td><span class="badge rounded-pill badge-core">Core</span></td>
+                </tr>
+                <tr>
+                  <td>Kyle Pitts (ATL)</td><td>@ NE</td><td>4.6k</td><td>Routes strong; ATL pace ↑</td><td>TE funnel-ish</td><td>Better usage</td><td>8–12</td><td>Salary relief</td><td>QB health</td>
+                  <td><span class="badge rounded-pill badge-secondary">Secondary</span></td>
+                </tr>
+                <tr>
+                  <td>Luke Musgrave (GB)</td><td>vs CAR</td><td>3.3k</td><td>Routes intact</td><td>Weather → short game</td><td>TD-or-bust</td><td>2–4</td><td>GB onslaught</td><td>Low floor</td>
+                  <td><span class="badge rounded-pill badge-contrarian">Contrarian</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Stacks -->
+    <section id="stacks" class="mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="section-title mb-2"><i class="bi bi-diagram-3"></i><h2 class="h5 mb-0">3) Stacks & Correlations</h2></div>
+          <div class="row g-3">
+            <div class="col-12 col-lg-6">
+              <h6>Primary Stacks</h6>
+              <ol class="small mb-0">
+                <li><strong>IND</strong> — Jones + Pittman (+ Downs); bring-back Pickens.</li>
+                <li><strong>DET</strong> — Goff + Amon-Ra + LaPorta; bring-back Addison.</li>
+                <li><strong>SF</strong> — Purdy + Aiyuk (+ Kittle); bring-back Wan’Dale. If Purdy sits: CMC one-off.</li>
+              </ol>
+            </div>
+            <div class="col-12 col-lg-6">
+              <h6>Mini-correlations</h6>
+              <ul class="small mb-0">
+                <li>Aaron Jones (GB) + GB DST (weather + spread)</li>
+                <li>DJ Moore (CHI) ↔ Ja’Marr Chase (CIN)</li>
+                <li>Kyren (LAR) + DET pass pieces (late swap leverage)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) Props -->
+    <section id="props" class="mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="section-title mb-2"><i class="bi bi-graph-up"></i><h2 class="h5 mb-0">4) Player Props — Edge Finder</h2></div>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover align-middle">
+              <thead class="text-uppercase small"><tr>
+                <th>Player</th><th>Market</th><th>Book</th><th>Fair / Edge</th><th>Rationale</th><th>Conf.</th><th>Sources</th>
+              </tr></thead>
+              <tbody class="small">
+                <tr><td>Daniel Jones (IND)</td><td>Pass Att O</td><td>34.5</td><td>36.5 (+5.8%)</td><td>PIT tempo + IND PROE ↑ + 51.5 total</td><td>Med</td><td>[FDR][PFF][Fox/DK]</td></tr>
+                <tr><td>Michael Pittman (IND)</td><td>Receptions O</td><td>6.5</td><td>7.1 (+7%)</td><td>Alpha share; PIT CBs thin</td><td>Med</td><td>[Rotowire][PFF]</td></tr>
+                <tr><td>Jared Goff (DET)</td><td>Pass Yds O</td><td>265.5</td><td>277.5 (+4.5%)</td><td>Dome + concentrated tree</td><td>Med</td><td>[Fox/DK]</td></tr>
+                <tr><td>Sam LaPorta (DET)</td><td>Receptions O</td><td>5.5</td><td>6.0 (+8%)</td><td>Routes/RZ stable; MIN LB/S</td><td>Med</td><td>[PFF]</td></tr>
+                <tr><td>Christian McCaffrey (SF)</td><td>Rush+Rec O</td><td>107.5</td><td>116.0 (+7.9%)</td><td>Bell-cow + mild weather</td><td>High</td><td>[PFF][BBV]</td></tr>
+                <tr><td>Kyren Williams (LAR)</td><td>Rush Att O</td><td>16.5</td><td>18.0 (+9%)</td><td>Big spread → run script</td><td>Med</td><td>[Fox/DK]</td></tr>
+                <tr><td>DJ Moore (CHI)</td><td>Rec Yds O</td><td>72.5</td><td>79.0 (+8.9%)</td><td>Usage in 50.5 total</td><td>Med</td><td>[News agg]</td></tr>
+                <tr><td>Aaron Jones (GB)</td><td>Rush Yds O</td><td>64.5</td><td>71.0 (+10%)</td><td>Weather + big favorite</td><td>Med</td><td>[SBR Wx][Fox/DK]</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="accordion accordion-flush mt-2" id="propNotes">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="propCorrH">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#propCorr">Correlation flags</button>
+              </h2>
+              <div id="propCorr" class="accordion-collapse collapse" data-bs-parent="#propNotes">
+                <div class="accordion-body small">
+                  Jones Att O ↔ Pittman/Downs Receptions O; Goff Yds O ↔ LaPorta/ARSB Receptions O. Avoid over-stacking in one parlay unless you accept correlation risk.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) Value & Leverage -->
+    <section id="value" class="mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="section-title mb-2"><i class="bi bi-lightning-charge"></i><h2 class="h5 mb-0">5) Value & Leverage Summary</h2></div>
+          <div class="table-responsive">
+            <table class="table table-sm table-hover align-middle">
+              <thead class="text-uppercase small"><tr>
+                <th>Pos</th><th>Player</th><th>Team</th><th>Opp</th><th>DK $</th><th>Proj</th><th>Value/$1k</th><th>Est Own%</th><th>Lev. Score</th><th>Stack/Bring-Back</th><th>Notes</th><th>Sources</th>
+              </tr></thead>
+              <tbody class="small">
+                <tr><td><strong>QB</strong></td><td><strong>Daniel Jones</strong></td><td>IND</td><td>PIT</td><td>6500</td><td>23.5</td><td>3.6</td><td>8–12</td><td><strong>2.2–2.9</strong></td><td>Pittman / Pickens</td><td>Tempo + efficiency</td><td>[FDR][PFF]</td></tr>
+                <tr><td><strong>QB</strong></td><td><strong>Jared Goff</strong></td><td>DET</td><td>MIN</td><td>6900</td><td>24.0</td><td>3.5</td><td>10–14</td><td><strong>1.9–2.4</strong></td><td>ARSB/Laporta / Addison</td><td>Dome double</td><td>[Fox][PFF]</td></tr>
+                <tr><td><strong>RB</strong></td><td><strong>Christian McCaffrey</strong></td><td>SF</td><td>NYG</td><td>9500</td><td>28.0</td><td>2.9</td><td>18–25</td><td><strong>1.1–1.6</strong></td><td>With Aiyuk</td><td>Bellcow</td><td>[PFF][BBV]</td></tr>
+                <tr><td><strong>RB</strong></td><td><strong>Aaron Jones</strong></td><td>GB</td><td>CAR</td><td>6600</td><td>19.0</td><td>2.9</td><td>14–20</td><td><strong>1.0–1.4</strong></td><td>GB DST</td><td>Weather + fav</td><td>[SBR Wx]</td></tr>
+                <tr><td><strong>WR</strong></td><td><strong>Amon-Ra St. Brown</strong></td><td>DET</td><td>MIN</td><td>8600</td><td>25.0</td><td>2.9</td><td>16–22</td><td><strong>1.1–1.6</strong></td><td>DET double</td><td>Alpha</td><td>[PFF]</td></tr>
+                <tr><td><strong>WR</strong></td><td><strong>Brandon Aiyuk</strong></td><td>SF</td><td>NYG</td><td>7700</td><td>22.0</td><td>2.9</td><td>10–14</td><td><strong>1.6–2.2</strong></td><td>Purdy stacks</td><td>Air-yards spike</td><td>[PFF]</td></tr>
+                <tr><td><strong>WR</strong></td><td><strong>George Pickens</strong></td><td>PIT</td><td>IND</td><td>6200</td><td>18.0</td><td>2.9</td><td>7–10</td><td><strong>1.8–2.6</strong></td><td>Bring-back</td><td>aDOT/air yards</td><td>[FantasyPoints]</td></tr>
+                <tr><td><strong>TE</strong></td><td><strong>Sam LaPorta</strong></td><td>DET</td><td>MIN</td><td>6100</td><td>17.0</td><td>2.8</td><td>12–18</td><td><strong>1.0–1.4</strong></td><td>DET doubles</td><td>Routes/RZ</td><td>[PFF]</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) Fades -->
+    <section id="fades" class="mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="section-title mb-2"><i class="bi bi-shield-exclamation"></i><h2 class="h5 mb-0">6) Fades & Risk Management</h2></div>
+          <ul class="small mb-0">
+            <li><strong>Rams passing overweight</strong> — prefer Kyren + LAR DST with -14 script.</li>
+            <li><strong>GB downfield WRs</strong> — weather tilt toward Aaron Jones/Musgrave short game.</li>
+            <li><strong>DEN–HOU one-offs</strong> — low total/tempo; use only within correlated stacks.</li>
+          </ul>
+          <div class="accordion accordion-flush mt-2" id="swap">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="swapH">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#swapC">Late-swap guidance</button>
+              </h2>
+              <div id="swapC" class="accordion-collapse collapse" data-bs-parent="#swap">
+                <div class="accordion-body small">
+                  If early DET/SF chalk fails → pivot to Kyren onslaught or LAC–TEN minis in late window.
+                  If early chalk smashes → keep correlation; trim fringe contrarian punts.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7) Sources -->
+    <section id="sources" class="mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="section-title mb-2"><i class="bi bi-journal-text"></i><h2 class="h5 mb-0">7) Sources (last 5 days)</h2></div>
+          <ol class="small copy mb-0">
+            <li>FOX Sports — NFL Week 9 Odds Roundup (Nov 1, 2025)</li>
+            <li>DraftKings Sportsbook — NFL Odds Board (Nov 2, 2025)</li>
+            <li>VegasInsider — Week 9 Odds (Nov 2, 2025)</li>
+            <li>ESPN — Week 9 Previews (Oct 31, 2025)</li>
+            <li>RotoWire — NFL Injury Report (Nov 1–2, 2025)</li>
+            <li>Sports Illustrated — Week 9 Injury Report (Nov 2, 2025)</li>
+            <li>FantasyLife — Cheat Sheet (Nov 1, 2025)</li>
+            <li>Underdog Network — Blueprint (Oct 30–Nov 1, 2025)</li>
+            <li>PFF — Statistical Review (Oct 28, 2025)</li>
+            <li>Sharp Football — Pace (Oct 28, 2025)</li>
+            <li>FanDuel Research — Pace & Pass Rate (Oct 29, 2025)</li>
+            <li>RBSDM — Team EPA tools (Current)</li>
+            <li>RotoGrinders Weather — Kevin Roth (Nov 1–2, 2025)</li>
+            <li>Sportsbook Review — GB Forecast (Oct 30, 2025)</li>
+            <li>Rotowire — DK Projected Ownership (Nov 2, 2025)</li>
+            <li>FantasyPoints — DFS Slate Breakdown (Nov 1, 2025)</li>
+            <li>RotoGrinders — Expert Survey (Nov 2, 2025)</li>
+            <li>CBS Sports — Best Bets (Nov 2, 2025)</li>
+            <li>Big Blue View — SF@NYG Gameday (Nov 2, 2025)</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- CSV -->
+    <section class="mb-5">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="section-title mb-2"><i class="bi bi-filetype-csv"></i><h2 class="h5 mb-0">CSV Export</h2></div>
+<pre class="small">Pos,Player,Team,Opp,Salary,Projection,Value_per_$1k,Est_Own,Leverage_Score,Stack/BringBack,Notes,Primary_Sources
+QB,Daniel Jones,IND,PIT,6500,23.5,3.62,0.10,2.35,"Pittman / Pickens","Tempo up; PFF efficiency strong","ESPN W9 guide|PFF W9|FD Research|Fox odds"
+QB,Jared Goff,DET,MIN,6900,24.0,3.48,0.12,2.00,"Amon-Ra+LaPorta / Addison","Dome stack","Fox odds|PFF|Sharp Pace"
+RB,Christian McCaffrey,SF,NYG,9500,28.0,2.95,0.22,1.27,"With Aiyuk or solo","Bellcow; mild weather","PFF|BBV|RG Weather"
+RB,Aaron Jones,GB,CAR,6600,19.0,2.88,0.17,1.12,"GB DST","Weather + big fav","SBR Wx|Fox odds"
+WR,Amon-Ra St. Brown,DET,MIN,8600,25.0,2.91,0.19,1.32,"Goff/Laporta / Addison","Alpha in dome","PFF|Fox odds"
+WR,Brandon Aiyuk,SF,NYG,7700,22.0,2.86,0.12,1.83,"Purdy stacks","Air-yards spike","PFF|BBV"
+WR,George Pickens,PIT,IND,6200,18.0,2.90,0.09,2.00,"Bring-back vs IND","Air-yards; man splits","FantasyPoints|PFF"
+TE,Sam LaPorta,DET,MIN,6100,17.0,2.79,0.15,1.13,"DET doubles","Routes + RZ","PFF|Fox odds"</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container-xxl py-4 border-top" style="border-color:var(--sneat-border)!important;">
+    <div class="d-flex flex-column flex-sm-row small justify-content-between gap-2">
+      <span class="muted">Built with a Sneat-style Bootstrap layout • Mobile-first</span>
+      <span class="muted">Refresh lines & inactives ~90m pre-lock</span>
+    </div>
+  </footer>
+
+  <script>
+    function filterTable(inputEl, tableId){
+      const q = inputEl.value.toLowerCase();
+      const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+      rows.forEach(r=> r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none');
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
