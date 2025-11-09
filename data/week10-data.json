@@ -1,0 +1,100 @@
+{
+  "as_of_date_et": "2025-11-08T23:07:00-05:00",
+  "week": 10,
+  "games": [
+    {
+      "game_id": "ATL@IND_2025-11-09",
+      "kickoff_et": "2025-11-09T09:30:00-05:00",
+      "venue": "Olympiastadion Berlin",
+      "surface": "grass",
+      "is_dome": false,
+      "city": "Berlin, DE",
+      "timezone": "Europe/Berlin",
+      "broadcast": "NFL Network",
+      "vegas": {
+        "spread": "IND -6.5 (ESPN Bet)",
+        "total": "47.5 (ESPN Bet)",
+        "implied_totals": {
+          "away": 20.5,
+          "home": 27.0
+        },
+        "line_timestamp_et": "2025-11-07T14:44:00-05:00"
+      },
+      "over_under_trends": {
+        "away_team": {
+          "games": [
+            { "date": "2025-10-05", "opp": "HOU", "total_closing": 41, "game_points": 54, "result": "Over", "book": "consensus", "cite": "[41†L1060-L1068]" },
+            { "date": "2025-10-12", "opp": "LA", "total_closing": 45, "game_points": 20, "result": "Under", "book": "consensus", "cite": "[41†L1058-L1062]" },
+            { "date": "2025-10-26", "opp": "CHI", "total_closing": 45, "game_points": 46, "result": "Over", "book": "consensus", "cite": "[41†L1058-L1064]" },
+            { "date": "2025-10-30", "opp": "MIA", "total_closing": 51, "game_points": 34, "result": "Under", "book": "consensus", "cite": "[41†L1054-L1061]" },
+            { "date": "2025-11-09", "opp": "IND", "total_closing": 49.5, "game_points": 65, "result": "Over", "book": "consensus", "cite": "[41†L1088-L1096]" }
+          ],
+          "summary": { "overs": 3, "unders": 2, "pushes": 0, "avg_total_points": 43.8 },
+          "outlier_flags": []
+        },
+        "home_team": {
+          "games": [
+            { "date": "2025-09-28", "opp": "ATL", "total_closing": 43.5, "game_points": 47, "result": "Over", "book": "consensus", "cite": "[3†L161-L169]" },
+            { "date": "2025-10-05", "opp": "KC", "total_closing": 48.5, "game_points": 57, "result": "Over", "book": "consensus", "cite": "[41†L1062-L1065]" },
+            { "date": "2025-10-12", "opp": "NE", "total_closing": 40.5, "game_points": 45, "result": "Over", "book": "consensus", "cite": "[35†L1054-L1062]" },
+            { "date": "2025-10-20", "opp": "DET", "total_closing": 43.5, "game_points": 33, "result": "Under", "book": "consensus", "cite": "[63†L748-L756]" },
+            { "date": "2025-10-26", "opp": "NO", "total_closing": 39, "game_points": 26, "result": "Under", "book": "consensus", "cite": "[43†L1061-L1065]" }
+          ],
+          "summary": { "overs": 3, "unders": 2, "pushes": 0, "avg_total_points": 41.2 },
+          "outlier_flags": []
+        }
+      },
+      "weather": {
+        "forecast_source": "NFLWeather.com",
+        "observed_at_et": "2025-11-08T18:00:00-05:00",
+        "temp_f": 48,
+        "wind_mph_sustained": 2,
+        "wind_mph_gust": null,
+        "precip_chance_pct": 0,
+        "conditions": "Overcast",
+        "weather_impact_note": "Cool and overcast conditions in Berlin, but with minimal wind and no rain expected, weather should not significantly affect offensive performance."
+      },
+      "dfs_players": {
+        "qb": [],
+        "rb": [],
+        "wr": [],
+        "te": []
+      },
+      "player_prop_trends": [],
+      "injuries": [
+        { "player": "Jonathan Taylor", "team": "IND", "status": "active", "body_part": null, "practice_trend": "Full practice", "impact_note": "Taylor is set for a full workload against a Falcons defense missing key defenders.", "cites": [] }
+      ],
+      "angles": [
+        "Indianapolis' offense is expected to lean on RB Jonathan Taylor heavily, facing a Falcons defense without multiple defensive line starters."
+      ]
+    }
+  ],
+  "dfs_player_pool": {
+    "qb": [
+      { "name": "Josh Allen", "team": "BUF", "dk_salary": 8800, "recent_role_note": "Multi-TD machine (13 passing TDs through Week 9) and focal point of Bills offense", "matchup_note": "Faces struggling MIA defense he's historically dominated (3 total TD per game vs MIA)", "projection_hint": "300+ total yards, multiple TD", "risk_tag": "stud", "cites": ["[16†L924-L931]"] }
+    ],
+    "rb": [
+      { "name": "Christian McCaffrey", "team": "SF", "dk_salary": 8900, "recent_role_note": "Do-it-all bellcow, heavily featured with backup QB (25+ touches likely)", "matchup_note": "Rams undermanned on D; expect SF to feed CMC to control game", "projection_hint": "Elite RB1, 100+ yds & TD", "risk_tag": "stud", "cites": ["[19†L1555-L1563]"] }
+    ],
+    "wr": [
+      { "name": "Amon-Ra St. Brown", "team": "DET", "dk_salary": 8000, "recent_role_note": "Target hog (10+ tgt in 5 of L6); on 4-game 100+ yd streak until Wk9 dip", "matchup_note": "WSH secondary hemorrhaging yards; St. Brown should slice them from slot all day", "projection_hint": "100+ yds likely, high catch volume", "risk_tag": "cash", "cites": [] }
+    ],
+    "te": [
+      { "name": "Sam LaPorta", "team": "DET", "dk_salary": 5200, "recent_role_note": "Consistent and explosive (6-97-1 last game) rare for a rookie TE", "matchup_note": "WSH notoriously bad vs TE; LaPorta poised for another big game and red-zone looks", "projection_hint": "Top-3 TE, 70+ yds & TD probable", "risk_tag": "cash", "cites": [] }
+    ]
+  },
+  "outlier_summary": {
+    "teams_consistently_over": ["NYG", "LAC"],
+    "teams_consistently_under": ["WAS", "CAR"],
+    "notes": [
+      "The Giants have gone Over the total in 4 of their last 5 games thanks to a leaky defense and surprisingly effective offense.",
+      "The Commanders have stayed Under in five straight games, averaging under 30 total points in that span, a byproduct of poor offense and decent defense."
+    ]
+  },
+  "weather_watch": [
+    { "game_id": "NYG@CHI_2025-11-09", "flag": "snow", "note": "Forecast of snow showers and low-40s temps; could hinder passing if accumulation occurs", "cite": "[46†L748-L756]" },
+    { "game_id": "CLE@NYJ_2025-11-09", "flag": "rain", "note": "Steady rain expected in New Jersey; heavy reliance on run likely for both teams", "cite": "[46†L739-L747]" },
+    { "game_id": "ARI@SEA_2025-11-09", "flag": "rain", "note": "Rain likely in Seattle (60%+ chance), though not too heavy; Seahawks might run a bit more", "cite": "[46†L757-L764]" },
+    { "game_id": "ATL@IND_2025-11-09", "flag": "none", "note": "Cold and overcast in Berlin but minimal wind; playing conditions are fine for offense", "cite": "[47†L69-L77]" }
+  ]
+}

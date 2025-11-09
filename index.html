@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en" class="layout-menu-fixed layout-compact" data-assets-path="sneat-bootstrap-template/assets/" data-template="vertical-menu-template-free">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <title>Fantasy Weekly - NFL Week 10 Dashboard</title>
+  <meta name="description" content="NFL Week 10 Fantasy Football Dashboard with DFS insights, weather alerts, and betting analysis" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="sneat-bootstrap-template/assets/img/favicon/favicon.ico" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="sneat-bootstrap-template/assets/vendor/fonts/iconify-icons.css" />
+  
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="sneat-bootstrap-template/assets/vendor/css/core.css" />
+  <link rel="stylesheet" href="sneat-bootstrap-template/assets/css/demo.css" />
+  <link rel="stylesheet" href="sneat-bootstrap-template/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+  <link rel="stylesheet" href="sneat-bootstrap-template/assets/vendor/libs/apex-charts/apex-charts.css" />
+  
+  <!-- Helpers -->
+  <script src="sneat-bootstrap-template/assets/vendor/js/helpers.js"></script>
+  <script src="sneat-bootstrap-template/assets/js/config.js"></script>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      
+      <!-- Menu -->
+      <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+        <div class="app-brand demo">
+          <a href="index.html" class="app-brand-link">
+            <span class="app-brand-text demo menu-text fw-bold ms-2">Fantasy Weekly</span>
+          </a>
+          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+            <i class="bx bx-chevron-left d-block d-xl-none align-middle"></i>
+          </a>
+        </div>
+
+        <div class="menu-divider mt-0"></div>
+        <div class="menu-inner-shadow"></div>
+
+        <ul class="menu-inner py-1">
+          <!-- Dashboard -->
+          <li class="menu-item active">
+            <a href="index.html" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-home-smile"></i>
+              <div class="text-truncate">Games Dashboard</div>
+            </a>
+          </li>
+          
+          <!-- DFS Players -->
+          <li class="menu-item">
+            <a href="pages/dfs-players.html" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-user-circle"></i>
+              <div class="text-truncate">DFS Players</div>
+            </a>
+          </li>
+          
+          <!-- Game Details -->
+          <li class="menu-item">
+            <a href="pages/game-details.html" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-detail"></i>
+              <div class="text-truncate">Game Details</div>
+            </a>
+          </li>
+          
+          <!-- Weather -->
+          <li class="menu-item">
+            <a href="pages/weather.html" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-cloud"></i>
+              <div class="text-truncate">Weather Impact</div>
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- / Menu -->
+
+      <!-- Layout container -->
+      <div class="layout-page">
+        
+        <!-- Navbar -->
+        <nav class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+          <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
+            <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+              <i class="icon-base bx bx-menu icon-md"></i>
+            </a>
+          </div>
+
+          <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
+            <div class="navbar-nav align-items-center me-auto">
+              <div class="nav-item d-flex align-items-center">
+                <h5 class="mb-0">NFL Week <span id="week-number">10</span> - <span id="as-of-date">Loading...</span></h5>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- / Navbar -->
+
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <!-- Content -->
+          <div class="container-xxl flex-grow-1 container-p-y">
+            
+            <!-- Summary Cards -->
+            <div class="row mb-6">
+              <div class="col-lg-3 col-md-6 col-6 mb-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                      <div class="avatar flex-shrink-0">
+                        <span class="avatar-initial rounded bg-label-primary">
+                          <i class="bx bx-football icon-lg"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <p class="mb-1">Total Games</p>
+                    <h4 class="card-title mb-3" id="total-games">0</h4>
+                    <small class="text-body-secondary">Week 10 Schedule</small>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-lg-3 col-md-6 col-6 mb-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                      <div class="avatar flex-shrink-0">
+                        <span class="avatar-initial rounded bg-label-warning">
+                          <i class="bx bx-cloud-rain icon-lg"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <p class="mb-1">Weather Alerts</p>
+                    <h4 class="card-title mb-3" id="weather-alerts">0</h4>
+                    <small class="text-body-secondary">Games to Watch</small>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-lg-3 col-md-6 col-6 mb-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                      <div class="avatar flex-shrink-0">
+                        <span class="avatar-initial rounded bg-label-success">
+                          <i class="bx bx-trending-up icon-lg"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <p class="mb-1">Avg O/U Total</p>
+                    <h4 class="card-title mb-3" id="avg-over-under">0</h4>
+                    <small class="text-body-secondary">Points Expected</small>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-lg-3 col-md-6 col-6 mb-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                      <div class="avatar flex-shrink-0">
+                        <span class="avatar-initial rounded bg-label-info">
+                          <i class="bx bx-dollar icon-lg"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <p class="mb-1">DFS Players</p>
+                    <h4 class="card-title mb-3" id="dfs-count">0</h4>
+                    <small class="text-body-secondary">In Player Pool</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Games Grid -->
+            <div class="row" id="games-container">
+              <!-- Games will be loaded here dynamically -->
+              <div class="col-12 text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-3">Loading games...</p>
+              </div>
+            </div>
+
+          </div>
+          <!-- / Content -->
+
+          <!-- Footer -->
+          <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl">
+              <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                  © <script>document.write(new Date().getFullYear());</script> Fantasy Weekly AI Notes
+                </div>
+                <div class="d-none d-lg-inline-block">
+                  <a href="https://github.com" target="_blank" class="footer-link me-4">GitHub</a>
+                  <a href="#" class="footer-link">Documentation</a>
+                </div>
+              </div>
+            </div>
+          </footer>
+          <!-- / Footer -->
+
+          <div class="content-backdrop fade"></div>
+        </div>
+        <!-- Content wrapper -->
+      </div>
+      <!-- / Layout page -->
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+
+  <!-- Core JS -->
+  <script src="sneat-bootstrap-template/assets/vendor/libs/jquery/jquery.js"></script>
+  <script src="sneat-bootstrap-template/assets/vendor/libs/popper/popper.js"></script>
+  <script src="sneat-bootstrap-template/assets/vendor/js/bootstrap.js"></script>
+  <script src="sneat-bootstrap-template/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+  <script src="sneat-bootstrap-template/assets/vendor/js/menu.js"></script>
+  <script src="sneat-bootstrap-template/assets/js/main.js"></script>
+  
+  <!-- Data Loader -->
+  <script src="assets/js/data-loader.js"></script>
+  
+  <!-- Dashboard JS -->
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
