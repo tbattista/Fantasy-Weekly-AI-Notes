@@ -1,0 +1,21 @@
+{
+  "name": "fantasy-weekly-automation",
+  "version": "1.0.0",
+  "description": "Automated weekly NFL data generation for Fantasy Weekly dashboard",
+  "main": "generate-weekly-data.js",
+  "scripts": {
+    "generate": "node generate-weekly-data.js",
+    "test": "node generate-weekly-data.js --test"
+  },
+  "keywords": [
+    "nfl",
+    "fantasy",
+    "dfs",
+    "automation"
+  ],
+  "author": "Fantasy Weekly",
+  "license": "MIT",
+  "dependencies": {
+    "openai": "^4.20.0"
+  }
+}
