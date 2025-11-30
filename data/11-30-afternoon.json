@@ -2,35 +2,35 @@
   "meta": {
     "week": 13,
     "date": "2025-11-30",
-    "slate_description": "afternoon and night games",
+    "slate_description": "afternoon games only",
     "note": "All players checked against latest depth charts, injury reports, and preview/fantasy articles as of 2025-11-30."
   },
   "categories": {
     "qbs": [
       {
-        "name": "Aaron Rodgers",
-        "team": "PIT",
+        "name": "C.J. Stroud",
+        "team": "HOU",
         "position": "QB",
-        "game": "PIT @ BUF",
-        "matchup_note": "Returning after wrist injury against Buffalo's pressured front — offensive line weakened with both starting tackles out. Likely a run-heavy script, may limit passing upside but floor is solid if he plays safe.",
+        "game": "HOU @ IND",
+        "matchup_note": "Returning from absence vs. Colts — likely conservative game script in a low-scoring divisional tilt.",
         "injury_status": "active",
         "verified": true,
-        "what_to_target": "Passing yards / any TD",
-        "why": "Rodgers is reportedly expected to start and is off the injury report for Week 13, despite previous wrist fractures. The Bills are missing both starting offensive tackles, which could hamper QB protection and force quicker, shorter passes — increasing volume of check-downs or simpler throws.",
+        "what_to_target": "Passing yards",
+        "why": "Stroud is trending to start and the matchup vs. the Colts remains fairly tight — expect volume but modest ceiling.",
         "sources": [
           {
-            "name": "Fantasy Football Injury Report Week 13 – Fantrax",
-            "sentiment": "+1"
+            "name": "NFL Predictions Week 13 Picks & Props – Action Network",
+            "sentiment": "0"
           },
           {
-            "name": "NFL Week 13 injury roundup – CBS Sports",
-            "sentiment": "+1"
+            "name": "Week 13 Indianapolis at Houston — odds & preview – SportsInteraction",
+            "sentiment": "0"
           }
         ],
         "suggestions": [
           {
             "stat": "passing_yards",
-            "line": 235.5,
+            "line": 240.5,
             "type": "over_under",
             "lean": "under"
           },
@@ -49,23 +49,58 @@
         ]
       },
       {
-        "name": "C.J. Stroud",
-        "team": "HOU",
+        "name": "Brock Purdy",
+        "team": "SF",
         "position": "QB",
-        "game": "HOU @ IND",
-        "matchup_note": "Cleared concussion protocol vs. Colts; a bounce-back cash/DFS target given upside with return and improved weapons.",
+        "game": "SF @ CLE",
+        "matchup_note": "Likely modest aerial game vs. tough Browns front — run game may dominate for 49ers.",
+        "injury_status": "active",
+        "verified": true,
+        "what_to_target": "Passing yards",
+        "why": "The matchup is projected as low-scoring and the 49ers tend to lean run-heavy against strong fronts per recent prop guides.",
+        "sources": [
+          {
+            "name": "Week 13 NFL Picks: Upset and Score Predictions – NFL.com",
+            "sentiment": "0"
+          },
+          {
+            "name": "NFL Picks and Props Week 13 – RotoWire",
+            "sentiment": "-1"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "passing_yards",
+            "line": 205.5,
+            "type": "over_under",
+            "lean": "under"
+          },
+          {
+            "stat": "total_tds",
+            "line": 1.0,
+            "type": "over_under",
+            "lean": "under"
+          }
+        ]
+      },
+      {
+        "name": "Jacoby Brissett",
+        "team": "ARI",
+        "position": "QB",
+        "game": "ARI @ TB",
+        "matchup_note": "Downfield volume possible if hot — but uncertain continuity given recent team turbulence in Tampa Bay secondary.",
         "injury_status": "active",
         "verified": true,
         "what_to_target": "Passing yards / TDs",
-        "why": "Stroud has cleared the concussion protocol and is listed to start in Week 13. The Colts secondary and defensive front yields potential for both yardage and scoring if Stroud plays with confidence.",
+        "why": "With 49ers–Browns and Rams–Panthers expected to be more run-heavy, preview articles highlight this game (ARI @ TB) as a spot where passing volume could spike Week 13.",
         "sources": [
           {
-            "name": "NFL Week 13 Injury Report – Fantrax",
+            "name": "NFL Week 13 expert picks & props – CBS Sports",
             "sentiment": "+1"
           },
           {
-            "name": "Week 13 NFL injury roundup – CBS Sports",
-            "sentiment": "+1"
+            "name": "Week 13 NFL Picks and Props – RotoWire",
+            "sentiment": "0"
           }
         ],
         "suggestions": [
@@ -80,70 +115,91 @@
             "line": 1.5,
             "type": "over_under",
             "lean": "over"
+          }
+        ]
+      },
+      {
+        "name": "Matthew Stafford",
+        "team": "LAR",
+        "position": "QB",
+        "game": "LAR @ CAR",
+        "matchup_note": "Potential shootout-like script; Carolina's defense vulnerable to veteran QBs downfield.",
+        "injury_status": "active",
+        "verified": true,
+        "what_to_target": "Passing yards / TDs",
+        "why": "Prop-bet writers highlight Rams-Panthers as a game with upside for passing volume and TDs given Carolina's defensive struggles vs. the pass.",
+        "sources": [
+          {
+            "name": "Week 13 NFL props & best bets – RotoWire",
+            "sentiment": "+1"
           },
           {
-            "stat": "anytime_td",
-            "line": null,
-            "type": "yes_no",
-            "lean": "yes"
+            "name": "Covers.com Week 13 ATS & matchups preview",
+            "sentiment": "+1"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "passing_yards",
+            "line": 265.5,
+            "type": "over_under",
+            "lean": "over"
+          },
+          {
+            "stat": "total_tds",
+            "line": 2.0,
+            "type": "over_under",
+            "lean": "over"
           }
         ]
       }
     ],
     "rbs": [
       {
-        "name": "Bucky Irving",
-        "team": "TB",
+        "name": "Jonathan Taylor",
+        "team": "IND",
         "position": "RB",
-        "game": "TB @ ARI",
-        "matchup_note": "Possibly returning from injury vs. Cardinals bottom-tier rush defense, but workload may be limited in a committee backfield.",
-        "injury_status": "questionable",
+        "game": "HOU @ IND",
+        "matchup_note": "Workhorse back vs. Texans — likely high volume if Colts get ahead early.",
+        "injury_status": "active",
         "verified": true,
         "what_to_target": "Rushing yards / total yards",
-        "why": "Irving is questionable but expected to play in Week 13 after a long absence. Arizona's run defense has struggled, offering upside if Irving gets volume. However, coaching comments suggest a potentially limited snap count early in return — which caps ceiling.",
+        "why": "Pre-game previews view Taylor as the Colts' lead back and likely focal point against a middling Texans run defense.",
         "sources": [
           {
-            "name": "NFL Week 13 Injury Report – DraftKings",
-            "sentiment": "0"
-          },
-          {
-            "name": "Bucky Irving injury: What status means for Week 13 – SB Nation",
+            "name": "NFL Predictions Week 13 – RotoBaller",
             "sentiment": "+1"
           }
         ],
         "suggestions": [
           {
             "stat": "rushing_yards",
-            "line": 48.5,
+            "line": 75.5,
             "type": "over_under",
-            "lean": "under"
+            "lean": "over"
           },
           {
             "stat": "total_yards",
-            "line": 65.5,
+            "line": 95.5,
             "type": "over_under",
-            "lean": "under"
+            "lean": "over"
           }
         ]
       },
       {
-        "name": "Jaylen Warren",
-        "team": "PIT",
+        "name": "Chuba Hubbard",
+        "team": "CAR",
         "position": "RB",
-        "game": "PIT @ BUF",
-        "matchup_note": "Bills missing both starting tackles — ideal for Warren to stress the line with carries; pace may favor early ground game.",
+        "game": "LAR @ CAR",
+        "matchup_note": "Backfield likely active in what could be ground-heavy scripts given Panthers' unpredictable pace.",
         "injury_status": "active",
         "verified": true,
         "what_to_target": "Rushing yards",
-        "why": "Bills are missing both starting offensive tackles, weakening their run defense — creating an opportunity for Warren on the ground. He has posted 60+ rushing yards in five of the last six games, making a 60.5-yard line a reasonable target.",
+        "why": "Prop previews note Carolina's run game usage this week could spike, making a mid-tier back like Hubbard worth a look.",
         "sources": [
           {
-            "name": "NFL Week 13 Injury Report – Fantrax",
-            "sentiment": "+1"
-          },
-          {
-            "name": "NFL Week 13 player props, picks, best bets – NY Post",
-            "sentiment": "+1"
+            "name": "Week 13 Picks & Props – WalterFootball",
+            "sentiment": "0"
           }
         ],
         "suggestions": [
@@ -164,23 +220,50 @@
     ],
     "wrs": [
       {
-        "name": "Chimere Dike",
-        "team": "TEN",
+        "name": "Nico Collins",
+        "team": "HOU",
         "position": "WR",
-        "game": "TEN @ JAX",
-        "matchup_note": "Cheap salary value vs. Jaguars — potential target volume if Titans pass often in a likely negative script.",
+        "game": "HOU @ IND",
+        "matchup_note": "Top target in Houston against a Colts defense likely focused on stopping run and short passes.",
         "injury_status": "active",
         "verified": true,
         "what_to_target": "Receptions / receiving yards",
-        "why": "He's flagged as a value WR play this week given low cost and recent usage despite the Titans' offensive struggles. In a potentially pass-heavy game script — if they fall behind — Dike could see elevated targets.",
+        "why": "Passing game may lean on single primary target — Collins stands out as the most reliable WR for Stroud in this matchup.",
         "sources": [
           {
-            "name": "Top DraftKings NFL DFS Bargain Plays – DraftKings Network",
+            "name": "NFL Week 13 Expert Picks – CBS Sports & SportsLine",
             "sentiment": "+1"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "receptions",
+            "line": 5.5,
+            "type": "over_under",
+            "lean": "over"
           },
           {
-            "name": "NFL DFS Week 13 Example Lineups – FantasyAlarm",
-            "sentiment": "0"
+            "stat": "receiving_yards",
+            "line": 70.5,
+            "type": "over_under",
+            "lean": "over"
+          }
+        ]
+      },
+      {
+        "name": "Trey McBride",
+        "team": "ARI",
+        "position": "WR",
+        "game": "ARI @ TB",
+        "matchup_note": "Likely top offensive weapon for Cardinals if they air it out vs. uneven Tampa Bay secondary.",
+        "injury_status": "active",
+        "verified": true,
+        "what_to_target": "Receptions / receiving yards",
+        "why": "Pre-week props highlight Cardinals pass-catchers as reasonable value given potential volume and defensive matchup.",
+        "sources": [
+          {
+            "name": "Week 13 NFL Picks & Props – CBS Sports",
+            "sentiment": "+1"
           }
         ],
         "suggestions": [
@@ -192,7 +275,7 @@
           },
           {
             "stat": "receiving_yards",
-            "line": 55.5,
+            "line": 65.5,
             "type": "over_under",
             "lean": "over"
           }
@@ -202,119 +285,6 @@
     "tes": []
   },
   "long_shots": {
-    "players": [
-      {
-        "name": "Chimere Dike",
-        "team": "TEN",
-        "position": "WR",
-        "game": "TEN @ JAX",
-        "long_shot": {
-          "label": "80+ receiving yards & a TD",
-          "prediction": {
-            "yards": 85,
-            "tds": 1,
-            "receptions": 6
-          },
-          "odds_bucket_estimate": "+800_to_+1500"
-        },
-        "ultra_long_shot": {
-          "label": "120+ receiving yards & 2 TDs",
-          "prediction": {
-            "yards": 130,
-            "tds": 2,
-            "receptions": 8
-          },
-          "odds_bucket_estimate": "+2000_or_higher"
-        }
-      },
-      {
-        "name": "Jaylen Warren",
-        "team": "PIT",
-        "position": "RB",
-        "game": "PIT @ BUF",
-        "long_shot": {
-          "label": "100+ rushing yards",
-          "prediction": {
-            "yards": 105,
-            "tds": 0
-          },
-          "odds_bucket_estimate": "+500_to_+1200"
-        },
-        "ultra_long_shot": {
-          "label": "150+ scrimmage yards & 1 TD",
-          "prediction": {
-            "yards": 160,
-            "tds": 1
-          },
-          "odds_bucket_estimate": "+1500_to_+2500"
-        }
-      },
-      {
-        "name": "Aaron Rodgers",
-        "team": "PIT",
-        "position": "QB",
-        "game": "PIT @ BUF",
-        "long_shot": {
-          "label": "280+ passing yards & a TD",
-          "prediction": {
-            "passing_yards": 290,
-            "tds": 1
-          },
-          "odds_bucket_estimate": "+1000_to_+2000"
-        },
-        "ultra_long_shot": {
-          "label": "320+ passing yards & 2+ TDs",
-          "prediction": {
-            "passing_yards": 330,
-            "tds": 2
-          },
-          "odds_bucket_estimate": "+3000_or_higher"
-        }
-      },
-      {
-        "name": "C.J. Stroud",
-        "team": "HOU",
-        "position": "QB",
-        "game": "HOU @ IND",
-        "long_shot": {
-          "label": "260+ passing yards & 2 TDs",
-          "prediction": {
-            "passing_yards": 265,
-            "tds": 2
-          },
-          "odds_bucket_estimate": "+800_to_+1400"
-        },
-        "ultra_long_shot": {
-          "label": "300+ passing yards & 3+ TDs",
-          "prediction": {
-            "passing_yards": 310,
-            "tds": 3
-          },
-          "odds_bucket_estimate": "+2500_or_higher"
-        }
-      },
-      {
-        "name": "Bucky Irving",
-        "team": "TB",
-        "position": "RB",
-        "game": "TB @ ARI",
-        "long_shot": {
-          "label": "90+ scrimmage yards",
-          "prediction": {
-            "scrimmage_yards": 95,
-            "tds": 0
-          },
-          "odds_bucket_estimate": "+900_to_+1600"
-        },
-        "ultra_long_shot": {
-          "label": "120+ scrimmage yards & 1 TD",
-          "prediction": {
-            "scrimmage_yards": 130,
-            "tds": 1
-          },
-          "odds_bucket_estimate": "+2000_or_higher"
-        }
-      }
-    ]
+    "players": []
   }
 }
