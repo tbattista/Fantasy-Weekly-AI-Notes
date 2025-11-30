@@ -241,11 +241,23 @@
                             <span class="badge bg-info" id="date-badge">--</span>
                           </div>
                         </div>
-                        <div class="file-selector">
-                          <label for="json-file-select" class="form-label mb-1">Select Data File:</label>
-                          <select class="form-select form-select-sm" id="json-file-select" style="min-width: 200px;">
-                            <option value="">-- Select a file --</option>
-                          </select>
+                        <div class="d-flex gap-3 align-items-end flex-wrap">
+                          <div class="file-selector">
+                            <label for="json-file-select" class="form-label mb-1">Select Data File:</label>
+                            <select class="form-select form-select-sm" id="json-file-select" style="min-width: 200px;">
+                              <option value="">-- Select a file --</option>
+                            </select>
+                          </div>
+                          <div class="position-filter">
+                            <label for="position-filter" class="form-label mb-1">Filter by Position:</label>
+                            <select class="form-select form-select-sm" id="position-filter" style="min-width: 120px;">
+                              <option value="all">All Positions</option>
+                              <option value="qb">QB</option>
+                              <option value="rb">RB</option>
+                              <option value="wr">WR</option>
+                              <option value="te">TE</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -328,6 +340,12 @@
                 }
             });
             
+            // Position filter event listener
+            document.getElementById('position-filter').addEventListener('change', function() {
+                renderPlayerCards();
+                renderLongShotCards();
+            });
+            
             // Auto-load first file if available
             if (dataFiles.length > 0) {
                 select.value = `data/${dataFiles[0]}`;
@@ -365,6 +383,9 @@
             const playersContainer = document.getElementById('players-container');
             playersContainer.innerHTML = '';
             
+            // Get selected position filter
+            const positionFilter = document.getElementById('position-filter').value;
+            
             let allPlayers = [];
             
             // Combine all position players
@@ -375,8 +396,15 @@
                 });
             }
             
+            // Apply position filter
+            if (positionFilter !== 'all') {
+                allPlayers = allPlayers.filter(player =>
+                    player.position.toLowerCase() === positionFilter
+                );
+            }
+            
             if (allPlayers.length === 0) {
-                playersContainer.innerHTML = '<p class="text-muted">No players available.</p>';
+                playersContainer.innerHTML = '<p class="text-muted">No players available for the selected position.</p>';
                 return;
             }
             
@@ -390,11 +418,21 @@
             const longShotsContainer = document.getElementById('long-shots-container');
             longShotsContainer.innerHTML = '';
             
-            const players = (fantasyData.long_shots && fantasyData.long_shots.players) 
+            // Get selected position filter
+            const positionFilter = document.getElementById('position-filter').value;
+            
+            let players = (fantasyData.long_shots && fantasyData.long_shots.players)
                 ? fantasyData.long_shots.players : [];
             
+            // Apply position filter
+            if (positionFilter !== 'all') {
+                players = players.filter(player =>
+                    player.position.toLowerCase() === positionFilter
+                );
+            }
+            
             if (players.length === 0) {
-                longShotsContainer.innerHTML = '<p class="text-muted">No long shot data available.</p>';
+                longShotsContainer.innerHTML = '<p class="text-muted">No long shot data available for the selected position.</p>';
                 return;
             }
             
