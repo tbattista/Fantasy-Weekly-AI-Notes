@@ -1,237 +1,389 @@
 <!doctype html>
-<html lang="en" class="layout-menu-fixed layout-compact" data-assets-path="sneat-bootstrap-template/assets/" data-template="vertical-menu-template-free">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-  <title>Fantasy Weekly - NFL Week 10 Dashboard</title>
-  <meta name="description" content="NFL Week 10 Fantasy Football Dashboard with DFS insights, weather alerts, and betting analysis" />
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="sneat-bootstrap-template/assets/img/favicon/favicon.ico" />
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="sneat-bootstrap-template/assets/vendor/fonts/iconify-icons.css" />
-  
-  <!-- Core CSS -->
-  <link rel="stylesheet" href="sneat-bootstrap-template/assets/vendor/css/core.css" />
-  <link rel="stylesheet" href="sneat-bootstrap-template/assets/css/demo.css" />
-  <link rel="stylesheet" href="sneat-bootstrap-template/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-  <link rel="stylesheet" href="sneat-bootstrap-template/assets/vendor/libs/apex-charts/apex-charts.css" />
-  
-  <!-- Helpers -->
-  <script src="sneat-bootstrap-template/assets/vendor/js/helpers.js"></script>
-  <script src="sneat-bootstrap-template/assets/js/config.js"></script>
-</head>
+<html
+  lang="en"
+  class="layout-menu-fixed layout-compact"
+  data-assets-path="sneat-bootstrap-template/assets/"
+  data-template="vertical-menu-template-free">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-<body>
-  <!-- Layout wrapper -->
-  <div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
-      
-      <!-- Menu -->
-      <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-        <div class="app-brand demo">
-          <a href="index.html" class="app-brand-link">
-            <span class="app-brand-text demo menu-text fw-bold ms-2">Fantasy Weekly</span>
-          </a>
-          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
-            <i class="bx bx-chevron-left d-block d-xl-none align-middle"></i>
-          </a>
-        </div>
+    <title>Fantasy Football Player Cards</title>
 
-        <div class="menu-divider mt-0"></div>
-        <div class="menu-inner-shadow"></div>
+    <meta name="description" content="Fantasy Football Player Cards Viewer" />
 
-        <ul class="menu-inner py-1">
-          <!-- Dashboard -->
-          <li class="menu-item active">
-            <a href="index.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-home-smile"></i>
-              <div class="text-truncate">Games Dashboard</div>
-            </a>
-          </li>
-          
-          <!-- DFS Players -->
-          <li class="menu-item">
-            <a href="pages/dfs-players.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-user-circle"></i>
-              <div class="text-truncate">DFS Players</div>
-            </a>
-          </li>
-          
-          <!-- Game Details -->
-          <li class="menu-item">
-            <a href="pages/game-details.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-detail"></i>
-              <div class="text-truncate">Game Details</div>
-            </a>
-          </li>
-          
-          <!-- Weather -->
-          <li class="menu-item">
-            <a href="pages/weather.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-cloud"></i>
-              <div class="text-truncate">Weather Impact</div>
-            </a>
-          </li>
-        </ul>
-      </aside>
-      <!-- / Menu -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="sneat-bootstrap-template/assets/img/favicon/favicon.ico" />
 
-      <!-- Layout container -->
-      <div class="layout-page">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="sneat-bootstrap-template/assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="sneat-bootstrap-template/assets/css/demo.css" />
+
+    <!-- Helpers -->
+    <script src="sneat-bootstrap-template/assets/vendor/js/helpers.js"></script>
+    <script src="sneat-bootstrap-template/assets/js/config.js"></script>
+    
+    <style>
+        /* Compact Player Card Styles */
+        .player-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            background: #fff;
+            transition: all 0.2s ease;
+        }
         
-        <!-- Navbar -->
-        <nav class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
-          <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
-            <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
-              <i class="icon-base bx bx-menu icon-md"></i>
-            </a>
+        .player-card:hover {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        
+        .player-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+            flex-wrap: nowrap;
+        }
+        
+        .player-position {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+        .player-position.qb { background: #e3f2fd; color: #1976d2; }
+        .player-position.rb { background: #e8f5e9; color: #388e3c; }
+        .player-position.wr { background: #f3e5f5; color: #7b1fa2; }
+        .player-position.te { background: #fff3e0; color: #f57c00; }
+        
+        .player-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0;
+            white-space: nowrap;
+        }
+        
+        .injury-badge,
+        .verified-badge {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+        
+        .injury-badge.active { background: #e8f5e9; color: #388e3c; }
+        .injury-badge.active-rested { background: #e3f2fd; color: #1976d2; }
+        .injury-badge.active-rest { background: #e3f2fd; color: #1976d2; }
+        .injury-badge.questionable-activated { background: #fff8e1; color: #ff8f00; }
+        
+        .verified-badge {
+            background: #e0f2f1;
+            color: #00796b;
+            margin-left: 4px;
+        }
+        
+        .player-meta {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 4px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .player-team {
+            font-weight: 600;
+        }
+        
+        .player-note {
+            font-size: 0.75rem;
+            color: #555;
+            line-height: 1.3;
+        }
+        
+        .players-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 10px;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .file-selector {
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .players-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- Header -->
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                        <div>
+                          <h4 class="mb-1">🏈 Fantasy Football Player Cards</h4>
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-primary" id="week-badge">Week --</span>
+                            <span class="badge bg-info" id="date-badge">--</span>
+                          </div>
+                        </div>
+                        <div class="file-selector">
+                          <label for="json-file-select" class="form-label mb-1">Select Data File:</label>
+                          <select class="form-select form-select-sm" id="json-file-select" style="min-width: 200px;">
+                            <option value="">-- Select a file --</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /Header -->
+
+              <!-- Player Cards -->
+              <div class="row">
+                <div class="col-12">
+                  <!-- Main Players Section -->
+                  <h3 class="section-title">Fantasy Football Players</h3>
+                  <div class="players-container" id="players-container">
+                    <p class="text-muted">Select a JSON file to load player data.</p>
+                  </div>
+                  
+                  <!-- Long Shots Section -->
+                  <h3 class="section-title mt-4">🎲 Long Shots</h3>
+                  <div class="players-container" id="long-shots-container">
+                    <p class="text-muted">Select a JSON file to load long shot data.</p>
+                  </div>
+                </div>
+              </div>
+              <!-- /Player Cards -->
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl">
+                <div class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
+                  <div class="mb-2 mb-md-0">
+                    © <script>document.write(new Date().getFullYear());</script>, Fantasy Football Player Cards
+                  </div>
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
           </div>
-
-          <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-            <div class="navbar-nav align-items-center me-auto">
-              <div class="nav-item d-flex align-items-center">
-                <h5 class="mb-0">NFL Week <span id="week-number">10</span> - <span id="as-of-date">Loading...</span></h5>
-              </div>
-            </div>
-          </div>
-        </nav>
-        <!-- / Navbar -->
-
-        <!-- Content wrapper -->
-        <div class="content-wrapper">
-          <!-- Content -->
-          <div class="container-xxl flex-grow-1 container-p-y">
-            
-            <!-- Summary Cards -->
-            <div class="row mb-6">
-              <div class="col-lg-3 col-md-6 col-6 mb-6">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="card-title d-flex align-items-start justify-content-between mb-4">
-                      <div class="avatar flex-shrink-0">
-                        <span class="avatar-initial rounded bg-label-primary">
-                          <i class="bx bx-football icon-lg"></i>
-                        </span>
-                      </div>
-                    </div>
-                    <p class="mb-1">Total Games</p>
-                    <h4 class="card-title mb-3" id="total-games">0</h4>
-                    <small class="text-body-secondary">Week 10 Schedule</small>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-6 mb-6">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="card-title d-flex align-items-start justify-content-between mb-4">
-                      <div class="avatar flex-shrink-0">
-                        <span class="avatar-initial rounded bg-label-warning">
-                          <i class="bx bx-cloud-rain icon-lg"></i>
-                        </span>
-                      </div>
-                    </div>
-                    <p class="mb-1">Weather Alerts</p>
-                    <h4 class="card-title mb-3" id="weather-alerts">0</h4>
-                    <small class="text-body-secondary">Games to Watch</small>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-6 mb-6">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="card-title d-flex align-items-start justify-content-between mb-4">
-                      <div class="avatar flex-shrink-0">
-                        <span class="avatar-initial rounded bg-label-success">
-                          <i class="bx bx-trending-up icon-lg"></i>
-                        </span>
-                      </div>
-                    </div>
-                    <p class="mb-1">Avg O/U Total</p>
-                    <h4 class="card-title mb-3" id="avg-over-under">0</h4>
-                    <small class="text-body-secondary">Points Expected</small>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-lg-3 col-md-6 col-6 mb-6">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="card-title d-flex align-items-start justify-content-between mb-4">
-                      <div class="avatar flex-shrink-0">
-                        <span class="avatar-initial rounded bg-label-info">
-                          <i class="bx bx-dollar icon-lg"></i>
-                        </span>
-                      </div>
-                    </div>
-                    <p class="mb-1">DFS Players</p>
-                    <h4 class="card-title mb-3" id="dfs-count">0</h4>
-                    <small class="text-body-secondary">In Player Pool</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Games Grid -->
-            <div class="row" id="games-container">
-              <!-- Games will be loaded here dynamically -->
-              <div class="col-12 text-center py-5">
-                <div class="spinner-border text-primary" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-                <p class="mt-3">Loading games...</p>
-              </div>
-            </div>
-
-          </div>
-          <!-- / Content -->
-
-          <!-- Footer -->
-          <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl">
-              <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                  © <script>document.write(new Date().getFullYear());</script> Fantasy Weekly AI Notes
-                </div>
-                <div class="d-none d-lg-inline-block">
-                  <a href="https://github.com" target="_blank" class="footer-link me-4">GitHub</a>
-                  <a href="#" class="footer-link">Documentation</a>
-                </div>
-              </div>
-            </div>
-          </footer>
-          <!-- / Footer -->
-
-          <div class="content-backdrop fade"></div>
+          <!-- Content wrapper -->
         </div>
-        <!-- Content wrapper -->
+        <!-- / Layout page -->
       </div>
-      <!-- / Layout page -->
     </div>
+    <!-- / Layout wrapper -->
 
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
-  </div>
-  <!-- / Layout wrapper -->
+    <!-- Core JS -->
+    <script src="sneat-bootstrap-template/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="sneat-bootstrap-template/assets/vendor/libs/popper/popper.js"></script>
+    <script src="sneat-bootstrap-template/assets/vendor/js/bootstrap.js"></script>
+    <script src="sneat-bootstrap-template/assets/vendor/js/menu.js"></script>
+    <script src="sneat-bootstrap-template/assets/js/main.js"></script>
 
-  <!-- Core JS -->
-  <script src="sneat-bootstrap-template/assets/vendor/libs/jquery/jquery.js"></script>
-  <script src="sneat-bootstrap-template/assets/vendor/libs/popper/popper.js"></script>
-  <script src="sneat-bootstrap-template/assets/vendor/js/bootstrap.js"></script>
-  <script src="sneat-bootstrap-template/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-  <script src="sneat-bootstrap-template/assets/vendor/js/menu.js"></script>
-  <script src="sneat-bootstrap-template/assets/js/main.js"></script>
-  
-  <!-- Data Loader -->
-  <script src="assets/js/data-loader.js"></script>
-  
-  <!-- Dashboard JS -->
-  <script src="assets/js/dashboard.js"></script>
-</body>
+    <!-- Page JS -->
+    <script>
+        // Available JSON files in data folder
+        const dataFiles = [
+            '11-30.json'
+        ];
+        
+        let fantasyData = null;
+
+        // Initialize file selector
+        function initFileSelector() {
+            const select = document.getElementById('json-file-select');
+            dataFiles.forEach(file => {
+                const option = document.createElement('option');
+                option.value = `data/${file}`;
+                option.textContent = file;
+                select.appendChild(option);
+            });
+            
+            select.addEventListener('change', function() {
+                if (this.value) {
+                    loadData(this.value);
+                }
+            });
+            
+            // Auto-load first file if available
+            if (dataFiles.length > 0) {
+                select.value = `data/${dataFiles[0]}`;
+                loadData(`data/${dataFiles[0]}`);
+            }
+        }
+
+        // Load data from JSON file
+        function loadData(filePath) {
+            fetch(filePath)
+                .then(response => {
+                    if (!response.ok) throw new Error('File not found');
+                    return response.json();
+                })
+                .then(data => {
+                    fantasyData = data;
+                    renderPlayerCards();
+                    renderLongShotCards();
+                })
+                .catch(error => {
+                    console.error('Error loading data:', error);
+                    document.getElementById('players-container').innerHTML = 
+                        '<p class="text-danger">Error loading data. Please check the file.</p>';
+                    document.getElementById('long-shots-container').innerHTML = '';
+                });
+        }
+
+        function renderPlayerCards() {
+            // Update week and date from metadata
+            if (fantasyData.meta) {
+                document.getElementById('week-badge').textContent = `Week ${fantasyData.meta.week}`;
+                document.getElementById('date-badge').textContent = fantasyData.meta.date;
+            }
+            
+            const playersContainer = document.getElementById('players-container');
+            playersContainer.innerHTML = '';
+            
+            let allPlayers = [];
+            
+            // Combine all position players
+            if (fantasyData.categories) {
+                ['qbs', 'rbs', 'wrs', 'tes'].forEach(position => {
+                    const players = fantasyData.categories[position] || [];
+                    allPlayers = allPlayers.concat(players);
+                });
+            }
+            
+            if (allPlayers.length === 0) {
+                playersContainer.innerHTML = '<p class="text-muted">No players available.</p>';
+                return;
+            }
+            
+            allPlayers.forEach(player => {
+                const card = createPlayerCard(player);
+                playersContainer.appendChild(card);
+            });
+        }
+
+        function renderLongShotCards() {
+            const longShotsContainer = document.getElementById('long-shots-container');
+            longShotsContainer.innerHTML = '';
+            
+            const players = (fantasyData.long_shots && fantasyData.long_shots.players) 
+                ? fantasyData.long_shots.players : [];
+            
+            if (players.length === 0) {
+                longShotsContainer.innerHTML = '<p class="text-muted">No long shot data available.</p>';
+                return;
+            }
+            
+            players.forEach(player => {
+                const card = createLongShotCard(player);
+                longShotsContainer.appendChild(card);
+            });
+        }
+
+        function createPlayerCard(player) {
+            const card = document.createElement('div');
+            card.className = 'player-card';
+            
+            // Injury status styling
+            const injuryStatus = player.injury_status || 'active';
+            const injuryClass = injuryStatus.replace(/_/g, '-');
+            const injuryLabel = injuryStatus.replace(/_/g, ' ');
+            
+            const injuryBadge = `<span class="injury-badge ${injuryClass}">${injuryLabel}</span>`;
+            const verifiedBadge = player.verified 
+                ? '<span class="verified-badge">✓ Verified</span>' 
+                : '';
+            
+            card.innerHTML = `
+                <div class="player-header">
+                    <span class="player-position ${player.position.toLowerCase()}">${player.position}</span>
+                    <span class="player-name">${player.name}</span>
+                    ${injuryBadge}
+                    ${verifiedBadge}
+                </div>
+                <div class="player-meta">
+                    <span class="player-team">${player.team}</span>
+                    <span>${player.game}</span>
+                </div>
+                <div class="player-note">${player.matchup_note}</div>
+            `;
+            
+            return card;
+        }
+
+        function createLongShotCard(player) {
+            const card = document.createElement('div');
+            card.className = 'player-card';
+            
+            const longShotLabel = player.long_shot ? player.long_shot.label : 'N/A';
+            const ultraLongShotLabel = player.ultra_long_shot ? player.ultra_long_shot.label : 'N/A';
+            
+            card.innerHTML = `
+                <div class="player-header">
+                    <span class="player-position ${player.position.toLowerCase()}">${player.position}</span>
+                    <span class="player-name">${player.name}</span>
+                    <span class="verified-badge">Long Shot</span>
+                </div>
+                <div class="player-meta">
+                    <span class="player-team">${player.team}</span>
+                    <span>${player.game}</span>
+                </div>
+                <div class="player-note">
+                    <strong>Long Shot:</strong> ${longShotLabel}<br>
+                    <strong>Ultra Long Shot:</strong> ${ultraLongShotLabel}
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initFileSelector);
+    </script>
+  </body>
 </html>

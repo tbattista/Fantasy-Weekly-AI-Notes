@@ -1,0 +1,302 @@
+{
+  "meta": {
+    "week": 13,
+    "date": "2025-11-30",
+    "slate_description": "Sunday main slate games from user list",
+    "note": "All players checked against latest depth charts, injury reports, and preview/fantasy articles as of 2025-11-29."
+  },
+  "categories": {
+    "qbs": [
+      {
+        "name": "Matthew Stafford",
+        "team": "LAR",
+        "position": "QB",
+        "game": "LAR @ CAR",
+        "matchup_note": "Panthers secondary banged up; Rams passing game leading league in efficiency.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Confirmed Rams starting QB with 30 passing TDs and top-5 passing yards through Week 12; no injury designation for Week 13 at Panthers."
+      },
+      {
+        "name": "Josh Allen",
+        "team": "BUF",
+        "position": "QB",
+        "game": "BUF @ PIT",
+        "matchup_note": "Steelers defense allowing plenty of yards; Bills expected to lean on Allen as dual-threat.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Confirmed starting QB on Bills depth chart; injury concerns are on offensive tackles, not Allen."
+      },
+      {
+        "name": "Tua Tagovailoa",
+        "team": "MIA",
+        "position": "QB",
+        "game": "NO @ MIA",
+        "matchup_note": "Home favorite with explosive weapons; Saints defense middle of the pack.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "No current injury designation; multiple previews discuss Miami offense vs Saints with Tua under center."
+      },
+      {
+        "name": "Justin Herbert",
+        "team": "LAC",
+        "position": "QB",
+        "game": "LV @ LAC",
+        "matchup_note": "Big home favorite vs Raiders; game total middling but Chargers implied total solid.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Still listed as Chargers starting QB with no Week 13 injury downgrade."
+      },
+      {
+        "name": "Bo Nix",
+        "team": "DEN",
+        "position": "QB",
+        "game": "DEN @ WAS",
+        "matchup_note": "Rookie QB leading 9-2 Broncos into SNF vs injury-depleted Commanders.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Week 13 previews describe Nix leading Denver into Sunday night matchup vs Washington; no injury concerns noted."
+      }
+    ],
+    "rbs": [
+      {
+        "name": "Christian McCaffrey",
+        "team": "SF",
+        "position": "RB",
+        "game": "SF @ CLE",
+        "matchup_note": "Bad weather, tough defense, but offense still built around him.",
+        "injury_status": "active-rested",
+        "verified": true,
+        "fact_check_notes": "49ers report describes his missed practices as needed rest; Browns previews focus on how to contain him, not on injury concerns."
+      },
+      {
+        "name": "De'Von Achane",
+        "team": "MIA",
+        "position": "RB",
+        "game": "NO @ MIA",
+        "matchup_note": "Explosive back in great form vs middling run defense; spotlight of many fantasy articles.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Week 13 outlook pieces highlight Achane as a smash play vs Saints; not on current injury report."
+      },
+      {
+        "name": "Kyren Williams",
+        "team": "LAR",
+        "position": "RB",
+        "game": "LAR @ CAR",
+        "matchup_note": "Workhorse back on high-scoring Rams vs average run defense.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Week 13 previews show ~796 rushing yards and 9 total TDs; no injury designation vs Panthers."
+      },
+      {
+        "name": "Travis Etienne Jr.",
+        "team": "JAX",
+        "position": "RB",
+        "game": "JAX @ TEN",
+        "matchup_note": "Favored game script vs 1–10 Titans; analysts call for run-heavy plan.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Fantasy and team reports say he is off the injury report and projected for a strong workload in Week 13."
+      },
+      {
+        "name": "James Cook",
+        "team": "BUF",
+        "position": "RB",
+        "game": "BUF @ PIT",
+        "matchup_note": "Primary Bills back; often mentioned as key complement to Allen vs Steelers.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Bills depth charts and matchup previews emphasize Allen–Cook combo; no injury designation for Cook."
+      }
+    ],
+    "wrs": [
+      {
+        "name": "Puka Nacua",
+        "team": "LAR",
+        "position": "WR",
+        "game": "LAR @ CAR",
+        "matchup_note": "Rams' yardage leader with ~947 receiving yards; facing depleted Panthers secondary.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Team and league stats pages list 80 catches for 947 yards this season, active for Week 13."
+      },
+      {
+        "name": "Davante Adams",
+        "team": "LAR",
+        "position": "WR",
+        "game": "LAR @ CAR",
+        "matchup_note": "Red-zone monster with league-leading TD total, part of Rams' elite passing attack.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Confirmed on Rams roster with 12 receiving TDs in 11 games; multiple previews highlight the Nacua–Adams duo vs Carolina."
+      },
+      {
+        "name": "Jaylen Waddle",
+        "team": "MIA",
+        "position": "WR",
+        "game": "NO @ MIA",
+        "matchup_note": "Secondary option behind Achane/Waller but still explosive; indoor-style environment.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Listed as active Dolphins WR; no Week 13 injury downgrade in reports."
+      },
+      {
+        "name": "Khalil Shakir",
+        "team": "BUF",
+        "position": "WR",
+        "game": "BUF @ PIT",
+        "matchup_note": "Starting WR for Bills; extra work possible if Kincaid is limited.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Bills depth chart shows Shakir as a starting WR; fantasy rankings note his role could grow if Kincaid's hamstring limits him."
+      },
+      {
+        "name": "Jaxon Smith-Njigba",
+        "team": "SEA",
+        "position": "WR",
+        "game": "MIN @ SEA",
+        "matchup_note": "League leader in receiving yards; home favorite vs low-implied-total Vikings.",
+        "injury_status": "active-rest",
+        "verified": true,
+        "fact_check_notes": "SEA/MIN injury reports list him as rest only with full participation; no game-status designation."
+      }
+    ],
+    "tes": [
+      {
+        "name": "Trey McBride",
+        "team": "ARI",
+        "position": "TE",
+        "game": "ARI @ TB",
+        "matchup_note": "Offense runs heavily through him; consensus TE1 in many Week 13 rankings.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Fantasy articles rank McBride as No.1 TE for Week 13 and highlight favorable volume vs Buccaneers."
+      },
+      {
+        "name": "Darren Waller",
+        "team": "MIA",
+        "position": "TE",
+        "game": "NO @ MIA",
+        "matchup_note": "Fresh off IR with strong red-zone role; slight concern due to recent pec injury.",
+        "injury_status": "questionable-activated",
+        "verified": true,
+        "fact_check_notes": "Dolphins officially activated him from IR on Nov 29; expected to be available."
+      },
+      {
+        "name": "George Kittle",
+        "team": "SF",
+        "position": "TE",
+        "game": "SF @ CLE",
+        "matchup_note": "Tough low-total game but still a primary red-zone option.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "No Week 13 injury designation; projected as a strong TE despite weather."
+      },
+      {
+        "name": "Kyle Pitts",
+        "team": "ATL",
+        "position": "TE",
+        "game": "ATL @ NYJ",
+        "matchup_note": "Falcons likely to funnel more TE targets with Drake London ruled out.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Pitts is not on ATL's injury report; London ruled out."
+      },
+      {
+        "name": "Brenton Strange",
+        "team": "JAX",
+        "position": "TE",
+        "game": "JAX @ TEN",
+        "matchup_note": "Came off IR and led Jags in receiving last week; emerging TE1.",
+        "injury_status": "active",
+        "verified": true,
+        "fact_check_notes": "Returned from IR in Week 12 with a 5-for-93 line; projected starting TE."
+      }
+    ]
+  },
+  "long_shots": {
+    "players": [
+      {
+        "name": "Brenton Strange",
+        "team": "JAX",
+        "position": "TE",
+        "game": "JAX @ TEN",
+        "long_shot": {
+          "label": "70+ yards & 1+ TD",
+          "prediction": { "yards": 70, "tds": 1 },
+          "odds_bucket_estimate": "+600_to_+1500"
+        },
+        "ultra_long_shot": {
+          "label": "100+ yards & 2+ TDs",
+          "prediction": { "yards": 100, "tds": 2 },
+          "odds_bucket_estimate": "+2000_or_higher"
+        }
+      },
+      {
+        "name": "Jaxon Smith-Njigba",
+        "team": "SEA",
+        "position": "WR",
+        "game": "MIN @ SEA",
+        "long_shot": {
+          "label": "100+ yards",
+          "prediction": { "yards": 100 },
+          "odds_bucket_estimate": "+500_to_+1200"
+        },
+        "ultra_long_shot": {
+          "label": "150+ yards & 2+ TDs",
+          "prediction": { "yards": 150, "tds": 2 },
+          "odds_bucket_estimate": "+2500_or_higher"
+        }
+      },
+      {
+        "name": "Davante Adams",
+        "team": "LAR",
+        "position": "WR",
+        "game": "LAR @ CAR",
+        "long_shot": {
+          "label": "2+ receiving TDs",
+          "prediction": { "tds": 2 },
+          "odds_bucket_estimate": "+600_to_+1200"
+        },
+        "ultra_long_shot": {
+          "label": "3+ receiving TDs",
+          "prediction": { "tds": 3 },
+          "odds_bucket_estimate": "+2000_or_higher"
+        }
+      },
+      {
+        "name": "James Cook",
+        "team": "BUF",
+        "position": "RB",
+        "game": "BUF @ PIT",
+        "long_shot": {
+          "label": "140+ total yards",
+          "prediction": { "scrimmage_yards": 140 },
+          "odds_bucket_estimate": "+600_to_+1500"
+        },
+        "ultra_long_shot": {
+          "label": "175+ total yards & 2+ TDs",
+          "prediction": { "scrimmage_yards": 175, "tds": 2 },
+          "odds_bucket_estimate": "+2500_or_higher"
+        }
+      },
+      {
+        "name": "Trey McBride",
+        "team": "ARI",
+        "position": "TE",
+        "game": "ARI @ TB",
+        "long_shot": {
+          "label": "8+ receptions",
+          "prediction": { "receptions": 8 },
+          "odds_bucket_estimate": "+500_to_+1200"
+        },
+        "ultra_long_shot": {
+          "label": "10+ receptions & 1+ TD",
+          "prediction": { "receptions": 10, "tds": 1 },
+          "odds_bucket_estimate": "+2000_or_higher"
+        }
+      }
+    ]
+  }
+}
