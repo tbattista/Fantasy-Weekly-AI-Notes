@@ -15,7 +15,16 @@
         "matchup_note": "Panthers secondary banged up; Rams passing game leading league in efficiency.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Confirmed Rams starting QB with 30 passing TDs and top-5 passing yards through Week 12; no injury designation for Week 13 at Panthers."
+        "what_to_target": "Passing yards / TDs",
+        "why": "Panthers secondary is depleted and Rams have the most efficient passing attack in the league.",
+        "sources": [
+          { "name": "Fantasy Pros", "sentiment": "+1" },
+          { "name": "ESPN", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "passing_yards", "line": 275.5, "type": "over_under", "lean": "over" },
+          { "stat": "passing_tds", "line": 2.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Josh Allen",
@@ -25,7 +34,15 @@
         "matchup_note": "Steelers defense allowing plenty of yards; Bills expected to lean on Allen as dual-threat.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Confirmed starting QB on Bills depth chart; injury concerns are on offensive tackles, not Allen."
+        "what_to_target": "Rushing yards / Total TDs",
+        "why": "Allen's dual-threat ability makes him dangerous against a Steelers defense that has allowed rushing yards to mobile QBs.",
+        "sources": [
+          { "name": "PFF", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "rushing_yards", "line": 35.5, "type": "over_under", "lean": "over" },
+          { "stat": "total_tds", "line": 2.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Tua Tagovailoa",
@@ -35,7 +52,14 @@
         "matchup_note": "Home favorite with explosive weapons; Saints defense middle of the pack.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "No current injury designation; multiple previews discuss Miami offense vs Saints with Tua under center."
+        "what_to_target": "Passing yards",
+        "why": "Home game with explosive weapons and favorable matchup against Saints secondary.",
+        "sources": [
+          { "name": "Underdog Network", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "passing_yards", "line": 260.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Justin Herbert",
@@ -45,7 +69,14 @@
         "matchup_note": "Big home favorite vs Raiders; game total middling but Chargers implied total solid.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Still listed as Chargers starting QB with no Week 13 injury downgrade."
+        "what_to_target": "Passing TDs",
+        "why": "Big favorite at home, Raiders defense has struggled against quality QBs.",
+        "sources": [
+          { "name": "Fantasy Pros", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "passing_tds", "line": 1.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Bo Nix",
@@ -55,7 +86,14 @@
         "matchup_note": "Rookie QB leading 9-2 Broncos into SNF vs injury-depleted Commanders.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Week 13 previews describe Nix leading Denver into Sunday night matchup vs Washington; no injury concerns noted."
+        "what_to_target": "Passing yards",
+        "why": "Commanders defense depleted by injuries, Broncos offense clicking.",
+        "sources": [
+          { "name": "ESPN", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "passing_yards", "line": 220.5, "type": "over_under", "lean": "over" }
+        ]
       }
     ],
     "rbs": [
@@ -67,7 +105,15 @@
         "matchup_note": "Bad weather, tough defense, but offense still built around him.",
         "injury_status": "active-rested",
         "verified": true,
-        "fact_check_notes": "49ers report describes his missed practices as needed rest; Browns previews focus on how to contain him, not on injury concerns."
+        "what_to_target": "Receptions / Rushing attempts",
+        "why": "Volume play - offense runs through CMC regardless of matchup.",
+        "sources": [
+          { "name": "PFF", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "receptions", "line": 4.5, "type": "over_under", "lean": "over" },
+          { "stat": "rushing_attempts", "line": 17.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "De'Von Achane",
@@ -77,7 +123,16 @@
         "matchup_note": "Explosive back in great form vs middling run defense; spotlight of many fantasy articles.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Week 13 outlook pieces highlight Achane as a smash play vs Saints; not on current injury report."
+        "what_to_target": "Rushing yards / Total yards",
+        "why": "Saints run defense has been exploitable, Achane is explosive.",
+        "sources": [
+          { "name": "Underdog Network", "sentiment": "+1" },
+          { "name": "Fantasy Pros", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "rushing_yards", "line": 75.5, "type": "over_under", "lean": "over" },
+          { "stat": "total_yards", "line": 110.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Kyren Williams",
@@ -87,7 +142,15 @@
         "matchup_note": "Workhorse back on high-scoring Rams vs average run defense.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Week 13 previews show ~796 rushing yards and 9 total TDs; no injury designation vs Panthers."
+        "what_to_target": "Rushing yards / TDs",
+        "why": "Workhorse role on high-scoring offense facing average run defense.",
+        "sources": [
+          { "name": "ESPN", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "rushing_yards", "line": 70.5, "type": "over_under", "lean": "over" },
+          { "stat": "anytime_td", "line": null, "type": "yes_no", "lean": "yes" }
+        ]
       },
       {
         "name": "Travis Etienne Jr.",
@@ -97,7 +160,15 @@
         "matchup_note": "Favored game script vs 1–10 Titans; analysts call for run-heavy plan.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Fantasy and team reports say he is off the injury report and projected for a strong workload in Week 13."
+        "what_to_target": "Rushing attempts / Rushing yards",
+        "why": "Favorable game script against worst team in NFL, run-heavy approach expected.",
+        "sources": [
+          { "name": "PFF", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "rushing_attempts", "line": 16.5, "type": "over_under", "lean": "over" },
+          { "stat": "rushing_yards", "line": 65.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "James Cook",
@@ -107,7 +178,15 @@
         "matchup_note": "Primary Bills back; often mentioned as key complement to Allen vs Steelers.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Bills depth charts and matchup previews emphasize Allen–Cook combo; no injury designation for Cook."
+        "what_to_target": "Total yards / Receptions",
+        "why": "Dual-threat back in high-powered offense, receiving work adds floor.",
+        "sources": [
+          { "name": "Underdog Network", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "total_yards", "line": 85.5, "type": "over_under", "lean": "over" },
+          { "stat": "receptions", "line": 3.5, "type": "over_under", "lean": "over" }
+        ]
       }
     ],
     "wrs": [
@@ -119,7 +198,16 @@
         "matchup_note": "Rams' yardage leader with ~947 receiving yards; facing depleted Panthers secondary.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Team and league stats pages list 80 catches for 947 yards this season, active for Week 13."
+        "what_to_target": "Receiving yards / Receptions",
+        "why": "Elite target share against depleted Panthers secondary.",
+        "sources": [
+          { "name": "Fantasy Pros", "sentiment": "+1" },
+          { "name": "PFF", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "receiving_yards", "line": 85.5, "type": "over_under", "lean": "over" },
+          { "stat": "receptions", "line": 7.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Davante Adams",
@@ -129,7 +217,15 @@
         "matchup_note": "Red-zone monster with league-leading TD total, part of Rams' elite passing attack.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Confirmed on Rams roster with 12 receiving TDs in 11 games; multiple previews highlight the Nacua–Adams duo vs Carolina."
+        "what_to_target": "Receiving TDs / Receptions",
+        "why": "League-leading TD total, elite red-zone usage in high-scoring offense.",
+        "sources": [
+          { "name": "ESPN", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "anytime_td", "line": null, "type": "yes_no", "lean": "yes" },
+          { "stat": "receptions", "line": 5.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Jaylen Waddle",
@@ -139,7 +235,14 @@
         "matchup_note": "Secondary option behind Achane/Waller but still explosive; indoor-style environment.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Listed as active Dolphins WR; no Week 13 injury downgrade in reports."
+        "what_to_target": "Receiving yards",
+        "why": "Explosive playmaker in pass-heavy offense at home.",
+        "sources": [
+          { "name": "Underdog Network", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "receiving_yards", "line": 55.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Khalil Shakir",
@@ -149,7 +252,15 @@
         "matchup_note": "Starting WR for Bills; extra work possible if Kincaid is limited.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Bills depth chart shows Shakir as a starting WR; fantasy rankings note his role could grow if Kincaid's hamstring limits him."
+        "what_to_target": "Receptions / Receiving yards",
+        "why": "Could see increased targets if Kincaid is limited with hamstring.",
+        "sources": [
+          { "name": "PFF", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "receptions", "line": 4.5, "type": "over_under", "lean": "over" },
+          { "stat": "receiving_yards", "line": 50.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Jaxon Smith-Njigba",
@@ -159,7 +270,16 @@
         "matchup_note": "League leader in receiving yards; home favorite vs low-implied-total Vikings.",
         "injury_status": "active-rest",
         "verified": true,
-        "fact_check_notes": "SEA/MIN injury reports list him as rest only with full participation; no game-status designation."
+        "what_to_target": "Receiving yards / Receptions",
+        "why": "League leader in receiving yards, elite target share.",
+        "sources": [
+          { "name": "Fantasy Pros", "sentiment": "+1" },
+          { "name": "ESPN", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "receiving_yards", "line": 80.5, "type": "over_under", "lean": "over" },
+          { "stat": "receptions", "line": 6.5, "type": "over_under", "lean": "over" }
+        ]
       }
     ],
     "tes": [
@@ -171,7 +291,16 @@
         "matchup_note": "Offense runs heavily through him; consensus TE1 in many Week 13 rankings.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Fantasy articles rank McBride as No.1 TE for Week 13 and highlight favorable volume vs Buccaneers."
+        "what_to_target": "Receptions / Receiving yards",
+        "why": "Elite target share, offense funnels through him.",
+        "sources": [
+          { "name": "Underdog Network", "sentiment": "+1" },
+          { "name": "PFF", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "receptions", "line": 7.5, "type": "over_under", "lean": "over" },
+          { "stat": "receiving_yards", "line": 70.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Darren Waller",
@@ -181,7 +310,14 @@
         "matchup_note": "Fresh off IR with strong red-zone role; slight concern due to recent pec injury.",
         "injury_status": "questionable-activated",
         "verified": true,
-        "fact_check_notes": "Dolphins officially activated him from IR on Nov 29; expected to be available."
+        "what_to_target": "Receptions",
+        "why": "Red-zone role in explosive offense, but monitor snap count.",
+        "sources": [
+          { "name": "ESPN", "sentiment": "0" }
+        ],
+        "suggestions": [
+          { "stat": "receptions", "line": 3.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "George Kittle",
@@ -191,7 +327,15 @@
         "matchup_note": "Tough low-total game but still a primary red-zone option.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "No Week 13 injury designation; projected as a strong TE despite weather."
+        "what_to_target": "Receptions / Anytime TD",
+        "why": "Primary red-zone target, weather may limit deep passing.",
+        "sources": [
+          { "name": "PFF", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "receptions", "line": 4.5, "type": "over_under", "lean": "over" },
+          { "stat": "anytime_td", "line": null, "type": "yes_no", "lean": "yes" }
+        ]
       },
       {
         "name": "Kyle Pitts",
@@ -201,7 +345,15 @@
         "matchup_note": "Falcons likely to funnel more TE targets with Drake London ruled out.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Pitts is not on ATL's injury report; London ruled out."
+        "what_to_target": "Rec yards / Receptions",
+        "why": "Underdog's rankings and TE-notes have Pitts inside the top-10 TEs. MetLife will be chilly with rain, which tends to favor TEs & slot targets over deep perimeter bombs.",
+        "sources": [
+          { "name": "Underdog Network", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "receiving_yards", "line": 47.5, "type": "over_under", "lean": "over" },
+          { "stat": "receptions", "line": 4.5, "type": "over_under", "lean": "over" }
+        ]
       },
       {
         "name": "Brenton Strange",
@@ -211,7 +363,15 @@
         "matchup_note": "Came off IR and led Jags in receiving last week; emerging TE1.",
         "injury_status": "active",
         "verified": true,
-        "fact_check_notes": "Returned from IR in Week 12 with a 5-for-93 line; projected starting TE."
+        "what_to_target": "Receiving yards / Receptions",
+        "why": "Emerging as primary pass-catcher, led team in receiving last week.",
+        "sources": [
+          { "name": "Fantasy Pros", "sentiment": "+1" }
+        ],
+        "suggestions": [
+          { "stat": "receiving_yards", "line": 45.5, "type": "over_under", "lean": "over" },
+          { "stat": "receptions", "line": 3.5, "type": "over_under", "lean": "over" }
+        ]
       }
     ]
   },
