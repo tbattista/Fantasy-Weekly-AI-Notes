@@ -3,145 +3,30 @@
     "week": 13,
     "date": "2025-11-30",
     "slate_description": "afternoon games only",
-    "note": "All players checked against latest depth charts, injury reports, and preview/fantasy articles as of 2025-11-30."
+    "note": "Props suggestions for Sunday afternoon slate based on official Week 13 schedule."
   },
   "categories": {
     "qbs": [
       {
-        "name": "C.J. Stroud",
-        "team": "HOU",
-        "position": "QB",
-        "game": "HOU @ IND",
-        "matchup_note": "Returning from absence vs. Colts — likely conservative game script in a low-scoring divisional tilt.",
-        "injury_status": "active",
-        "verified": true,
-        "what_to_target": "Passing yards",
-        "why": "Stroud is trending to start and the matchup vs. the Colts remains fairly tight — expect volume but modest ceiling.",
-        "sources": [
-          {
-            "name": "NFL Predictions Week 13 Picks & Props – Action Network",
-            "sentiment": "0"
-          },
-          {
-            "name": "Week 13 Indianapolis at Houston — odds & preview – SportsInteraction",
-            "sentiment": "0"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "passing_yards",
-            "line": 240.5,
-            "type": "over_under",
-            "lean": "under"
-          },
-          {
-            "stat": "total_tds",
-            "line": 1.5,
-            "type": "over_under",
-            "lean": "under"
-          },
-          {
-            "stat": "anytime_td",
-            "line": null,
-            "type": "yes_no",
-            "lean": "no"
-          }
-        ]
-      },
-      {
-        "name": "Brock Purdy",
-        "team": "SF",
-        "position": "QB",
-        "game": "SF @ CLE",
-        "matchup_note": "Likely modest aerial game vs. tough Browns front — run game may dominate for 49ers.",
-        "injury_status": "active",
-        "verified": true,
-        "what_to_target": "Passing yards",
-        "why": "The matchup is projected as low-scoring and the 49ers tend to lean run-heavy against strong fronts per recent prop guides.",
-        "sources": [
-          {
-            "name": "Week 13 NFL Picks: Upset and Score Predictions – NFL.com",
-            "sentiment": "0"
-          },
-          {
-            "name": "NFL Picks and Props Week 13 – RotoWire",
-            "sentiment": "-1"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "passing_yards",
-            "line": 205.5,
-            "type": "over_under",
-            "lean": "under"
-          },
-          {
-            "stat": "total_tds",
-            "line": 1.0,
-            "type": "over_under",
-            "lean": "under"
-          }
-        ]
-      },
-      {
-        "name": "Jacoby Brissett",
-        "team": "ARI",
-        "position": "QB",
-        "game": "ARI @ TB",
-        "matchup_note": "Downfield volume possible if hot — but uncertain continuity given recent team turbulence in Tampa Bay secondary.",
-        "injury_status": "active",
-        "verified": true,
-        "what_to_target": "Passing yards / TDs",
-        "why": "With 49ers–Browns and Rams–Panthers expected to be more run-heavy, preview articles highlight this game (ARI @ TB) as a spot where passing volume could spike Week 13.",
-        "sources": [
-          {
-            "name": "NFL Week 13 expert picks & props – CBS Sports",
-            "sentiment": "+1"
-          },
-          {
-            "name": "Week 13 NFL Picks and Props – RotoWire",
-            "sentiment": "0"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "passing_yards",
-            "line": 255.5,
-            "type": "over_under",
-            "lean": "over"
-          },
-          {
-            "stat": "total_tds",
-            "line": 1.5,
-            "type": "over_under",
-            "lean": "over"
-          }
-        ]
-      },
-      {
         "name": "Matthew Stafford",
-        "team": "LAR",
+        "team": "LAC",
         "position": "QB",
-        "game": "LAR @ CAR",
-        "matchup_note": "Potential shootout-like script; Carolina's defense vulnerable to veteran QBs downfield.",
+        "game": "LAC vs LV",
+        "matchup_note": "Facing a struggling Raiders defense in a game with shootout potential.",
         "injury_status": "active",
         "verified": true,
         "what_to_target": "Passing yards / TDs",
-        "why": "Prop-bet writers highlight Rams-Panthers as a game with upside for passing volume and TDs given Carolina's defensive struggles vs. the pass.",
+        "why": "Chargers-Raiders was listed among the more pass-heavy matchups for Week 13 previews.",
         "sources": [
           {
-            "name": "Week 13 NFL props & best bets – RotoWire",
-            "sentiment": "+1"
-          },
-          {
-            "name": "Covers.com Week 13 ATS & matchups preview",
+            "name": "Chargers vs Raiders Week 13 preview – Chargers.com",
             "sentiment": "+1"
           }
         ],
         "suggestions": [
           {
             "stat": "passing_yards",
-            "line": 265.5,
+            "line": 275.5,
             "type": "over_under",
             "lean": "over"
           },
@@ -152,23 +37,85 @@
             "lean": "over"
           }
         ]
+      },
+      {
+        "name": "Jordan Love",
+        "team": "MIN",
+        "position": "QB",
+        "game": "MIN @ SEA",
+        "matchup_note": "On the road at a tough Seattle defense — likely a balanced game script.",
+        "injury_status": "active",
+        "verified": true,
+        "what_to_target": "Passing yards",
+        "why": "Vikings-Seahawks projects as a moderately competitive game; Love's upside is limited by Seattle's defense per matchup previews.",
+        "sources": [
+          {
+            "name": "NFL Week 13 game preview – Seattle vs Minnesota – Yahoo Sports",
+            "sentiment": "0"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "passing_yards",
+            "line": 230.5,
+            "type": "over_under",
+            "lean": "under"
+          },
+          {
+            "stat": "anytime_td",
+            "line": null,
+            "type": "yes_no",
+            "lean": "no"
+          }
+        ]
       }
     ],
     "rbs": [
       {
-        "name": "Jonathan Taylor",
-        "team": "IND",
+        "name": "Austin Ekeler",
+        "team": "LAC",
         "position": "RB",
-        "game": "HOU @ IND",
-        "matchup_note": "Workhorse back vs. Texans — likely high volume if Colts get ahead early.",
+        "game": "LAC vs LV",
+        "matchup_note": "Workhorse back with pass-catching upside against a Raiders front that has struggled to stop the run.",
         "injury_status": "active",
         "verified": true,
         "what_to_target": "Rushing yards / total yards",
-        "why": "Pre-game previews view Taylor as the Colts' lead back and likely focal point against a middling Texans run defense.",
+        "why": "Chargers-Raiders preview notes his dual-threat role as a key advantage in this matchup.",
         "sources": [
           {
-            "name": "NFL Predictions Week 13 – RotoBaller",
+            "name": "Chargers final thoughts before Week 13 – Chargers.com",
             "sentiment": "+1"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "rushing_yards",
+            "line": 85.5,
+            "type": "over_under",
+            "lean": "over"
+          },
+          {
+            "stat": "total_yards",
+            "line": 110.5,
+            "type": "over_under",
+            "lean": "over"
+          }
+        ]
+      },
+      {
+        "name": "Cam Akers",
+        "team": "SEA",
+        "position": "RB",
+        "game": "MIN @ SEA",
+        "matchup_note": "Lead back in a likely balanced attack vs. a Vikings defense vulnerable to the run.",
+        "injury_status": "active",
+        "verified": true,
+        "what_to_target": "Rushing yards",
+        "why": "Vikings-Seahawks projections list this as a spot where run-volume could matter given weather and defensive strengths.",
+        "sources": [
+          {
+            "name": "Seattle vs Minnesota Week 13 preview – BleedingGreenNation",
+            "sentiment": "0"
           }
         ],
         "suggestions": [
@@ -177,9 +124,36 @@
             "line": 75.5,
             "type": "over_under",
             "lean": "over"
+          }
+        ]
+      }
+    ],
+    "wrs": [
+      {
+        "name": "Keenan Allen",
+        "team": "LAC",
+        "position": "WR",
+        "game": "LAC vs LV",
+        "matchup_note": "Primary receiving option for Stafford in a likely shootout vs. Raiders.",
+        "injury_status": "active",
+        "verified": true,
+        "what_to_target": "Receptions / receiving yards",
+        "why": "Chargers-Raiders previews highlight Allen as top target with favorable matchup vs. a weaker secondary.",
+        "sources": [
+          {
+            "name": "Chargers vs Raiders props and bets preview – Fox Sports NFL",
+            "sentiment": "+1"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "receptions",
+            "line": 7.5,
+            "type": "over_under",
+            "lean": "over"
           },
           {
-            "stat": "total_yards",
+            "stat": "receiving_yards",
             "line": 95.5,
             "type": "over_under",
             "lean": "over"
@@ -187,95 +161,25 @@
         ]
       },
       {
-        "name": "Chuba Hubbard",
-        "team": "CAR",
-        "position": "RB",
-        "game": "LAR @ CAR",
-        "matchup_note": "Backfield likely active in what could be ground-heavy scripts given Panthers' unpredictable pace.",
-        "injury_status": "active",
-        "verified": true,
-        "what_to_target": "Rushing yards",
-        "why": "Prop previews note Carolina's run game usage this week could spike, making a mid-tier back like Hubbard worth a look.",
-        "sources": [
-          {
-            "name": "Week 13 Picks & Props – WalterFootball",
-            "sentiment": "0"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "rushing_yards",
-            "line": 60.5,
-            "type": "over_under",
-            "lean": "over"
-          },
-          {
-            "stat": "anytime_td",
-            "line": null,
-            "type": "yes_no",
-            "lean": "yes"
-          }
-        ]
-      }
-    ],
-    "wrs": [
-      {
-        "name": "Nico Collins",
-        "team": "HOU",
+        "name": "Jordan Addison",
+        "team": "MIN",
         "position": "WR",
-        "game": "HOU @ IND",
-        "matchup_note": "Top target in Houston against a Colts defense likely focused on stopping run and short passes.",
+        "game": "MIN @ SEA",
+        "matchup_note": "Slot WR likely to see volume, especially if Seattle stays ahead and leans passing.",
         "injury_status": "active",
         "verified": true,
-        "what_to_target": "Receptions / receiving yards",
-        "why": "Passing game may lean on single primary target — Collins stands out as the most reliable WR for Stroud in this matchup.",
+        "what_to_target": "Receptions",
+        "why": "In a game where Seahawks may force Minnesota to pass if they're trailing, Addison is the Vikings' most reliable receiving option according to previews.",
         "sources": [
           {
-            "name": "NFL Week 13 Expert Picks – CBS Sports & SportsLine",
-            "sentiment": "+1"
+            "name": "Vikings vs Seahawks Week 13 preview – Sports blog",
+            "sentiment": "0"
           }
         ],
         "suggestions": [
           {
             "stat": "receptions",
             "line": 5.5,
-            "type": "over_under",
-            "lean": "over"
-          },
-          {
-            "stat": "receiving_yards",
-            "line": 70.5,
-            "type": "over_under",
-            "lean": "over"
-          }
-        ]
-      },
-      {
-        "name": "Trey McBride",
-        "team": "ARI",
-        "position": "WR",
-        "game": "ARI @ TB",
-        "matchup_note": "Likely top offensive weapon for Cardinals if they air it out vs. uneven Tampa Bay secondary.",
-        "injury_status": "active",
-        "verified": true,
-        "what_to_target": "Receptions / receiving yards",
-        "why": "Pre-week props highlight Cardinals pass-catchers as reasonable value given potential volume and defensive matchup.",
-        "sources": [
-          {
-            "name": "Week 13 NFL Picks & Props – CBS Sports",
-            "sentiment": "+1"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "receptions",
-            "line": 4.5,
-            "type": "over_under",
-            "lean": "over"
-          },
-          {
-            "stat": "receiving_yards",
-            "line": 65.5,
             "type": "over_under",
             "lean": "over"
           }

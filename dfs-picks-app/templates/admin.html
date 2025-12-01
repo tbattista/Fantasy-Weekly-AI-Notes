@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - DFS/Props Picks{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="mb-4"><i class="bi bi-gear-fill"></i> Admin Configuration</h2>
+            
+            <!-- Success/Error Messages -->
+            {% if request.query_params.get('success') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle-fill"></i> <strong>Success!</strong> Weekly picks generated successfully.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+            
+            {% if request.query_params.get('error') %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-triangle-fill"></i> <strong>Error!</strong> {{ request.query_params.get('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Configuration Form -->
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="bi bi-sliders"></i> Weekly Configuration</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/admin/run" id="configForm">
+                        <div class="form-group mb-3">
+                            <label for="year" class="form-label">Year</label>
+                            <input type="number" class="form-control" id="year" name="year" 
+                                   value="{{ settings.year }}" required min="2020" max="2030">
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="week_number" class="form-label">Week Number</label>
+                            <input type="number" class="form-control" id="week_number" name="week_number" 
+                                   value="{{ settings.week_number }}" required min="1" max="18">
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="date" class="form-label">Date (YYYY-MM-DD)</label>
+                            <input type="date" class="form-control" id="date" name="date" 
+                                   value="{{ settings.date }}" required>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="slate_description" class="form-label">Slate Description</label>
+                            <input type="text" class="form-control" id="slate_description" name="slate_description" 
+                                   value="{{ settings.slate_description }}" required 
+                                   placeholder="e.g., Sunday main slate">
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="note" class="form-label">Note</label>
+                            <textarea class="form-control" id="note" name="note" rows="2" required>{{ settings.note }}</textarea>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="focus_games" class="form-label">Focus Games</label>
+                            <input type="text" class="form-control" id="focus_games" name="focus_games" 
+                                   value="{{ settings.focus_games }}" required 
+                                   placeholder="all, afternoon_only, or comma-separated list">
+                            <small class="form-text text-muted">
+                                Options: "all", "afternoon_only", "early_only", "primetime_only", or "BUF @ PIT, NO @ MIA"
+                            </small>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="min_articles_for_sentiment" class="form-label">Min Articles for Sentiment</label>
+                            <input type="number" class="form-control" id="min_articles_for_sentiment" 
+                                   name="min_articles_for_sentiment" value="{{ settings.min_articles_for_sentiment }}" 
+                                   required min="1" max="10">
+                        </div>
+                        
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="include_long_shots" 
+                                   name="include_long_shots" {% if settings.include_long_shots %}checked{% endif %}>
+                            <label class="form-check-label" for="include_long_shots">
+                                Include Long Shots
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100" id="generateBtn">
+                            <i class="bi bi-lightning-fill"></i> Generate Picks
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt Preview & JSON Output -->
+        <div class="col-lg-6">
+            <!-- Prompt Preview -->
+            <div class="card mb-4">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0"><i class="bi bi-file-text"></i> Prompt Preview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="code-block">{{ prompt_preview }}</div>
+                </div>
+            </div>
+            
+            <!-- Last Generated JSON -->
+            {% if picks_json %}
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="bi bi-code-square"></i> Last Generated JSON</h5>
+                </div>
+                <div class="card-body">
+                    <div class="code-block">{{ picks_json }}</div>
+                    <div class="mt-3">
+                        <a href="/" class="btn btn-success">
+                            <i class="bi bi-eye-fill"></i> View Dashboard
+                        </a>
+                        <a href="/api/picks" class="btn btn-outline-secondary" target="_blank">
+                            <i class="bi bi-download"></i> Download JSON
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+// Show loading state when form is submitted
+document.getElementById('configForm').addEventListener('submit', function() {
+    const btn = document.getElementById('generateBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Generating...';
+});
+</script>
+{% endblock %}

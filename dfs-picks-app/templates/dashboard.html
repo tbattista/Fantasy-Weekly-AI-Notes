@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - DFS/Props Picks{% endblock %}
+
+{% block content %}
+<div class="container-xxl">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                        <div>
+                            <h4 class="mb-1">🏈 Fantasy Football Player Cards</h4>
+                            {% if picks %}
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge bg-primary">Week {{ picks.meta.week }}</span>
+                                <span class="badge bg-info">{{ picks.meta.date }}</span>
+                                <span class="badge bg-secondary">{{ picks.meta.slate_description }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex gap-2">
+                            <select class="form-select form-select-sm" id="position-filter" style="min-width: 150px;">
+                                <option value="all">All Positions</option>
+                                <option value="QB">QB</option>
+                                <option value="RB">RB</option>
+                                <option value="WR">WR</option>
+                                <option value="TE">TE</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if picks %}
+    <!-- Player Cards -->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="section-title">Fantasy Football Players</h3>
+            <div class="players-container" id="players-container">
+                <!-- Players will be rendered here by JavaScript -->
+            </div>
+            
+            <!-- Long Shots Section -->
+            {% if picks.long_shots.players %}
+            <h3 class="section-title mt-4">🎲 Long Shots</h3>
+            <div class="players-container" id="long-shots-container">
+                <!-- Long shots will be rendered here by JavaScript -->
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <!-- No Picks Available -->
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <h5><i class="bi bi-info-circle"></i> No Picks Generated Yet</h5>
+                <p class="mb-3">Visit the Admin page to configure settings and generate weekly picks.</p>
+                <a href="/admin" class="btn btn-primary">
+                    <i class="bi bi-gear-fill"></i> Go to Admin
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% if picks %}
+<script>
+// Store picks data
+const picksData = {{ picks | tojson }};
+
+// Render player cards
+function renderPlayerCards() {
+    const container = document.getElementById('players-container');
+    const positionFilter = document.getElementById('position-filter').value;
+    container.innerHTML = '';
+    
+    // Combine all players
+    let allPlayers = [];
+    ['qbs', 'rbs', 'wrs', 'tes'].forEach(position => {
+        if (picksData.categories[position]) {
+            allPlayers = allPlayers.concat(picksData.categories[position]);
+        }
+    });
+    
+    // Apply filter
+    if (positionFilter !== 'all') {
+        allPlayers = allPlayers.filter(p => p.position === positionFilter);
+    }
+    
+    if (allPlayers.length === 0) {
+        container.innerHTML = '<p class="text-muted">No players available for the selected position.</p>';
+        return;
+    }
+    
+    // Render each player
+    allPlayers.forEach(player => {
+        container.appendChild(createPlayerCard(player));
+    });
+}
+
+// Create player card element
+function createPlayerCard(player) {
+    const card = document.createElement('div');
+    card.className = 'player-card';
+    
+    // Injury status
+    const injuryClass = (player.injury_status || 'active').replace(/_/g, '-');
+    const injuryLabel = (player.injury_status || 'active').replace(/_/g, ' ');
+    
+    // Suggestions HTML
+    let suggestionsHtml = '';
+    if (player.suggestions && player.suggestions.length > 0) {
+        const badges = player.suggestions.map(s => {
+            const statName = s.stat.replace(/_/g, ' ');
+            if (s.type === 'yes_no') {
+                return `<span class="suggestion-badge ${s.lean}">
+                    <span class="suggestion-stat">${statName}</span>
+                    <span class="suggestion-lean">${s.lean}</span>
+                </span>`;
+            } else {
+                const leanClass = s.lean === 'over' ? 'over' : 'under';
+                return `<span class="suggestion-badge ${leanClass}">
+                    <span class="suggestion-stat">${statName}</span>
+                    <span class="suggestion-line">${s.line}</span>
+                    <span class="suggestion-lean">${s.lean}</span>
+                </span>`;
+            }
+        }).join('');
+        suggestionsHtml = `<div class="player-suggestions">${badges}</div>`;
+    }
+    
+    // Sources HTML
+    let sourcesHtml = '';
+    if (player.sources && player.sources.length > 0) {
+        const tags = player.sources.map(src => {
+            const sentimentClass = src.sentiment === '+1' ? 'source-positive' :
+                                  src.sentiment === '-1' ? 'source-negative' : 'source-neutral';
+            return `<span class="source-tag ${sentimentClass}">${src.name}</span>`;
+        }).join('');
+        sourcesHtml = `<div class="sources-list">${tags}</div>`;
+    }
+    
+    card.innerHTML = `
+        <div class="player-header">
+            <span class="player-position ${player.position.toLowerCase()}">${player.position}</span>
+            <span class="player-name">${player.name}</span>
+            <span class="injury-badge ${injuryClass}">${injuryLabel}</span>
+            ${player.verified ? '<span class="verified-badge">✓ Verified</span>' : ''}
+        </div>
+        <div class="player-meta">
+            <span class="player-team">${player.team}</span>
+            <span>${player.game}</span>
+        </div>
+        <div class="player-note">${player.matchup_note}</div>
+        ${player.what_to_target ? `<div class="player-target">🎯 ${player.what_to_target}</div>` : ''}
+        ${player.why ? `<div class="player-why">${player.why}</div>` : ''}
+        ${suggestionsHtml}
+        ${sourcesHtml}
+    `;
+    
+    return card;
+}
+
+// Render long shot cards
+function renderLongShotCards() {
+    const container = document.getElementById('long-shots-container');
+    if (!container) return;
+    
+    const positionFilter = document.getElementById('position-filter').value;
+    container.innerHTML = '';
+    
+    let players = picksData.long_shots.players || [];
+    
+    // Apply filter
+    if (positionFilter !== 'all') {
+        players = players.filter(p => p.position === positionFilter);
+    }
+    
+    if (players.length === 0) {
+        container.innerHTML = '<p class="text-muted">No long shot data available for the selected position.</p>';
+        return;
+    }
+    
+    players.forEach(player => {
+        const card = document.createElement('div');
+        card.className = 'player-card';
+        
+        card.innerHTML = `
+            <div class="player-header">
+                <span class="player-position ${player.position.toLowerCase()}">${player.position}</span>
+                <span class="player-name">${player.name}</span>
+                <span class="verified-badge">Long Shot</span>
+            </div>
+            <div class="player-meta">
+                <span class="player-team">${player.team}</span>
+                <span>${player.game}</span>
+            </div>
+            <div class="player-note">
+                <strong>Long Shot:</strong> ${player.long_shot.label}<br>
+                <strong>Ultra Long Shot:</strong> ${player.ultra_long_shot.label}
+            </div>
+        `;
+        
+        container.appendChild(card);
+    });
+}
+
+// Position filter event listener
+document.getElementById('position-filter').addEventListener('change', function() {
+    renderPlayerCards();
+    renderLongShotCards();
+});
+
+// Initial render
+renderPlayerCards();
+renderLongShotCards();
+</script>
+{% endif %}
+{% endblock %}
