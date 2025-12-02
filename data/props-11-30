@@ -1,0 +1,334 @@
+{
+  "quarterbacks": [
+    {
+      "player": "Matthew Stafford (LAR)",
+      "game": "@ CAR",
+      "what_to_target": "Pass yards / 2+ pass TDs",
+      "why": "Rams are top-2 in projected points this week; Panthers D is bottom-tier and Rams passing stack (Stafford + Puka + Adams) is being called “must-start” across ESPN, FantasyPros, CBS and betting previews. Indoors-like conditions not needed – weather in Charlotte is cool with some showers, but that mostly hurts CAR if LAR get ahead.",
+      "sources": [
+        {
+          "name": "Underdog Network",
+          "sentiment": "+3"
+        },
+        {
+          "name": "Yahoo Sports",
+          "sentiment": "+3"
+        },
+        {
+          "name": "CBS Sports",
+          "sentiment": "+3"
+        }
+      ]
+    },
+    {
+      "player": "Josh Allen (BUF)",
+      "game": "@ PIT",
+      "what_to_target": "Rush+pass yards / rushing TD / INTs if you like chaos",
+      "why": "Bills O-line down both starting tackles, so most analysts think they lean on Allen’s legs and quick game vs Steelers’ pass rush. Projection models still have him as a top-5 QB for the week. Expect some weather (cold + rain/snow mix) but he’s used to it.",
+      "sources": [
+        {
+          "name": "Buffalo Rumblings",
+          "sentiment": "+2"
+        },
+        {
+          "name": "ESPN.com",
+          "sentiment": "+2"
+        }
+      ]
+    },
+    {
+      "player": "Tua Tagovailoa (MIA)",
+      "game": "vs NO",
+      "what_to_target": "Pass yards / completions",
+      "why": "Dolphins O is in a good groove and now get Darren Waller back as a red-zone weapon. Tyreek is out for the year, so Tua is funneled more through Waller + Jaylen Waddle + run-game play-action. Warm, humid Miami weather with some storms, but no cold/wind issues.",
+      "sources": [
+        {
+          "name": "Phin Phanatic",
+          "sentiment": "+3"
+        },
+        {
+          "name": "Canal Street Chronicles",
+          "sentiment": "+3"
+        },
+        {
+          "name": "The Phinsider",
+          "sentiment": "+3"
+        }
+      ]
+    },
+    {
+      "player": "Justin Herbert (LAC)",
+      "game": "vs LV",
+      "what_to_target": "Pass attempts / yards / 1.5+ pass TDs",
+      "why": "Chargers are big home favorites vs Raiders; most previews project LV to be in catch-up mode, which usually means heavy Herbert volume. Week-13 preview pieces consistently tag LAC as one of the better passing environments on the slate.",
+      "sources": [
+        {
+          "name": "RotoWire",
+          "sentiment": "+1"
+        }
+      ]
+    },
+    {
+      "player": "Bo Nix (DEN)",
+      "game": "@ WAS",
+      "what_to_target": "Pass+rush yards / 1.5+ pass TDs",
+      "why": "Broncos are 9–2, coming off a bye and strongly favored vs Washington, who are starting Marcus Mariota instead of Jayden Daniels. Sentiment is very bullish on Denver offense having short fields and lots of scoring chances. Weather in Landover is cool but not extreme.",
+      "sources": [
+        {
+          "name": "Mile High Report",
+          "sentiment": "+2"
+        },
+        {
+          "name": "Mile High Report",
+          "sentiment": "+2"
+        }
+      ]
+    }
+  ],
+  "running_backs": [
+    {
+      "player": "Christian McCaffrey (SF)",
+      "game": "@ CLE",
+      "what_to_target": "Rush+rec yards / TD",
+      "why": "Browns own site literally has a “How will we contain CMC?” piece – that tells you where attention is. Low game total (34.5) but all the SF scoring is still expected to flow through him. Cold but manageable weather in Cleveland.",
+      "sources": [
+        {
+          "name": "Cleveland Browns",
+          "sentiment": "+1"
+        }
+      ]
+    },
+    {
+      "player": "De’Von Achane (MIA)",
+      "game": "vs NO",
+      "what_to_target": "Rush+rec yards (alt ladder) / receptions",
+      "why": "Multiple fantasy sites have him as RB1 overall this week. He’s averaging ~115+ scrimmage yards per game and facing a Saints D that has been soft against the run lately. Weather is warm; occasional thunderstorms could tilt them even more toward ground/short passing where Achane eats.",
+      "sources": [
+        {
+          "name": "Canal Street Chronicles",
+          "sentiment": "+2"
+        },
+        {
+          "name": "RotoBaller",
+          "sentiment": "+2"
+        }
+      ]
+    },
+    {
+      "player": "Kyren Williams (LAR)",
+      "game": "@ CAR",
+      "what_to_target": "Rush yards / rush+rec yards / anytime TD",
+      "why": "Every rankings/DFS piece I checked is labeling Kyren as a strong bounce-back play vs a mediocre CAR run D. Rams projected for ~4 TDs; he still dominates high-value RB touches even with Blake Corum mixing in.",
+      "sources": [
+        {
+          "name": "CBS Sports",
+          "sentiment": "+3"
+        },
+        {
+          "name": "San Diego Sports 760",
+          "sentiment": "+3"
+        },
+        {
+          "name": "RotoBaller",
+          "sentiment": "+3"
+        }
+      ]
+    },
+    {
+      "player": "Travis Etienne Jr. (JAX)",
+      "game": "@ TEN",
+      "what_to_target": "Rush attempts / rush yards / TD",
+      "why": "Titans are 1–10 and more beatable on the ground than through the air. RotoBaller + BlitzSports + FantasyPros all call Etienne a high-end RB2 / strong start with positive game script. Weather in Nashville is cool but mostly clearing up by early afternoon.",
+      "sources": [
+        {
+          "name": "FantasyPros",
+          "sentiment": "+2"
+        },
+        {
+          "name": "RotoBaller",
+          "sentiment": "+2"
+        }
+      ]
+    },
+    {
+      "player": "James Cook (BUF)",
+      "game": "@ PIT",
+      "what_to_target": "Rush+rec yards / receptions",
+      "why": "With both starting OTs out, several Bills beat writers and ESPN fantasy analysts expect more designed runs and quick RB passes to slow T.J. Watt & co. Cook is consistently graded as a top-10 RB for Week 13. Mix of rain/snow actually leans toward more RB usage.",
+      "sources": [
+        {
+          "name": "Buffalo Rumblings",
+          "sentiment": "+2"
+        },
+        {
+          "name": "ESPN.com",
+          "sentiment": "+2"
+        }
+      ]
+    }
+  ],
+  "wide_receivers": [
+    {
+      "player": "Puka Nacua (LAR)",
+      "game": "@ CAR",
+      "what_to_target": "Receptions / rec yards",
+      "why": "He’s popping as a top-5 WR across fantasy rankings, with multiple DFS pieces listing him as one of the best plays on the slate vs a shaky CAR secondary. Stacks naturally with Stafford.",
+      "sources": [
+        {
+          "name": "RotoBaller",
+          "sentiment": "+3"
+        },
+        {
+          "name": "Yahoo Sports",
+          "sentiment": "+3"
+        },
+        {
+          "name": "CBS Sports",
+          "sentiment": "+3"
+        }
+      ]
+    },
+    {
+      "player": "Davante Adams (LAR)",
+      "game": "@ CAR",
+      "what_to_target": "Anytime TD / rec yards",
+      "why": "Adams has 12 TDs already this year and is being called out in several viewer-guide articles as a key part of why the Rams are Super Bowl contenders again. Red-zone usage + soft matchup equals TD upside.",
+      "sources": [
+        {
+          "name": "CBS Sports",
+          "sentiment": "+3"
+        },
+        {
+          "name": "FantasyPros",
+          "sentiment": "+3"
+        },
+        {
+          "name": "Underdog Network",
+          "sentiment": "+3"
+        }
+      ]
+    },
+    {
+      "player": "Jaylen Waddle (MIA)",
+      "game": "vs NO",
+      "what_to_target": "Rec yards / long reception",
+      "why": "With Tyreek Hill done for the season, Waddle has stepped into primary downfield role. Local Dolphins coverage highlights his ~15 yards per catch and chemistry with Tua. Saints have a solid D but can be beaten on explosive plays.",
+      "sources": [
+        {
+          "name": "Canal Street Chronicles",
+          "sentiment": "+1"
+        }
+      ]
+    },
+    {
+      "player": "Khalil Shakir (BUF)",
+      "game": "@ PIT",
+      "what_to_target": "Receptions (low line) / rec yards",
+      "why": "ESPN projections and several start/sit pieces tag Shakir as a strong flex this week with defenses focusing on Diggs and Bills using quick passes vs pressure. Sloppy PIT weather pushes targets to underneath guys like Shakir.",
+      "sources": [
+        {
+          "name": "ESPN.com",
+          "sentiment": "+2"
+        },
+        {
+          "name": "Blitz Sports Media",
+          "sentiment": "+2"
+        }
+      ]
+    },
+    {
+      "player": "Jaxon Smith-Njigba (SEA)",
+      "game": "vs MIN",
+      "what_to_target": "Alt yards / anytime TD (tournamenty)",
+      "why": "RotoBaller’s WR-matchups column specifically calls out JSN as a Week-13 WR to target vs MIN. Seattle weather is cold but clear – good enough for passing, and Minnesota’s secondary has been exploitable.",
+      "sources": [
+        {
+          "name": "RotoBaller",
+          "sentiment": "+1"
+        }
+      ]
+    }
+  ],
+  "tight_ends": [
+    {
+      "player": "Trey McBride (ARI)",
+      "game": "@ TB",
+      "what_to_target": "Receptions / rec yards",
+      "why": "Multiple sites have him as TE1 overall this week. Cardinals DFS previews give him one of the highest TE projections on the entire slate vs a Bucs D that can be beaten in the middle. Tampa weather is warm and clean.",
+      "sources": [
+        {
+          "name": "Bleacher Nation",
+          "sentiment": "+2"
+        },
+        {
+          "name": "Underdog Network",
+          "sentiment": "+2"
+        }
+      ]
+    },
+    {
+      "player": "Darren Waller (MIA)",
+      "game": "vs NO",
+      "what_to_target": "Red-zone TD / small rec-yards over",
+      "why": "Fresh off IR and expected to play; Dolphins beat + national media emphasize how quickly he became a red-zone favorite when healthy. Great leverage if books keep his lines modest because of the recent injury.",
+      "sources": [
+        {
+          "name": "ESPN.com",
+          "sentiment": "+3"
+        },
+        {
+          "name": "The Phinsider",
+          "sentiment": "+3"
+        },
+        {
+          "name": "Reuters",
+          "sentiment": "+3"
+        }
+      ]
+    },
+    {
+      "player": "George Kittle (SF)",
+      "game": "@ CLE",
+      "what_to_target": "Rec yards / longest reception",
+      "why": "SF-focused breakdowns mention Kittle as a TE1 candidate against CLE, especially if Browns sell out to slow CMC. Low total, but his role as a chunk-play outlet in cold weather is appealing.",
+      "sources": [
+        {
+          "name": "RotoBaller",
+          "sentiment": "+2"
+        },
+        {
+          "name": "Cleveland Browns",
+          "sentiment": "+2"
+        }
+      ]
+    },
+    {
+      "player": "Kyle Pitts (ATL)",
+      "game": "@ NYG",
+      "what_to_target": "Rec yards / receptions",
+      "why": "Underdog’s rankings and TE-notes have Pitts inside the top-10 TEs. MetLife will be chilly with rain, which tends to favor TEs & slot targets over deep perimeter bombs.",
+      "sources": [
+        {
+          "name": "Underdog Network",
+          "sentiment": "+1"
+        }
+      ]
+    },
+    {
+      "player": "Brenton Strange (JAX)",
+      "game": "@ TEN",
+      "what_to_target": "Low-line rec yards / anytime TD dart",
+      "why": "In TE rankings and notes, Strange shows up as a viable mid-tier option with a 30.5-yard prop line in some markets; Titans are softer vs TEs than outside WRs. If you want a cheap TE to correlate with Etienne/Lawrence, he works.",
+      "sources": [
+        {
+          "name": "Underdog Network",
+          "sentiment": "+2"
+        },
+        {
+          "name": "FantasyPros",
+          "sentiment": "+2"
+        }
+      ]
+    }
+  ]
+}
