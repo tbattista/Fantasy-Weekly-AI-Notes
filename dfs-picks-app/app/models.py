@@ -41,10 +41,21 @@ class PlayerModel(BaseModel):
     suggestions: List[SuggestionModel]
 
 
+class PredictionDetailsModel(BaseModel):
+    """Flexible prediction details for long shots."""
+    yards: Optional[int] = None
+    touchdowns: Optional[int] = None
+    receptions: Optional[int] = None
+    targets: Optional[int] = None
+    carries: Optional[int] = None
+    completions: Optional[int] = None
+    attempts: Optional[int] = None
+
+
 class LongShotPredictionModel(BaseModel):
     """Prediction details for a long shot."""
     label: str
-    prediction: Dict[str, Any]  # Flexible dict for yards, tds, receptions, etc.
+    prediction: PredictionDetailsModel
     odds_bucket_estimate: str  # e.g., "+600_to_+1500"
 
 
