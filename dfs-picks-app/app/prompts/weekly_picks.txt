@@ -71,7 +71,7 @@ Before selecting players or props, you MUST:
 
 3. PLAYER SELECTION
    - Under `categories.qbs`, `categories.rbs`, `categories.wrs`, and `categories.tes`, pick:
-     - Up to 5 high-signal players per position category from the slate defined by the ESPN schedule + FOCUS_GAMES.
+     - Minimum 5-10 high-signal players per position category from the slate defined by the ESPN schedule + FOCUS_GAMES.
      - Players must actually be relevant for this week (not injured-reserve, not out).
    - Each player object MUST include:
      - name, team, position, game
