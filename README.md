@@ -20,10 +20,7 @@ AI-powered weekly NFL DFS and prop betting recommendations using OpenAI's struct
 
 ### Local Development
 
-1. **Clone or navigate to the project**
-   ```bash
-   cd dfs-picks-app
-   ```
+1. **Clone or navigate to the project directory**
 
 2. **Create virtual environment**
    ```bash
@@ -63,7 +60,7 @@ AI-powered weekly NFL DFS and prop betting recommendations using OpenAI's struct
 ## 📁 Project Structure
 
 ```
-dfs-picks-app/
+Fantasy Weekly AI Notes/ (root)
 ├── app/
 │   ├── __init__.py           # Package initialization
 │   ├── main.py               # FastAPI application
@@ -147,7 +144,7 @@ All settings can be configured via environment variables or the admin interface:
    git init
    git add .
    git commit -m "Initial commit"
-   git remote add origin https://github.com/yourusername/dfs-picks-app.git
+   git remote add origin https://github.com/yourusername/fantasy-weekly-ai-notes.git
    git push -u origin main
    ```
 

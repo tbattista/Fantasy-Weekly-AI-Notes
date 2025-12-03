@@ -6,14 +6,12 @@ Get your DFS/Props Picks app running in 5 minutes!
 
 **Option A: Automated Setup (Recommended)**
 ```bash
-cd dfs-picks-app
 setup.bat
 ```
 This will create the virtual environment, install dependencies, and start the app!
 
 **Option B: Manual Setup**
 ```bash
-cd dfs-picks-app
 python -m venv venv
 venv\Scripts\activate
 python -m pip install --upgrade pip
@@ -22,7 +20,6 @@ pip install -r requirements.txt
 
 **For Mac/Linux:**
 ```bash
-cd dfs-picks-app
 python -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
