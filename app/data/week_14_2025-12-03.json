@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "week": 14,
+    "date": "2025-12-03",
+    "slate_description": "Sunday main slate, Week 14",
+    "note": "Focus on all games with emphasis on DFS and prop betting recommendations."
+  },
+  "categories": {
+    "qbs": [
+      {
+        "name": "Patrick Mahomes",
+        "team": "KC",
+        "position": "QB",
+        "game": "KC vs DEN",
+        "matchup_note": "Facing a weaker Denver secondary, Mahomes is primed for a big game.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Total passing yards over 300",
+        "why": "Denver's defense ranks 28th against the pass.",
+        "sources": [
+          {
+            "name": "FantasyPros",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "CBS Sports",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "ESPN",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Passing Yards",
+            "line": 310.5,
+            "type": "Over",
+            "lean": "Strong"
+          }
+        ]
+      }
+    ],
+    "rbs": [
+      {
+        "name": "Christian McCaffrey",
+        "team": "SF",
+        "position": "RB",
+        "game": "SF vs SEA",
+        "matchup_note": "Seattle allows the 5th most rushing yards per game.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Over on rushing yards and total touchdowns",
+        "why": "Seattle's run defense struggles against versatile backs like McCaffrey.",
+        "sources": [
+          {
+            "name": "RotoGrinders",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "NFL.com",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Yahoo Sports",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Rushing Yards",
+            "line": 95.5,
+            "type": "Over",
+            "lean": "Strong"
+          },
+          {
+            "stat": "Total Touchdowns",
+            "line": 1.5,
+            "type": "Over",
+            "lean": "Moderate"
+          }
+        ]
+      }
+    ],
+    "wrs": [
+      {
+        "name": "Justin Jefferson",
+        "team": "MIN",
+        "position": "WR",
+        "game": "MIN vs CHI",
+        "matchup_note": "Chicago's secondary ranks 30th in DVOA against WR1s.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Receptions and receiving yards",
+        "why": "Jefferson has a favorable matchup against a weak secondary.",
+        "sources": [
+          {
+            "name": "PFF",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "The Athletic",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "FantasyPros",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Receptions",
+            "line": 8.5,
+            "type": "Over",
+            "lean": "Strong"
+          },
+          {
+            "stat": "Receiving Yards",
+            "line": 110.5,
+            "type": "Over",
+            "lean": "Moderate"
+          }
+        ]
+      }
+    ],
+    "tes": [
+      {
+        "name": "Travis Kelce",
+        "team": "KC",
+        "position": "TE",
+        "game": "KC vs DEN",
+        "matchup_note": "Denver's linebackers struggle against elite tight ends.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Receptions and receiving yards",
+        "why": "Kelce is Mahomes' top target in favorable matchups.",
+        "sources": [
+          {
+            "name": "NFL.com",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "CBS Sports",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "ESPN",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Receptions",
+            "line": 7.5,
+            "type": "Over",
+            "lean": "Strong"
+          },
+          {
+            "stat": "Receiving Yards",
+            "line": 90.5,
+            "type": "Over",
+            "lean": "Strong"
+          }
+        ]
+      }
+    ]
+  },
+  "long_shots": {
+    "players": [
+      {
+        "name": "Zach Charbonnet",
+        "team": "SEA",
+        "position": "RB",
+        "game": "SF vs SEA",
+        "long_shot": {
+          "label": "100+ rushing yards and 2 TDs",
+          "prediction": {
+            "yards": 100,
+            "touchdowns": 2,
+            "receptions": null,
+            "targets": null,
+            "carries": null,
+            "completions": null,
+            "attempts": null
+          },
+          "odds_bucket_estimate": "+1000"
+        },
+        "ultra_long_shot": {
+          "label": "150 total yards and 3 TDs",
+          "prediction": {
+            "yards": 150,
+            "touchdowns": 3,
+            "receptions": null,
+            "targets": null,
+            "carries": null,
+            "completions": null,
+            "attempts": null
+          },
+          "odds_bucket_estimate": "+2500"
+        }
+      }
+    ]
+  }
+}

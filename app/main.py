@@ -9,6 +9,7 @@ from fastapi.templating import Jinja2Templates
 from .ai_client import generate_picks, save_picks, load_picks, render_prompt
 from .config import settings
 from .models import WeeklyPicksModel
+from .espn_scraper import scrape_espn_schedule, format_games_for_prompt
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -68,6 +69,89 @@ async def get_picks():
         raise HTTPException(status_code=500, detail=f"Error loading picks: {str(e)}")
 
 
+@app.get("/api/picks/list")
+async def list_picks_files():
+    """
+    List all available picks JSON files.
+    
+    Returns:
+        JSON response with list of available files and their metadata.
+    """
+    try:
+        data_dir = Path("app/data")
+        json_files = []
+        
+        # Find all JSON files except current_picks.json
+        for file in data_dir.glob("*.json"):
+            if file.name == "current_picks.json":
+                continue
+                
+            # Try to extract metadata from filename
+            # Format: week_{week_number}_{date}.json
+            try:
+                parts = file.stem.split("_")
+                if len(parts) >= 3 and parts[0] == "week":
+                    week_num = parts[1]
+                    date_str = "_".join(parts[2:])  # Handle dates with underscores
+                    
+                    json_files.append({
+                        "filename": file.name,
+                        "week": int(week_num),
+                        "date": date_str,
+                        "display_name": f"Week {week_num} - {date_str}"
+                    })
+            except:
+                # If parsing fails, just add the filename
+                json_files.append({
+                    "filename": file.name,
+                    "display_name": file.stem
+                })
+        
+        # Sort by week number (descending) and date (descending)
+        json_files.sort(key=lambda x: (x.get("week", 0), x.get("date", "")), reverse=True)
+        
+        # Add current_picks.json at the top if it exists
+        current_picks_path = data_dir / "current_picks.json"
+        if current_picks_path.exists():
+            json_files.insert(0, {
+                "filename": "current_picks.json",
+                "display_name": "Current Week (Latest)"
+            })
+        
+        return JSONResponse(content={"files": json_files})
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error listing picks files: {str(e)}")
+
+
+@app.get("/api/picks/{filename}")
+async def get_picks_by_filename(filename: str):
+    """
+    Get picks from a specific JSON file.
+    
+    Args:
+        filename: Name of the JSON file to load.
+        
+    Returns:
+        JSON response with picks data.
+    """
+    try:
+        # Security: Only allow files in app/data directory
+        filepath = Path("app/data") / filename
+        
+        # Prevent directory traversal
+        if not filepath.resolve().is_relative_to(Path("app/data").resolve()):
+            raise HTTPException(status_code=403, detail="Access denied")
+        
+        picks = load_picks(str(filepath))
+        return JSONResponse(content=picks.model_dump())
+        
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail=f"File {filename} not found")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading picks: {str(e)}")
+
+
 @app.get("/admin", response_class=HTMLResponse)
 async def admin_page(request: Request):
     """
@@ -99,9 +183,7 @@ async def admin_page(request: Request):
 
 @app.post("/admin/run")
 async def run_generation(
-    year: int = Form(...),
-    week_number: int = Form(...),
-    date: str = Form(...),
+    espn_game_data_link: str = Form(...),
     slate_description: str = Form(...),
     note: str = Form(...),
     focus_games: str = Form(...),
@@ -115,9 +197,7 @@ async def run_generation(
     """
     try:
         # Update settings with form values
-        settings.year = year
-        settings.week_number = week_number
-        settings.date = date
+        settings.espn_game_data_link = espn_game_data_link
         settings.slate_description = slate_description
         settings.note = note
         settings.focus_games = focus_games
@@ -138,6 +218,32 @@ async def run_generation(
         return RedirectResponse(url=f"/admin?error={str(e)}", status_code=303)
 
 
+@app.post("/admin/save-prompt")
+async def save_prompt(prompt_content: str = Form(...)):
+    """
+    Save edited prompt content to the template file.
+    
+    Args:
+        prompt_content: The edited prompt content to save.
+        
+    Returns:
+        Redirect back to admin page with success/error message.
+    """
+    try:
+        # Save to the prompt template file
+        prompt_path = Path(__file__).parent / "prompts" / "weekly_picks.txt"
+        
+        with open(prompt_path, "w", encoding="utf-8") as f:
+            f.write(prompt_content)
+        
+        # Redirect to admin page with success message
+        return RedirectResponse(url="/admin?prompt_saved=true", status_code=303)
+        
+    except Exception as e:
+        # Return to admin page with error
+        return RedirectResponse(url=f"/admin?error={str(e)}", status_code=303)
+
+
 @app.get("/api/config")
 async def get_config():
     """
@@ -147,15 +253,34 @@ async def get_config():
         JSON response with current settings.
     """
     return JSONResponse(content={
-        "year": settings.year,
-        "week_number": settings.week_number,
-        "date": settings.date,
+        "espn_game_data_link": settings.espn_game_data_link,
         "slate_description": settings.slate_description,
         "note": settings.note,
         "focus_games": settings.focus_games,
         "min_articles_for_sentiment": settings.min_articles_for_sentiment,
         "include_long_shots": settings.include_long_shots
     })
+
+
+@app.get("/api/games")
+async def get_games():
+    """
+    Fetch and return live game data from ESPN.
+    
+    Returns:
+        JSON response with scraped game data.
+    """
+    try:
+        games, metadata = scrape_espn_schedule(settings.espn_game_data_link)
+        game_list = [game.to_dict() for game in games]
+        
+        return JSONResponse(content={
+            "metadata": metadata,
+            "games": game_list,
+            "formatted": format_games_for_prompt(games, settings.focus_games)
+        })
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching games: {str(e)}")
 
 
 @app.get("/health")

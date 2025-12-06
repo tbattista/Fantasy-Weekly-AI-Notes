@@ -10,9 +10,7 @@ class Settings(BaseSettings):
     openai_api_key: str
     
     # Weekly Picks Configuration
-    year: int = 2025
-    week_number: int = 13
-    date: str = "2025-11-30"
+    espn_game_data_link: str = "https://www.espn.com/nfl/schedule/_/week/13/year/2025/seasontype/2"
     slate_description: str = "Sunday main slate"
     note: str = "All players checked against latest depth charts, injury reports, and preview/fantasy articles."
     
@@ -26,7 +24,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
-        case_sensitive=False
+        case_sensitive=False,
+        extra="ignore"  # Allow extra fields in .env file
     )
 
 

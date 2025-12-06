@@ -22,6 +22,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
             {% endif %}
+            
+            {% if request.query_params.get('prompt_saved') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle-fill"></i> <strong>Success!</strong> Prompt template saved successfully.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
         </div>
     </div>
 
@@ -35,21 +42,13 @@
                 <div class="card-body">
                     <form method="POST" action="/admin/run" id="configForm">
                         <div class="form-group mb-3">
-                            <label for="year" class="form-label">Year</label>
-                            <input type="number" class="form-control" id="year" name="year" 
-                                   value="{{ settings.year }}" required min="2020" max="2030">
-                        </div>
-                        
-                        <div class="form-group mb-3">
-                            <label for="week_number" class="form-label">Week Number</label>
-                            <input type="number" class="form-control" id="week_number" name="week_number" 
-                                   value="{{ settings.week_number }}" required min="1" max="18">
-                        </div>
-                        
-                        <div class="form-group mb-3">
-                            <label for="date" class="form-label">Date (YYYY-MM-DD)</label>
-                            <input type="date" class="form-control" id="date" name="date" 
-                                   value="{{ settings.date }}" required>
+                            <label for="espn_game_data_link" class="form-label">ESPN Game Data Link</label>
+                            <input type="url" class="form-control" id="espn_game_data_link" name="espn_game_data_link"
+                                   value="{{ settings.espn_game_data_link }}" required
+                                   placeholder="https://www.espn.com/nfl/schedule/_/week/13/year/2025/seasontype/2">
+                            <small class="form-text text-muted">
+                                ESPN NFL schedule URL for the week you want to analyze. The system will extract week and date from this link.
+                            </small>
                         </div>
                         
                         <div class="form-group mb-3">
@@ -93,19 +92,45 @@
                             <i class="bi bi-lightning-fill"></i> Generate Picks
                         </button>
                     </form>
+                    
+                    <!-- Progress Display -->
+                    <div id="progressContainer" class="mt-4" style="display: none;">
+                        <div class="card">
+                            <div class="card-header bg-dark text-white">
+                                <h6 class="mb-0"><i class="bi bi-activity"></i> Generation Progress</h6>
+                            </div>
+                            <div class="card-body">
+                                <div id="progressLog" class="bg-light p-3 rounded" style="max-height: 300px; overflow-y: auto; font-family: monospace; font-size: 12px;">
+                                    <!-- Progress messages will appear here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Prompt Preview & JSON Output -->
+        <!-- Prompt Editor & JSON Output -->
         <div class="col-lg-6">
-            <!-- Prompt Preview -->
+            <!-- Prompt Editor -->
             <div class="card mb-4">
-                <div class="card-header bg-secondary text-white">
-                    <h5 class="mb-0"><i class="bi bi-file-text"></i> Prompt Preview</h5>
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="bi bi-pencil-square"></i> Prompt Editor</h5>
                 </div>
                 <div class="card-body">
-                    <div class="code-block">{{ prompt_preview }}</div>
+                    <form method="POST" action="/admin/save-prompt" id="promptForm">
+                        <div class="form-group mb-3">
+                            <label for="prompt_content" class="form-label">Edit Prompt Template</label>
+                            <textarea class="form-control" id="prompt_content" name="prompt_content" rows="15"
+                                      placeholder="Edit the prompt template here...">{{ prompt_preview }}</textarea>
+                            <small class="form-text text-muted">
+                                You can edit the prompt template directly. Changes will be saved to the template file.
+                            </small>
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-sm">
+                            <i class="bi bi-save"></i> Save Prompt
+                        </button>
+                    </form>
                 </div>
             </div>
             
@@ -128,16 +153,154 @@
                 </div>
             </div>
             {% endif %}
+            
+            <!-- Prompt Preview -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="bi bi-file-text"></i> Current Prompt Preview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="code-block">{{ prompt_preview }}</div>
+                    <small class="form-text text-muted">
+                        This shows how the current template will be rendered with your settings.
+                        Use the editor above to make changes to the template itself.
+                    </small>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-// Show loading state when form is submitted
-document.getElementById('configForm').addEventListener('submit', function() {
+// Show loading state and progress when form is submitted
+document.getElementById('configForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
     const btn = document.getElementById('generateBtn');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressLog = document.getElementById('progressLog');
+    
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Generating...';
+    
+    // Show progress container
+    progressContainer.style.display = 'block';
+    progressLog.innerHTML = '';
+    
+    // Add progress message
+    function addProgress(message, type = 'info') {
+        const timestamp = new Date().toLocaleTimeString();
+        const colors = {
+            'info': 'text-primary',
+            'success': 'text-success',
+            'error': 'text-danger',
+            'warning': 'text-warning'
+        };
+        const color = colors[type] || 'text-dark';
+        progressLog.innerHTML += `<div class="${color}">[${timestamp}] ${message}</div>`;
+        progressLog.scrollTop = progressLog.scrollHeight;
+    }
+    
+    // Get form data
+    const formData = new FormData(this);
+    
+    // Start progress tracking
+    addProgress('🚀 Starting generation process...', 'info');
+    addProgress('📊 Fetching ESPN game data...', 'info');
+    
+    // First, fetch game data to show it
+    fetch('/api/games')
+        .then(response => response.json())
+        .then(data => {
+            addProgress(`✅ Found ${data.games.length} games`, 'success');
+            data.games.forEach((game, i) => {
+                addProgress(`   ${i + 1}. ${game.matchup} - ${game.time}`, 'info');
+            });
+            addProgress('🤖 Preparing AI prompt...', 'info');
+            addProgress('📝 Sending to OpenAI for analysis...', 'info');
+            
+            // Now submit the form
+            return fetch('/admin/run', {
+                method: 'POST',
+                body: formData
+            });
+        })
+        .then(response => {
+            if (response.redirected) {
+                addProgress('✅ Generation complete!', 'success');
+                addProgress('🔄 Redirecting to results...', 'info');
+                setTimeout(() => {
+                    window.location.href = response.url;
+                }, 1000);
+            } else {
+                throw new Error('Generation failed');
+            }
+        })
+        .catch(error => {
+            addProgress(`❌ Error: ${error.message}`, 'error');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="bi bi-lightning-fill"></i> Generate Picks';
+        });
 });
+
+// Live prompt preview update
+function updatePromptPreview() {
+    const promptTemplate = document.getElementById('prompt_content').value;
+    const espnLink = document.getElementById('espn_game_data_link').value;
+    const slateDesc = document.getElementById('slate_description').value;
+    const note = document.getElementById('note').value;
+    const focusGames = document.getElementById('focus_games').value;
+    const minArticles = document.getElementById('min_articles_for_sentiment').value;
+    const includeLongShots = document.getElementById('include_long_shots').checked;
+    
+    // Extract year and week from ESPN link
+    const weekMatch = espnLink.match(/\/week\/(\d+)/);
+    const yearMatch = espnLink.match(/\/year\/(\d+)/);
+    const week = weekMatch ? weekMatch[1] : '13';
+    const year = yearMatch ? yearMatch[1] : '2025';
+    
+    // Get current date
+    const currentDate = new Date().toISOString().split('T')[0];
+    
+    // Replace all variables
+    let preview = promptTemplate
+        .replace(/\{\{SLATE_DESCRIPTION\}\}/g, slateDesc)
+        .replace(/\{\{NOTE\}\}/g, note)
+        .replace(/\{\{FOCUS_GAMES\}\}/g, focusGames)
+        .replace(/\{\{MIN_ARTICLES_FOR_SENTIMENT\}\}/g, minArticles)
+        .replace(/\{\{INCLUDE_LONG_SHOTS\}\}/g, includeLongShots.toString())
+        .replace(/\{\{ESPN_GAME_DATA_LINK\}\}/g, espnLink)
+        .replace(/\{\{YEAR\}\}/g, year)
+        .replace(/\{\{WEEK_NUMBER\}\}/g, week)
+        .replace(/\{\{DATE\}\}/g, currentDate);
+    
+    // Update preview section
+    const previewElement = document.querySelector('.card-header.bg-info + .card-body .code-block');
+    if (previewElement) {
+        previewElement.textContent = preview;
+    }
+}
+
+// Add event listeners to all form inputs
+const formInputs = [
+    'espn_game_data_link',
+    'slate_description',
+    'note',
+    'focus_games',
+    'min_articles_for_sentiment',
+    'include_long_shots',
+    'prompt_content'
+];
+
+formInputs.forEach(inputId => {
+    const element = document.getElementById(inputId);
+    if (element) {
+        element.addEventListener('input', updatePromptPreview);
+        element.addEventListener('change', updatePromptPreview);
+    }
+});
+
+// Initial update on page load
+document.addEventListener('DOMContentLoaded', updatePromptPreview);
 </script>
 {% endblock %}

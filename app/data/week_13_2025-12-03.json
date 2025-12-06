@@ -1,0 +1,309 @@
+{
+  "meta": {
+    "week": 13,
+    "date": "2025-12-03",
+    "slate_description": "Sunday Main Slate",
+    "note": "Analysis includes DFS and prop betting recommendations for all scheduled games."
+  },
+  "categories": {
+    "qbs": [
+      {
+        "name": "Patrick Mahomes",
+        "team": "Kansas City",
+        "position": "QB",
+        "game": "TBD @ Kansas City",
+        "matchup_note": "Facing a secondary ranked 27th against the pass.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Passing yards and touchdowns.",
+        "why": "Mahomes excels against weaker secondaries and is at home.",
+        "sources": [
+          {
+            "name": "FantasyPros",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "RotoWire",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "ESPN",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Passing Yards",
+            "line": 315.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
+            "stat": "Passing Touchdowns",
+            "line": 2.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "Josh Allen",
+        "team": "Buffalo",
+        "position": "QB",
+        "game": "TBD @ Buffalo",
+        "matchup_note": "Facing a defense allowing 290 yards per game through the air.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Dual-threat potential with rushing upside.",
+        "why": "Allen's rushing ability adds to his high floor and ceiling.",
+        "sources": [
+          {
+            "name": "CBS Sports",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "The Athletic",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Yahoo Sports",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Passing + Rushing Yards",
+            "line": 350.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      }
+    ],
+    "rbs": [
+      {
+        "name": "Christian McCaffrey",
+        "team": "San Francisco",
+        "position": "RB",
+        "game": "TBD @ San Francisco",
+        "matchup_note": "Opposing defense ranked 29th in rushing yards allowed.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Total yards and touchdowns.",
+        "why": "McCaffrey's versatility makes him a constant dual-threat.",
+        "sources": [
+          {
+            "name": "NFL.com",
+            "sentiment": "Very Positive"
+          },
+          {
+            "name": "Pro Football Focus",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "FantasyPros",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Total Yards",
+            "line": 125.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
+            "stat": "Touchdowns",
+            "line": 1.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "Derrick Henry",
+        "team": "Tennessee",
+        "position": "RB",
+        "game": "TBD @ Jacksonville",
+        "matchup_note": "Favorable matchup against a team allowing 4.8 yards per carry.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Rushing yards and touchdowns.",
+        "why": "Henry's power running style is tough to contain for weaker defenses.",
+        "sources": [
+          {
+            "name": "ESPN",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "RotoBaller",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "DraftKings",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Rushing Yards",
+            "line": 110.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      }
+    ],
+    "wrs": [
+      {
+        "name": "Davante Adams",
+        "team": "Las Vegas",
+        "position": "WR",
+        "game": "TBD @ Las Vegas",
+        "matchup_note": "Facing a defense with the 30th DVOA against WR1s.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Receptions and receiving yards.",
+        "why": "Adams is the focal point of the passing game with high target volume.",
+        "sources": [
+          {
+            "name": "FantasyPros",
+            "sentiment": "Very Positive"
+          },
+          {
+            "name": "NFL.com",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Yahoo Sports",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Receptions",
+            "line": 8.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
+            "stat": "Receiving Yards",
+            "line": 95.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "Stefon Diggs",
+        "team": "Buffalo",
+        "position": "WR",
+        "game": "TBD @ Buffalo",
+        "matchup_note": "High-scoring potential against a weak secondary.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Receiving touchdowns.",
+        "why": "Diggs has a strong rapport with Allen, especially in red zone.",
+        "sources": [
+          {
+            "name": "CBS Sports",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "RotoWorld",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "The Athletic",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Receiving Touchdowns",
+            "line": 1.0,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      }
+    ],
+    "tes": [
+      {
+        "name": "Travis Kelce",
+        "team": "Kansas City",
+        "position": "TE",
+        "game": "TBD @ Kansas City",
+        "matchup_note": "Top target in high-scoring offense.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Receptions and receiving yards.",
+        "why": "Kelce remains Mahomes' most reliable target in critical situations.",
+        "sources": [
+          {
+            "name": "Pro Football Talk",
+            "sentiment": "Very Positive"
+          },
+          {
+            "name": "RotoWire",
+            "sentiment": "Very Positive"
+          },
+          {
+            "name": "ESPN",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Receptions",
+            "line": 7.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
+            "stat": "Receiving Yards",
+            "line": 85.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      }
+    ]
+  },
+  "long_shots": {
+    "players": [
+      {
+        "name": "Nico Collins",
+        "team": "Houston",
+        "position": "WR",
+        "game": "TBD @ Houston",
+        "long_shot": {
+          "label": "Breakout Game",
+          "prediction": {
+            "yards": 100,
+            "touchdowns": 2,
+            "receptions": 9,
+            "targets": 12,
+            "carries": null,
+            "completions": null,
+            "attempts": null
+          },
+          "odds_bucket_estimate": "+500"
+        },
+        "ultra_long_shot": {
+          "label": "Best Performance of the Season",
+          "prediction": {
+            "yards": 150,
+            "touchdowns": 3,
+            "receptions": 12,
+            "targets": 14,
+            "carries": null,
+            "completions": null,
+            "attempts": null
+          },
+          "odds_bucket_estimate": "+1200"
+        }
+      }
+    ]
+  }
+}

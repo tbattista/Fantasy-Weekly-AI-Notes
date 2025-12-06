@@ -1,77 +1,167 @@
-{% extends "base.html" %}
+# JSON File Selector Implementation Plan
 
-{% block title %}Dashboard - DFS/Props Picks{% endblock %}
+## Overview
+Add a dropdown selector to the dashboard homepage that allows users to switch between different generated JSON files (current and historical picks).
 
-{% block content %}
-<div class="container-xxl">
-    <!-- Header -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-                        <div>
-                            <h4 class="mb-1">🏈 Fantasy Football Player Cards</h4>
-                            {% if picks %}
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="badge bg-primary">Week {{ picks.meta.week }}</span>
-                                <span class="badge bg-info">{{ picks.meta.date }}</span>
-                                <span class="badge bg-secondary">{{ picks.meta.slate_description }}</span>
-                            </div>
-                            {% endif %}
-                        </div>
-                        <div class="d-flex gap-2">
-                            <select class="form-select form-select-sm" id="file-selector" style="min-width: 200px;">
-                                <option value="">Loading files...</option>
-                            </select>
-                            <select class="form-select form-select-sm" id="position-filter" style="min-width: 150px;">
-                                <option value="all">All Positions</option>
-                                <option value="QB">QB</option>
-                                <option value="RB">RB</option>
-                                <option value="WR">WR</option>
-                                <option value="TE">TE</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+## File Naming Convention
+**Format:** `week_{week_number}_{date}.json`
+**Example:** `week_13_2024-12-03.json`
 
-    {% if picks %}
-    <!-- Player Cards -->
-    <div class="row">
-        <div class="col-12">
-            <h3 class="section-title">Fantasy Football Players</h3>
-            <div class="players-container" id="players-container">
-                <!-- Players will be rendered here by JavaScript -->
-            </div>
-            
-            <!-- Long Shots Section -->
-            {% if picks.long_shots.players %}
-            <h3 class="section-title mt-4">🎲 Long Shots</h3>
-            <div class="players-container" id="long-shots-container">
-                <!-- Long shots will be rendered here by JavaScript -->
-            </div>
-            {% endif %}
-        </div>
-    </div>
-    {% else %}
-    <!-- No Picks Available -->
-    <div class="row">
-        <div class="col-12">
-            <div class="alert alert-info text-center">
-                <h5><i class="bi bi-info-circle"></i> No Picks Generated Yet</h5>
-                <p class="mb-3">Visit the Admin page to configure settings and generate weekly picks.</p>
-                <a href="/admin" class="btn btn-primary">
-                    <i class="bi bi-gear-fill"></i> Go to Admin
-                </a>
-            </div>
-        </div>
-    </div>
-    {% endif %}
+This format provides:
+- Clear week identification
+- Date for disambiguation (multiple generations per week)
+- Sortable chronologically
+- Human-readable
+
+## Architecture Changes
+
+### 1. Backend Changes (app/ai_client.py)
+
+#### Update `save_picks()` function
+```python
+def save_picks(picks: WeeklyPicksModel, filepath: str = "app/data/current_picks.json") -> None:
+    """
+    Save picks to both current_picks.json and a dated historical file.
+    
+    Args:
+        picks: WeeklyPicksModel instance to save.
+        filepath: Path to save the current JSON file.
+    """
+    # Ensure the data directory exists
+    data_dir = Path(filepath).parent
+    data_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Save as current_picks.json
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(picks.model_dump_json(indent=2))
+    
+    # Also save with dated filename for history
+    week = picks.meta.week
+    date = picks.meta.date  # Expected format: "December 3, 2024" or similar
+    # Convert date to YYYY-MM-DD format
+    from datetime import datetime
+    try:
+        date_obj = datetime.strptime(date, "%B %d, %Y")
+        date_str = date_obj.strftime("%Y-%m-%d")
+    except:
+        # Fallback to current date if parsing fails
+        date_str = datetime.now().strftime("%Y-%m-%d")
+    
+    historical_filename = f"week_{week}_{date_str}.json"
+    historical_path = data_dir / historical_filename
+    
+    with open(historical_path, "w", encoding="utf-8") as f:
+        f.write(picks.model_dump_json(indent=2))
+```
+
+### 2. Backend Changes (app/main.py)
+
+#### Add new API endpoint to list available JSON files
+```python
+@app.get("/api/picks/list")
+async def list_picks_files():
+    """
+    List all available picks JSON files.
+    
+    Returns:
+        JSON response with list of available files and their metadata.
+    """
+    try:
+        data_dir = Path("app/data")
+        json_files = []
+        
+        # Find all JSON files except current_picks.json
+        for file in data_dir.glob("*.json"):
+            if file.name == "current_picks.json":
+                continue
+                
+            # Try to extract metadata from filename
+            # Format: week_{week_number}_{date}.json
+            try:
+                parts = file.stem.split("_")
+                if len(parts) >= 3 and parts[0] == "week":
+                    week_num = parts[1]
+                    date_str = "_".join(parts[2:])  # Handle dates with underscores
+                    
+                    json_files.append({
+                        "filename": file.name,
+                        "week": int(week_num),
+                        "date": date_str,
+                        "display_name": f"Week {week_num} - {date_str}"
+                    })
+            except:
+                # If parsing fails, just add the filename
+                json_files.append({
+                    "filename": file.name,
+                    "display_name": file.stem
+                })
+        
+        # Sort by week number (descending) and date (descending)
+        json_files.sort(key=lambda x: (x.get("week", 0), x.get("date", "")), reverse=True)
+        
+        # Add current_picks.json at the top if it exists
+        current_picks_path = data_dir / "current_picks.json"
+        if current_picks_path.exists():
+            json_files.insert(0, {
+                "filename": "current_picks.json",
+                "display_name": "Current Week (Latest)"
+            })
+        
+        return JSONResponse(content={"files": json_files})
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error listing picks files: {str(e)}")
+
+
+@app.get("/api/picks/{filename}")
+async def get_picks_by_filename(filename: str):
+    """
+    Get picks from a specific JSON file.
+    
+    Args:
+        filename: Name of the JSON file to load.
+        
+    Returns:
+        JSON response with picks data.
+    """
+    try:
+        # Security: Only allow files in app/data directory
+        filepath = Path("app/data") / filename
+        
+        # Prevent directory traversal
+        if not filepath.resolve().is_relative_to(Path("app/data").resolve()):
+            raise HTTPException(status_code=403, detail="Access denied")
+        
+        picks = load_picks(str(filepath))
+        return JSONResponse(content=picks.model_dump())
+        
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail=f"File {filename} not found")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error loading picks: {str(e)}")
+```
+
+### 3. Frontend Changes (templates/dashboard.html)
+
+#### Add selector dropdown in header section
+Replace lines 23-31 with:
+```html
+<div class="d-flex gap-2">
+    <select class="form-select form-select-sm" id="file-selector" style="min-width: 200px;">
+        <option value="">Loading files...</option>
+    </select>
+    <select class="form-select form-select-sm" id="position-filter" style="min-width: 150px;">
+        <option value="all">All Positions</option>
+        <option value="QB">QB</option>
+        <option value="RB">RB</option>
+        <option value="WR">WR</option>
+        <option value="TE">TE</option>
+    </select>
 </div>
+```
 
+#### Update JavaScript section (after line 72)
+```javascript
 {% if picks %}
 <script>
 // Store picks data
@@ -298,4 +388,62 @@ renderPlayerCards();
 renderLongShotCards();
 </script>
 {% endif %}
-{% endblock %}
+```
+
+## Implementation Flow
+
+```mermaid
+graph TD
+    A[User visits Dashboard] --> B[Load available files list]
+    B --> C[Populate file selector dropdown]
+    C --> D[Display current_picks.json by default]
+    D --> E{User selects different file?}
+    E -->|Yes| F[Fetch selected JSON file]
+    E -->|No| G[Continue viewing current]
+    F --> H[Update picksData variable]
+    H --> I[Update header metadata]
+    I --> J[Re-render player cards]
+    J --> K[Re-render long shots]
+    K --> G
+    
+    L[Admin generates new picks] --> M[Save to current_picks.json]
+    M --> N[Save to week_X_YYYY-MM-DD.json]
+    N --> O[File appears in selector]
+```
+
+## Testing Checklist
+
+- [ ] Generate picks and verify both files are created
+- [ ] Verify historical filename format is correct
+- [ ] Test `/api/picks/list` endpoint returns all files
+- [ ] Test `/api/picks/{filename}` endpoint loads correct data
+- [ ] Test file selector dropdown populates correctly
+- [ ] Test switching between files updates the display
+- [ ] Test position filter works with different files
+- [ ] Test security: directory traversal prevention
+- [ ] Test error handling for missing files
+- [ ] Test with multiple historical files
+
+## Documentation Updates
+
+Add to README.md or QUICKSTART.md:
+
+### Historical Picks Storage
+
+Generated picks are automatically saved in two locations:
+1. `app/data/current_picks.json` - Always contains the most recent generation
+2. `app/data/week_{week_number}_{date}.json` - Historical archive (e.g., `week_13_2024-12-03.json`)
+
+### Viewing Historical Picks
+
+Use the file selector dropdown in the dashboard header to switch between current and historical picks. The dropdown shows:
+- "Current Week (Latest)" - Most recent generation
+- Historical entries sorted by week and date (newest first)
+
+## Benefits
+
+1. **User Experience**: Easy access to historical data without manual file management
+2. **Data Preservation**: Automatic archival of all generations
+3. **Comparison**: Users can compare picks across weeks
+4. **Audit Trail**: Complete history of generated picks
+5. **Flexibility**: Can view any past week's recommendations
