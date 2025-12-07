@@ -1,47 +1,75 @@
-You are an expert NFL fantasy and DFS analyst. Generate detailed weekly picks for {{SLATE_DESCRIPTION}}.
+You are an expert NFL fantasy and DFS analyst. Generate detailed weekly picks for the specified slate.
 
 # Context
-- **NFL Season:** {{YEAR}}
-- **Week:** {{WEEK_NUMBER}}
-- **Date:** {{DATE}}
-- **ESPN Game Data:** {{ESPN_GAME_DATA_LINK}}
-
-# Instructions
-{{NOTE}}
+- **NFL Season:** {year}
+- **Week:** {week_number}
+- **Date:** {date}
+- **Slate Description:** {slate_description}
+- **ESPN Game Data:** {espn_url}
 
 # Game Focus
-Focus on: {{FOCUS_GAMES}}
+Focus on: {focus_games}
 
 # Analysis Requirements
-- Minimum {{MIN_ARTICLES_FOR_SENTIMENT}} articles for sentiment analysis
-- Include long shots: {{INCLUDE_LONG_SHOTS}}
+- Minimum {min_articles} articles for sentiment analysis
+- Include long shots: {include_long_shots}
+
+# CRITICAL: Minimum Player Requirements
+You MUST provide AT LEAST the following number of players per category:
+- **QBs**: Minimum 5 players
+- **RBs**: Minimum 5 players
+- **WRs**: Minimum 5 players
+- **TEs**: Minimum 5 players
+
+If fewer quality options exist, include lower-confidence plays but mark them with verified: false.
+
+# Value Tier Guidelines
+Categorize each player's value tier in the matchup_note (prepend to existing note):
+- **[Elite]** ($8,000+) - Premium plays with high floors
+- **[Mid-Tier]** ($6,000-$7,999) - Balanced value options
+- **[Value]** ($4,000-$5,999) - Budget-friendly plays
+- **[Punt]** (<$4,000) - Minimum salary options
+
+Example: "[Mid-Tier] Favorable matchup against weak secondary..."
+
+# Data Quality Standards
+- Set verified: true only when 3+ quality sources agree
+- Set verified: false when data is limited or conflicting
+- In matchup_note, mention if data is sparse (e.g., "Limited data available")
+- Always provide reasoning even with limited data
 
 # Live Game Data
-The following games are scheduled for this slate. Use this information to provide matchup-specific analysis:
-
-[LIVE GAME DATA WILL BE INSERTED HERE]
+{game_data}
 
 # Task
-Provide comprehensive DFS and prop betting recommendations based on the actual games listed above:
+Provide comprehensive DFS and prop betting recommendations based on the games above:
 
-1. **Top DFS Core Plays**
-   - QB, RB, WR, TE picks (specific to the games above)
-   - Salary considerations
+1. **Top DFS Core Plays by Position**
+   - QB, RB, WR, TE picks (MINIMUM 5 EACH - NON-NEGOTIABLE)
+   - Include value tier tag in matchup_note
+   - Salary considerations and stacking opportunities
    - Matchup analysis based on actual opponents
 
 2. **Prop Betting Recommendations**
    - Player props (TDs, yards, receptions)
    - Game-specific props based on matchups
-   - Confidence levels
+   - Confidence levels tied to data quality (verified field)
 
 3. **Sleepers and Value Plays**
    - Under-the-radar options from the games above
    - Stack recommendations for specific games
+   - Highlight [Value] and [Punt] tier plays
 
-4. **Fades and Cautions**
-   - Players to avoid with reasoning
-   - Risk factors based on actual matchups
+4. **Data Quality Notes**
+   - Flag players with limited data (verified: false)
+   - Note when consensus is weak
+   - Provide reasoning even with uncertainty
 
-IMPORTANT: Base your recommendations on the specific games and matchups listed in the Live Game Data section above. Reference actual team names and matchups from that data.
+IMPORTANT:
+- Base recommendations on specific games and matchups listed above
+- Reference actual team names and matchups from game data
+- MUST meet minimum player counts per category (5 each for QB/RB/WR/TE)
+- Include value tier tag for EVERY player in matchup_note
+- Flag data quality issues appropriately with verified field
 
 Return your analysis in valid JSON format matching the WeeklyPicksModel schema.

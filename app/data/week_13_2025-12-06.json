@@ -1,0 +1,218 @@
+{
+  "meta": {
+    "week": 13,
+    "date": "2025-12-06",
+    "slate_description": "NFL Week 13 Sunday Main Slate",
+    "note": "Analysis based on scheduled games and player performance up to this point."
+  },
+  "categories": {
+    "qbs": [
+      {
+        "name": "Patrick Mahomes",
+        "team": "Kansas City",
+        "position": "QB",
+        "game": "Kansas City @ Dallas",
+        "matchup_note": "Facing a Dallas defense that struggles against elite QBs.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Passing Yards",
+        "why": "Dallas has allowed an average of 280 passing yards per game.",
+        "sources": [
+          {
+            "name": "FantasyPros",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "ESPN",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Pro Football Focus",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Passing Yards",
+            "line": 310.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      }
+    ],
+    "rbs": [
+      {
+        "name": "Christian McCaffrey",
+        "team": "San Francisco",
+        "position": "RB",
+        "game": "San Francisco @ Cleveland",
+        "matchup_note": "Cleveland's run defense has been porous this season.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Rushing Yards",
+        "why": "Cleveland allows 130 rushing yards per game, 2nd most in the league.",
+        "sources": [
+          {
+            "name": "Rotoworld",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "CBS Sports",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Yahoo Sports",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Rushing Yards",
+            "line": 105.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      }
+    ],
+    "wrs": [
+      {
+        "name": "Davante Adams",
+        "team": "Green Bay",
+        "position": "WR",
+        "game": "Green Bay @ Detroit",
+        "matchup_note": "Detroit's secondary is ranked bottom 5 in the league.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Receptions",
+        "why": "Detroit struggles against top-tier WRs allowing an average of 9 receptions per game to WR1s.",
+        "sources": [
+          {
+            "name": "FantasyPros",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "ESPN",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Pro Football Focus",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Receptions",
+            "line": 7.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      }
+    ],
+    "tes": [
+      {
+        "name": "Travis Kelce",
+        "team": "Kansas City",
+        "position": "TE",
+        "game": "Kansas City @ Dallas",
+        "matchup_note": "Dallas ranks 28th against TEs.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Receiving Yards",
+        "why": "Dallas has given up an average of 75 yards per game to TEs.",
+        "sources": [
+          {
+            "name": "Rotoworld",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "CBS Sports",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Yahoo Sports",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Receiving Yards",
+            "line": 80.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      }
+    ]
+  },
+  "long_shots": {
+    "players": [
+      {
+        "name": "Trey Lance",
+        "team": "San Francisco",
+        "position": "QB",
+        "game": "San Francisco @ Cleveland",
+        "long_shot": {
+          "label": "Multi-TD Game",
+          "prediction": {
+            "yards": 270,
+            "touchdowns": 3,
+            "receptions": null,
+            "targets": null,
+            "carries": null,
+            "completions": null,
+            "attempts": null
+          },
+          "odds_bucket_estimate": "+300"
+        },
+        "ultra_long_shot": {
+          "label": "100+ Rushing Yards",
+          "prediction": {
+            "yards": 100,
+            "touchdowns": 1,
+            "receptions": null,
+            "targets": null,
+            "carries": 10,
+            "completions": null,
+            "attempts": null
+          },
+          "odds_bucket_estimate": "+1000"
+        }
+      },
+      {
+        "name": "Michael Pittman Jr.",
+        "team": "Indianapolis",
+        "position": "WR",
+        "game": "Houston @ Indianapolis",
+        "long_shot": {
+          "label": "100+ Receiving Yards",
+          "prediction": {
+            "yards": 100,
+            "touchdowns": 1,
+            "receptions": 7,
+            "targets": 12,
+            "carries": null,
+            "completions": null,
+            "attempts": null
+          },
+          "odds_bucket_estimate": "+400"
+        },
+        "ultra_long_shot": {
+          "label": "2+ TDs",
+          "prediction": {
+            "yards": null,
+            "touchdowns": 2,
+            "receptions": null,
+            "targets": null,
+            "carries": null,
+            "completions": null,
+            "attempts": null
+          },
+          "odds_bucket_estimate": "+1200"
+        }
+      }
+    ]
+  }
+}

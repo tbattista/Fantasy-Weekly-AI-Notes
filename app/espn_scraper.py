@@ -53,31 +53,37 @@ def scrape_espn_schedule(espn_url: str) -> tuple[List[GameData], Dict[str, any]]
         week = int(week_match.group(1)) if week_match else None
         year = int(year_match.group(1)) if year_match else None
         
-        # ESPN schedule structure: Look for game containers
-        # This may need adjustment based on ESPN's current HTML structure
-        game_containers = soup.find_all('div', class_='ScheduleTables')
+        # Parse using table rows - ESPN's current structure
+        table_rows = soup.find_all('tr', class_='Table__TR')
         
-        if not game_containers:
-            # Try alternative selectors
-            game_containers = soup.find_all('section', class_='Card')
-        
-        for container in game_containers:
-            # Find team names
-            teams = container.find_all('div', class_='ScoreCell__TeamName')
-            if len(teams) >= 2:
-                away_team = teams[0].get_text(strip=True)
-                home_team = teams[1].get_text(strip=True)
+        for row in table_rows:
+            try:
+                # Get all table cells
+                cells = row.find_all('td')
                 
-                # Find game time
-                time_element = container.find('div', class_='ScoreCell__Time')
-                game_time = time_element.get_text(strip=True) if time_element else "TBD"
-                
-                # Find game status
-                status_element = container.find('div', class_='ScoreCell__Status')
-                status = status_element.get_text(strip=True) if status_element else "Scheduled"
-                
-                game = GameData(away_team, home_team, game_time, status)
-                games.append(game)
+                if len(cells) >= 3:
+                    # Cell 0: Away team
+                    # Cell 1: @Home team
+                    # Cell 2: Game time
+                    
+                    # Extract away team from first cell
+                    away_links = cells[0].find_all('a', class_='AnchorLink')
+                    away_team = away_links[-1].get_text(strip=True) if away_links else None
+                    
+                    # Extract home team from second cell (format: "@TeamName")
+                    home_text = cells[1].get_text(strip=True)
+                    home_team = home_text.replace('@', '').strip() if '@' in home_text else None
+                    
+                    # Extract game time from third cell
+                    game_time = cells[2].get_text(strip=True) if len(cells) > 2 else "TBD"
+                    
+                    # Only create game if we have both teams
+                    if away_team and home_team:
+                        game = GameData(away_team, home_team, game_time, "Scheduled")
+                        games.append(game)
+            except Exception as e:
+                # Skip rows that don't match expected format
+                continue
         
         # If no games found with primary method, try alternative parsing
         if not games:
@@ -100,23 +106,34 @@ def _parse_alternative_format(soup: BeautifulSoup) -> List[GameData]:
     """Alternative parser for different ESPN HTML structures."""
     games = []
     
-    # Try finding by table rows
+    # Try finding by table rows (same as primary now, but kept for compatibility)
     rows = soup.find_all('tr', class_='Table__TR')
     
     for row in rows:
         try:
-            # Look for team links
-            team_links = row.find_all('a', class_='AnchorLink')
-            if len(team_links) >= 2:
-                away_team = team_links[0].get_text(strip=True)
-                home_team = team_links[1].get_text(strip=True)
+            # Get all table cells
+            cells = row.find_all('td')
+            
+            if len(cells) >= 3:
+                # Cell 0: Away team
+                # Cell 1: @Home team
+                # Cell 2: Game time
                 
-                # Get time from row
-                time_cell = row.find('td', class_='date__col')
-                game_time = time_cell.get_text(strip=True) if time_cell else "TBD"
+                # Extract away team from first cell
+                away_links = cells[0].find_all('a', class_='AnchorLink')
+                away_team = away_links[-1].get_text(strip=True) if away_links else None
                 
-                game = GameData(away_team, home_team, game_time)
-                games.append(game)
+                # Extract home team from second cell (format: "@TeamName")
+                home_text = cells[1].get_text(strip=True)
+                home_team = home_text.replace('@', '').strip() if '@' in home_text else None
+                
+                # Extract game time from third cell
+                game_time = cells[2].get_text(strip=True) if len(cells) > 2 else "TBD"
+                
+                # Only create game if we have both teams
+                if away_team and home_team:
+                    game = GameData(away_team, home_team, game_time, "Scheduled")
+                    games.append(game)
         except:
             continue
     

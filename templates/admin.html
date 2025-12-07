@@ -32,105 +32,104 @@
         </div>
     </div>
 
-    <div class="row">
-        <!-- Configuration Form -->
-        <div class="col-lg-6">
+    <!-- Single Column Layout -->
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-8">
+            <!-- Configuration Form -->
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
                     <h5 class="mb-0"><i class="bi bi-sliders"></i> Weekly Configuration</h5>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="/admin/run" id="configForm">
-                        <div class="form-group mb-3">
-                            <label for="espn_game_data_link" class="form-label">ESPN Game Data Link</label>
-                            <input type="url" class="form-control" id="espn_game_data_link" name="espn_game_data_link"
-                                   value="{{ settings.espn_game_data_link }}" required
-                                   placeholder="https://www.espn.com/nfl/schedule/_/week/13/year/2025/seasontype/2">
-                            <small class="form-text text-muted">
-                                ESPN NFL schedule URL for the week you want to analyze. The system will extract week and date from this link.
-                            </small>
-                        </div>
-                        
-                        <div class="form-group mb-3">
-                            <label for="slate_description" class="form-label">Slate Description</label>
-                            <input type="text" class="form-control" id="slate_description" name="slate_description" 
-                                   value="{{ settings.slate_description }}" required 
-                                   placeholder="e.g., Sunday main slate">
-                        </div>
-                        
-                        <div class="form-group mb-3">
-                            <label for="note" class="form-label">Note</label>
-                            <textarea class="form-control" id="note" name="note" rows="2" required>{{ settings.note }}</textarea>
-                        </div>
-                        
-                        <div class="form-group mb-3">
-                            <label for="focus_games" class="form-label">Focus Games</label>
-                            <input type="text" class="form-control" id="focus_games" name="focus_games" 
-                                   value="{{ settings.focus_games }}" required 
-                                   placeholder="all, afternoon_only, or comma-separated list">
-                            <small class="form-text text-muted">
-                                Options: "all", "afternoon_only", "early_only", "primetime_only", or "BUF @ PIT, NO @ MIA"
-                            </small>
-                        </div>
-                        
-                        <div class="form-group mb-3">
-                            <label for="min_articles_for_sentiment" class="form-label">Min Articles for Sentiment</label>
-                            <input type="number" class="form-control" id="min_articles_for_sentiment" 
-                                   name="min_articles_for_sentiment" value="{{ settings.min_articles_for_sentiment }}" 
-                                   required min="1" max="10">
-                        </div>
-                        
-                        <div class="form-check mb-4">
-                            <input class="form-check-input" type="checkbox" id="include_long_shots" 
-                                   name="include_long_shots" {% if settings.include_long_shots %}checked{% endif %}>
-                            <label class="form-check-label" for="include_long_shots">
-                                Include Long Shots
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-lg w-100" id="generateBtn">
-                            <i class="bi bi-lightning-fill"></i> Generate Picks
-                        </button>
-                    </form>
+                    <div class="form-group mb-3">
+                        <label for="espn_game_data_link" class="form-label">ESPN Game Data Link</label>
+                        <input type="url" class="form-control" id="espn_game_data_link" name="espn_game_data_link"
+                               value="{{ settings.espn_game_data_link }}" required
+                               placeholder="https://www.espn.com/nfl/schedule/_/week/13/year/2025/seasontype/2">
+                        <small class="form-text text-muted">
+                            ESPN NFL schedule URL for the week you want to analyze.
+                        </small>
+                    </div>
                     
-                    <!-- Progress Display -->
-                    <div id="progressContainer" class="mt-4" style="display: none;">
-                        <div class="card">
-                            <div class="card-header bg-dark text-white">
-                                <h6 class="mb-0"><i class="bi bi-activity"></i> Generation Progress</h6>
+                    <div class="form-group mb-3">
+                        <label for="slate_description" class="form-label">Slate Description</label>
+                        <input type="text" class="form-control" id="slate_description" name="slate_description"
+                               value="{{ settings.slate_description }}" required
+                               placeholder="e.g., Sunday main slate">
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="note" class="form-label">Note</label>
+                        <textarea class="form-control" id="note" name="note" rows="2" required>{{ settings.note }}</textarea>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="focus_games" class="form-label">Focus Games</label>
+                        <input type="text" class="form-control" id="focus_games" name="focus_games"
+                               value="{{ settings.focus_games }}" required
+                               placeholder="all, afternoon_only, or comma-separated list">
+                        <small class="form-text text-muted">
+                            Options: "all", "afternoon_only", "early_only", "primetime_only", or specific games
+                        </small>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="min_articles_for_sentiment" class="form-label">Min Articles for Sentiment</label>
+                                <input type="number" class="form-control" id="min_articles_for_sentiment"
+                                       name="min_articles_for_sentiment" value="{{ settings.min_articles_for_sentiment }}"
+                                       required min="1" max="10">
                             </div>
-                            <div class="card-body">
-                                <div id="progressLog" class="bg-light p-3 rounded" style="max-height: 300px; overflow-y: auto; font-family: monospace; font-size: 12px;">
-                                    <!-- Progress messages will appear here -->
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check mt-4 pt-2">
+                                <input class="form-check-input" type="checkbox" id="include_long_shots"
+                                       name="include_long_shots" {% if settings.include_long_shots %}checked{% endif %}>
+                                <label class="form-check-label" for="include_long_shots">
+                                    Include Long Shots
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Prompt Editor & JSON Output -->
-        <div class="col-lg-6">
-            <!-- Prompt Editor -->
+            
+            <!-- Live Prompt Preview -->
             <div class="card mb-4">
-                <div class="card-header bg-warning text-dark">
-                    <h5 class="mb-0"><i class="bi bi-pencil-square"></i> Prompt Editor</h5>
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="bi bi-eye"></i> Live Prompt (updates as you type above)</h5>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="/admin/save-prompt" id="promptForm">
-                        <div class="form-group mb-3">
-                            <label for="prompt_content" class="form-label">Edit Prompt Template</label>
-                            <textarea class="form-control" id="prompt_content" name="prompt_content" rows="15"
-                                      placeholder="Edit the prompt template here...">{{ prompt_preview }}</textarea>
-                            <small class="form-text text-muted">
-                                You can edit the prompt template directly. Changes will be saved to the template file.
-                            </small>
+                    <div id="livePromptPreview" class="code-block" style="white-space: pre-wrap; font-family: monospace; font-size: 13px; line-height: 1.6; max-height: 600px; overflow-y: auto; background-color: #f8f9fa; padding: 20px; border-radius: 4px;">{{ prompt_preview }}</div>
+                </div>
+            </div>
+            
+            <!-- Generate Button -->
+            <form method="POST" action="/admin/run" id="configForm">
+                <input type="hidden" name="espn_game_data_link" id="hidden_espn_link">
+                <input type="hidden" name="slate_description" id="hidden_slate_desc">
+                <input type="hidden" name="note" id="hidden_note">
+                <input type="hidden" name="focus_games" id="hidden_focus">
+                <input type="hidden" name="min_articles_for_sentiment" id="hidden_min_articles">
+                <input type="hidden" name="include_long_shots" id="hidden_long_shots">
+                
+                <button type="submit" class="btn btn-primary btn-lg w-100 mb-4" id="generateBtn">
+                    <i class="bi bi-lightning-fill"></i> Generate Picks with This Prompt
+                </button>
+            </form>
+            
+            <!-- Progress Display -->
+            <div id="progressContainer" style="display: none;">
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h6 class="mb-0"><i class="bi bi-activity"></i> Generation Progress</h6>
+                    </div>
+                    <div class="card-body">
+                        <div id="progressLog" class="bg-light p-3 rounded" style="max-height: 300px; overflow-y: auto; font-family: monospace; font-size: 12px;">
+                            <!-- Progress messages will appear here -->
                         </div>
-                        <button type="submit" class="btn btn-warning btn-sm">
-                            <i class="bi bi-save"></i> Save Prompt
-                        </button>
-                    </form>
+                    </div>
                 </div>
             </div>
             
@@ -138,10 +137,10 @@
             {% if picks_json %}
             <div class="card mb-4">
                 <div class="card-header bg-success text-white">
-                    <h5 class="mb-0"><i class="bi bi-code-square"></i> Last Generated JSON</h5>
+                    <h5 class="mb-0"><i class="bi bi-code-square"></i> Last Generated Picks</h5>
                 </div>
                 <div class="card-body">
-                    <div class="code-block">{{ picks_json }}</div>
+                    <div class="code-block" style="max-height: 400px; overflow-y: auto;">{{ picks_json }}</div>
                     <div class="mt-3">
                         <a href="/" class="btn btn-success">
                             <i class="bi bi-eye-fill"></i> View Dashboard
@@ -153,28 +152,164 @@
                 </div>
             </div>
             {% endif %}
-            
-            <!-- Prompt Preview -->
-            <div class="card mb-4">
-                <div class="card-header bg-info text-white">
-                    <h5 class="mb-0"><i class="bi bi-file-text"></i> Current Prompt Preview</h5>
-                </div>
-                <div class="card-body">
-                    <div class="code-block">{{ prompt_preview }}</div>
-                    <small class="form-text text-muted">
-                        This shows how the current template will be rendered with your settings.
-                        Use the editor above to make changes to the template itself.
-                    </small>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 
 <script>
+// Live prompt preview update function
+function updatePromptPreview() {
+    const espnLink = document.getElementById('espn_game_data_link').value;
+    const slateDesc = document.getElementById('slate_description').value;
+    const note = document.getElementById('note').value;
+    const focusGames = document.getElementById('focus_games').value;
+    const minArticles = document.getElementById('min_articles_for_sentiment').value;
+    const includeLongShots = document.getElementById('include_long_shots').checked;
+    
+    // Extract year and week from ESPN link
+    const weekMatch = espnLink.match(/\/week\/(\d+)/);
+    const yearMatch = espnLink.match(/\/year\/(\d+)/);
+    const week = weekMatch ? weekMatch[1] : '13';
+    const year = yearMatch ? yearMatch[1] : '2025';
+    
+    // Get current date
+    const currentDate = new Date().toISOString().split('T')[0];
+    
+    // Get the base prompt template (without variable substitution)
+    // We'll use the initial prompt preview as the template
+    const baseTemplate = `You are an expert NFL fantasy and DFS analyst. Generate detailed weekly picks for specified slate.
+
+
+
+# Context
+
+- **NFL Season:** {year}
+- **Week:** {week_number}
+- **Date:** {date}
+- **Slate Description:** {{SLATE_DESCRIPTION}}
+- **ESPN Game Data:** {{ESPN_GAME_DATA_LINK}}
+
+# Game Focus
+Focus on: {{FOCUS_GAMES}}
+
+# Analysis Requirements
+- Minimum {{MIN_ARTICLES_FOR_SENTIMENT}} articles for sentiment analysis
+- Include long shots: {{INCLUDE_LONG_SHOTS}}
+
+# CRITICAL: Minimum Player Requirements
+You MUST provide AT LEAST the following number of players per category:
+- **QBs**: Minimum 5 players
+- **RBs**: Minimum 5 players
+- **WRs**: Minimum 5 players
+- **TEs**: Minimum 5 players
+
+If fewer quality options exist, include lower-confidence plays but mark them with verified: false.
+
+# Value Tier Guidelines
+Categorize each player's value tier in the matchup_note (prepend to existing note):
+- **[Elite]** ($8,000+) - Premium plays with high floors
+- **[Mid-Tier]** ($6,000-$7,999) - Balanced value options
+- **[Value]** ($4,000-$5,999) - Budget-friendly plays
+- **[Punt]** (<$4,000) - Minimum salary options
+
+Example: "[Mid-Tier] Favorable matchup against weak secondary..."
+
+# Data Quality Standards
+- Set verified: true only when 3+ quality sources agree
+- Set verified: false when data is limited or conflicting
+- In matchup_note, mention if data is sparse (e.g., "Limited data available")
+- Always provide reasoning even with limited data
+
+# Live Game Data
+
+The following games are scheduled for this slate. Use this information to provide matchup-specific analysis:
+
+
+
+[LIVE GAME DATA WILL BE INSERTED HERE]
+
+
+
+# Task
+
+Provide comprehensive DFS and prop betting recommendations based on the actual games listed above:
+
+
+
+1. **Top DFS Core Plays by Position**
+
+   - QB, RB, WR, TE picks (MINIMUM 5 EACH - NON-NEGOTIABLE)
+   - Include value tier tag in matchup_note
+   - Salary considerations and stacking opportunities
+   - Matchup analysis based on actual opponents
+
+
+
+2. **Prop Betting Recommendations**
+
+   - Player props (TDs, yards, receptions)
+   - Game-specific props based on matchups
+   - Confidence levels tied to data quality (verified field)
+
+
+
+3. **Sleepers and Value Plays**
+
+   - Under-the-radar options from the games above
+   - Stack recommendations for specific games
+   - Highlight [Value] and [Punt] tier plays
+
+
+
+4. **Data Quality Notes**
+
+   - Flag players with limited data (verified: false)
+   - Note when consensus is weak
+   - Provide reasoning even with uncertainty
+
+
+
+IMPORTANT: Base your recommendations on the specific games and matchups listed in the Live Game Data section above. Reference actual team names and matchups from that data.
+
+
+
+Return your analysis in valid JSON format matching the WeeklyPicksModel schema.`;
+    
+    // Replace all variables in the template
+    let preview = baseTemplate
+        .replace(/\{\{SLATE_DESCRIPTION\}\}/g, slateDesc)
+        .replace(/\{\{NOTE\}\}/g, note)
+        .replace(/\{\{FOCUS_GAMES\}\}/g, focusGames)
+        .replace(/\{\{MIN_ARTICLES_FOR_SENTIMENT\}\}/g, minArticles)
+        .replace(/\{\{INCLUDE_LONG_SHOTS\}\}/g, includeLongShots.toString())
+        .replace(/\{\{ESPN_GAME_DATA_LINK\}\}/g, espnLink)
+        .replace(/\{\{YEAR\}\}/g, year)
+        .replace(/\{\{WEEK_NUMBER\}\}/g, week)
+        .replace(/\{\{DATE\}\}/g, currentDate);
+    
+    // Update the live preview section
+    const previewElement = document.getElementById('livePromptPreview');
+    if (previewElement) {
+        previewElement.textContent = preview;
+    }
+}
+
+// Copy form values to hidden fields before submission
+function copyFormValuesToHidden() {
+    document.getElementById('hidden_espn_link').value = document.getElementById('espn_game_data_link').value;
+    document.getElementById('hidden_slate_desc').value = document.getElementById('slate_description').value;
+    document.getElementById('hidden_note').value = document.getElementById('note').value;
+    document.getElementById('hidden_focus').value = document.getElementById('focus_games').value;
+    document.getElementById('hidden_min_articles').value = document.getElementById('min_articles_for_sentiment').value;
+    document.getElementById('hidden_long_shots').value = document.getElementById('include_long_shots').checked;
+}
+
 // Show loading state and progress when form is submitted
 document.getElementById('configForm').addEventListener('submit', function(e) {
     e.preventDefault();
+    
+    // Copy form values to hidden fields
+    copyFormValuesToHidden();
     
     const btn = document.getElementById('generateBtn');
     const progressContainer = document.getElementById('progressContainer');
@@ -201,7 +336,7 @@ document.getElementById('configForm').addEventListener('submit', function(e) {
         progressLog.scrollTop = progressLog.scrollHeight;
     }
     
-    // Get form data
+    // Create FormData from the form
     const formData = new FormData(this);
     
     // Start progress tracking
@@ -239,63 +374,26 @@ document.getElementById('configForm').addEventListener('submit', function(e) {
         .catch(error => {
             addProgress(`❌ Error: ${error.message}`, 'error');
             btn.disabled = false;
-            btn.innerHTML = '<i class="bi bi-lightning-fill"></i> Generate Picks';
+            btn.innerHTML = '<i class="bi bi-lightning-fill"></i> Generate Picks with This Prompt';
         });
 });
 
-// Live prompt preview update
-function updatePromptPreview() {
-    const promptTemplate = document.getElementById('prompt_content').value;
-    const espnLink = document.getElementById('espn_game_data_link').value;
-    const slateDesc = document.getElementById('slate_description').value;
-    const note = document.getElementById('note').value;
-    const focusGames = document.getElementById('focus_games').value;
-    const minArticles = document.getElementById('min_articles_for_sentiment').value;
-    const includeLongShots = document.getElementById('include_long_shots').checked;
-    
-    // Extract year and week from ESPN link
-    const weekMatch = espnLink.match(/\/week\/(\d+)/);
-    const yearMatch = espnLink.match(/\/year\/(\d+)/);
-    const week = weekMatch ? weekMatch[1] : '13';
-    const year = yearMatch ? yearMatch[1] : '2025';
-    
-    // Get current date
-    const currentDate = new Date().toISOString().split('T')[0];
-    
-    // Replace all variables
-    let preview = promptTemplate
-        .replace(/\{\{SLATE_DESCRIPTION\}\}/g, slateDesc)
-        .replace(/\{\{NOTE\}\}/g, note)
-        .replace(/\{\{FOCUS_GAMES\}\}/g, focusGames)
-        .replace(/\{\{MIN_ARTICLES_FOR_SENTIMENT\}\}/g, minArticles)
-        .replace(/\{\{INCLUDE_LONG_SHOTS\}\}/g, includeLongShots.toString())
-        .replace(/\{\{ESPN_GAME_DATA_LINK\}\}/g, espnLink)
-        .replace(/\{\{YEAR\}\}/g, year)
-        .replace(/\{\{WEEK_NUMBER\}\}/g, week)
-        .replace(/\{\{DATE\}\}/g, currentDate);
-    
-    // Update preview section
-    const previewElement = document.querySelector('.card-header.bg-info + .card-body .code-block');
-    if (previewElement) {
-        previewElement.textContent = preview;
-    }
-}
-
-// Add event listeners to all form inputs
+// Add event listeners to all form inputs for live preview
 const formInputs = [
     'espn_game_data_link',
     'slate_description',
     'note',
     'focus_games',
     'min_articles_for_sentiment',
-    'include_long_shots',
-    'prompt_content'
+    'include_long_shots'
 ];
 
 formInputs.forEach(inputId => {
     const element = document.getElementById(inputId);
     if (element) {
+        // Use 'input' event for real-time updates as user types
         element.addEventListener('input', updatePromptPreview);
+        // Also handle 'change' for checkboxes and selects
         element.addEventListener('change', updatePromptPreview);
     }
 });
