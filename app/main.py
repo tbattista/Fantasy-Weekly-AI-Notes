@@ -218,6 +218,44 @@ async def run_generation(
         return RedirectResponse(url=f"/admin?error={str(e)}", status_code=303)
 
 
+@app.post("/admin/update-config")
+async def update_config(
+    espn_game_data_link: str = Form(...),
+    slate_description: str = Form(...),
+    note: str = Form(...),
+    focus_games: str = Form(...),
+    min_articles_for_sentiment: int = Form(...),
+    include_long_shots: bool = Form(False)
+):
+    """
+    Update configuration settings without generating picks.
+    
+    Updates settings and returns JSON response for AJAX call.
+    """
+    try:
+        # Update settings with form values
+        settings.espn_game_data_link = espn_game_data_link
+        settings.slate_description = slate_description
+        settings.note = note
+        settings.focus_games = focus_games
+        settings.min_articles_for_sentiment = min_articles_for_sentiment
+        settings.include_long_shots = include_long_shots
+        
+        return JSONResponse(content={
+            "success": True,
+            "message": "Configuration updated successfully"
+        })
+        
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={
+                "success": False,
+                "error": str(e)
+            }
+        )
+
+
 @app.post("/admin/save-prompt")
 async def save_prompt(prompt_content: str = Form(...)):
     """

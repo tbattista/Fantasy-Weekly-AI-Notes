@@ -105,6 +105,11 @@
                 </div>
             </div>
             
+            <!-- Update Prompt Button -->
+            <button type="button" class="btn btn-warning btn-lg w-100 mb-3" id="updatePromptBtn">
+                <i class="bi bi-arrow-repeat"></i> Update Prompt Template
+            </button>
+            
             <!-- Generate Button -->
             <form method="POST" action="/admin/run" id="configForm">
                 <input type="hidden" name="espn_game_data_link" id="hidden_espn_link">
@@ -376,6 +381,74 @@ document.getElementById('configForm').addEventListener('submit', function(e) {
             btn.disabled = false;
             btn.innerHTML = '<i class="bi bi-lightning-fill"></i> Generate Picks with This Prompt';
         });
+});
+
+// Update Prompt Button Handler
+document.getElementById('updatePromptBtn').addEventListener('click', function() {
+    const btn = this;
+    const originalText = btn.innerHTML;
+    
+    // Disable button and show loading state
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Updating...';
+    
+    // Get current form values
+    const espnLink = document.getElementById('espn_game_data_link').value;
+    const slateDesc = document.getElementById('slate_description').value;
+    const note = document.getElementById('note').value;
+    const focusGames = document.getElementById('focus_games').value;
+    const minArticles = document.getElementById('min_articles_for_sentiment').value;
+    const includeLongShots = document.getElementById('include_long_shots').checked;
+    
+    // Create form data
+    const formData = new FormData();
+    formData.append('espn_game_data_link', espnLink);
+    formData.append('slate_description', slateDesc);
+    formData.append('note', note);
+    formData.append('focus_games', focusGames);
+    formData.append('min_articles_for_sentiment', minArticles);
+    formData.append('include_long_shots', includeLongShots);
+    
+    // Send update request
+    fetch('/admin/update-config', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update the preview
+            updatePromptPreview();
+            
+            // Show success message
+            btn.classList.remove('btn-warning');
+            btn.classList.add('btn-success');
+            btn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Updated!';
+            
+            // Reset button after 2 seconds
+            setTimeout(() => {
+                btn.classList.remove('btn-success');
+                btn.classList.add('btn-warning');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 2000);
+        } else {
+            throw new Error(data.error || 'Update failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        btn.classList.remove('btn-warning');
+        btn.classList.add('btn-danger');
+        btn.innerHTML = '<i class="bi bi-x-circle-fill"></i> Error!';
+        
+        setTimeout(() => {
+            btn.classList.remove('btn-danger');
+            btn.classList.add('btn-warning');
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }, 2000);
+    });
 });
 
 // Add event listeners to all form inputs for live preview
