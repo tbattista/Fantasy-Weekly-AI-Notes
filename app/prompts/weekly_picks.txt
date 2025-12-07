@@ -13,6 +13,7 @@ Focus on: {focus_games}
 # Analysis Requirements
 - Minimum {min_articles} articles for sentiment analysis
 - Include long shots: {include_long_shots}
+- Prop focus: {prop_focus}
 
 # CRITICAL: Minimum Player Requirements
 You MUST provide AT LEAST the following number of players per category:
@@ -54,6 +55,7 @@ Provide comprehensive DFS and prop betting recommendations based on the games ab
    - Player props (TDs, yards, receptions)
    - Game-specific props based on matchups
    - Confidence levels tied to data quality (verified field)
+   - Prop focus preference: {prop_focus} (prioritize accordingly in suggestions)
 
 3. **Sleepers and Value Plays**
    - Under-the-radar options from the games above

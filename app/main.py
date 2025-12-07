@@ -187,6 +187,7 @@ async def run_generation(
     slate_description: str = Form(...),
     note: str = Form(...),
     focus_games: str = Form(...),
+    prop_focus: str = Form(...),
     min_articles_for_sentiment: int = Form(...),
     include_long_shots: bool = Form(False)
 ):
@@ -201,6 +202,7 @@ async def run_generation(
         settings.slate_description = slate_description
         settings.note = note
         settings.focus_games = focus_games
+        settings.prop_focus = prop_focus
         settings.min_articles_for_sentiment = min_articles_for_sentiment
         settings.include_long_shots = include_long_shots
         
@@ -224,6 +226,7 @@ async def update_config(
     slate_description: str = Form(...),
     note: str = Form(...),
     focus_games: str = Form(...),
+    prop_focus: str = Form(...),
     min_articles_for_sentiment: int = Form(...),
     include_long_shots: bool = Form(False)
 ):
@@ -238,6 +241,7 @@ async def update_config(
         settings.slate_description = slate_description
         settings.note = note
         settings.focus_games = focus_games
+        settings.prop_focus = prop_focus
         settings.min_articles_for_sentiment = min_articles_for_sentiment
         settings.include_long_shots = include_long_shots
         
@@ -295,6 +299,7 @@ async def get_config():
         "slate_description": settings.slate_description,
         "note": settings.note,
         "focus_games": settings.focus_games,
+        "prop_focus": settings.prop_focus,
         "min_articles_for_sentiment": settings.min_articles_for_sentiment,
         "include_long_shots": settings.include_long_shots
     })

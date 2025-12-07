@@ -1,58 +1,25 @@
 {
   "meta": {
-    "week": 8,
-    "date": "2023-10-29",
-    "slate_description": "Full Sunday Slate",
-    "note": "Analysis based on Week 8 matchups, considering all 14 games for fantasy and betting insights."
+    "week": 9,
+    "date": "2023-11-05",
+    "slate_description": "Week 9 NFL Slate",
+    "note": "Data derived from 14 scheduled games for comprehensive analysis."
   },
   "categories": {
     "qbs": [
       {
-        "name": "Dak Prescott",
-        "team": "Dallas Cowboys",
+        "name": "Patrick Mahomes",
+        "team": "Kansas City",
         "position": "QB",
-        "game": "Dallas @ Detroit",
-        "matchup_note": "[Elite] Favorable matchup against Detroit's weak secondary, potential high-scoring game",
+        "game": "Houston @ Kansas City",
+        "matchup_note": "[Elite] Favorable matchup against a weak secondary. Potential for high yardage and multiple TDs.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Passing yards and touchdowns",
-        "why": "Detroit's defense ranks bottom-five against the pass, allowing multiple QBs to exceed 300 yards this season.",
+        "what_to_target": "Passing Yards, Passing TDs",
+        "why": "Houston's defense has struggled against elite QBs, allowing high passing yards.",
         "sources": [
           {
-            "name": "FantasyPros",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "ESPN",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "NFL Network",
-            "sentiment": "Positive"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "Passing Yards",
-            "line": 280.5,
-            "type": "Over/Under",
-            "lean": "Over"
-          }
-        ]
-      },
-      {
-        "name": "Joe Burrow",
-        "team": "Cincinnati Bengals",
-        "position": "QB",
-        "game": "Cincinnati @ Buffalo",
-        "matchup_note": "[Elite] High-scoring potential against Buffalo's defense",
-        "injury_status": "Healthy",
-        "verified": true,
-        "what_to_target": "Passing touchdowns",
-        "why": "Buffalo's secondary is banged up, and Burrow has multiple weapons to exploit mismatches.",
-        "sources": [
-          {
-            "name": "Rotoworld",
+            "name": "ESPN Analysis",
             "sentiment": "Positive"
           },
           {
@@ -60,13 +27,19 @@
             "sentiment": "Positive"
           },
           {
-            "name": "Yahoo Sports",
+            "name": "FantasyPros",
             "sentiment": "Positive"
           }
         ],
         "suggestions": [
           {
-            "stat": "Passing Touchdowns",
+            "stat": "Passing Yards",
+            "line": 325.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
+            "stat": "Passing TDs",
             "line": 2.5,
             "type": "Over/Under",
             "lean": "Over"
@@ -75,50 +48,17 @@
       },
       {
         "name": "Josh Allen",
-        "team": "Buffalo Bills",
+        "team": "Buffalo",
         "position": "QB",
         "game": "Cincinnati @ Buffalo",
-        "matchup_note": "[Elite] Shootout potential against Cincinnati, rushing upside",
+        "matchup_note": "[Elite] Strong matchup with Cincinnati's inconsistent secondary.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Total yards",
-        "why": "Allen's dual-threat ability is crucial in a potential high-scoring game.",
+        "what_to_target": "Total Touchdowns, Rushing Yards",
+        "why": "Allen's dual-threat capability makes him a top play against a vulnerable defense.",
         "sources": [
           {
-            "name": "FantasyPros",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "ESPN",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "Pro Football Focus",
-            "sentiment": "Positive"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "Total Yards",
-            "line": 325.5,
-            "type": "Over/Under",
-            "lean": "Over"
-          }
-        ]
-      },
-      {
-        "name": "Lamar Jackson",
-        "team": "Baltimore Ravens",
-        "position": "QB",
-        "game": "Pittsburgh @ Baltimore",
-        "matchup_note": "[Elite] Strong rushing floor against a struggling Pittsburgh defense",
-        "injury_status": "Healthy",
-        "verified": true,
-        "what_to_target": "Rushing yards",
-        "why": "Pittsburgh's defense has struggled against mobile quarterbacks this season.",
-        "sources": [
-          {
-            "name": "CBS Sports",
+            "name": "Rotoworld",
             "sentiment": "Positive"
           },
           {
@@ -128,6 +68,113 @@
           {
             "name": "Yahoo Sports",
             "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Total Touchdowns",
+            "line": 3.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
+            "stat": "Rushing Yards",
+            "line": 45.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "Jalen Hurts",
+        "team": "Philadelphia",
+        "position": "QB",
+        "game": "Philadelphia @ Los Angeles",
+        "matchup_note": "[Elite] Great matchup against a struggling defense.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Rushing Touchdowns",
+        "why": "Los Angeles has allowed significant QB rushing yards.",
+        "sources": [
+          {
+            "name": "PFF",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Bleacher Report",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "ESPN",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Rushing Touchdowns",
+            "line": 1.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "Lamar Jackson",
+        "team": "Baltimore",
+        "position": "QB",
+        "game": "Pittsburgh @ Baltimore",
+        "matchup_note": "[Mid-Tier] Balanced value against a tough divisional opponent.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Passing Yards, Rushing Yards",
+        "why": "Jackson's versatility offers solid upside even in tougher matchups.",
+        "sources": [
+          {
+            "name": "NFL.com",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "The Athletic",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "CBS Sports",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Passing Yards",
+            "line": 245.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
+            "stat": "Rushing Yards",
+            "line": 55.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "Justin Fields",
+        "team": "Chicago",
+        "position": "QB",
+        "game": "Chicago @ Green Bay",
+        "matchup_note": "[Value] Potential for rushing yards against Green Bay's defense.",
+        "injury_status": "Healthy",
+        "verified": false,
+        "what_to_target": "Rushing Yards",
+        "why": "Fields' rushing ability can exploit Green Bay's defensive gaps.",
+        "sources": [
+          {
+            "name": "Fantasy Alarm",
+            "sentiment": "Neutral"
+          },
+          {
+            "name": "NBC Sports",
+            "sentiment": "Neutral"
           }
         ],
         "suggestions": [
@@ -138,136 +185,37 @@
             "lean": "Over"
           }
         ]
-      },
-      {
-        "name": "Jalen Hurts",
-        "team": "Philadelphia Eagles",
-        "position": "QB",
-        "game": "Philadelphia @ Los Angeles",
-        "matchup_note": "[Elite] High ceiling against Los Angeles' inconsistent defense",
-        "injury_status": "Healthy",
-        "verified": true,
-        "what_to_target": "Passing and rushing touchdowns",
-        "why": "Hurts' dual-threat capability is a key factor against a defense that allows explosive plays.",
-        "sources": [
-          {
-            "name": "Rotoworld",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "FantasyPros",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "Pro Football Focus",
-            "sentiment": "Positive"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "Total Touchdowns",
-            "line": 3.5,
-            "type": "Over/Under",
-            "lean": "Over"
-          }
-        ]
       }
     ],
     "rbs": [
       {
         "name": "Derrick Henry",
-        "team": "Tennessee Titans",
+        "team": "Tennessee",
         "position": "RB",
         "game": "Tennessee @ Cleveland",
-        "matchup_note": "[Elite] Workhorse role against Cleveland's vulnerable run defense",
+        "matchup_note": "[Elite] Prime rushing opportunity against a struggling defense.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Rushing yards and touchdowns",
-        "why": "Cleveland allows one of the highest yards per carry, making Henry a top play.",
+        "what_to_target": "Rushing Yards",
+        "why": "Cleveland's defense has been porous against powerful rushers like Henry.",
         "sources": [
+          {
+            "name": "NFL Network",
+            "sentiment": "Positive"
+          },
           {
             "name": "ESPN",
             "sentiment": "Positive"
           },
           {
-            "name": "CBS Sports",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "NFL Network",
+            "name": "Yahoo Sports",
             "sentiment": "Positive"
           }
         ],
         "suggestions": [
           {
             "stat": "Rushing Yards",
-            "line": 105.5,
-            "type": "Over/Under",
-            "lean": "Over"
-          }
-        ]
-      },
-      {
-        "name": "Aaron Jones",
-        "team": "Green Bay Packers",
-        "position": "RB",
-        "game": "Chicago @ Green Bay",
-        "matchup_note": "[Elite] Excellent matchup against Chicago's run defense",
-        "injury_status": "Healthy",
-        "verified": true,
-        "what_to_target": "Total yards",
-        "why": "Chicago's defense struggles against versatile backs like Jones.",
-        "sources": [
-          {
-            "name": "FantasyPros",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "Yahoo Sports",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "Rotoworld",
-            "sentiment": "Positive"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "Total Yards",
-            "line": 95.5,
-            "type": "Over/Under",
-            "lean": "Over"
-          }
-        ]
-      },
-      {
-        "name": "Breece Hall",
-        "team": "New York Jets",
-        "position": "RB",
-        "game": "Miami @ New York",
-        "matchup_note": "[Mid-Tier] Emerging role in Jets' offense against Miami",
-        "injury_status": "Healthy",
-        "verified": true,
-        "what_to_target": "Rushing and receiving yards",
-        "why": "Hall's increased usage makes him a solid play against a middling Miami defense.",
-        "sources": [
-          {
-            "name": "CBS Sports",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "FantasyPros",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "ESPN",
-            "sentiment": "Positive"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "Total Yards",
-            "line": 85.5,
+            "line": 115.5,
             "type": "Over/Under",
             "lean": "Over"
           }
@@ -275,29 +223,35 @@
       },
       {
         "name": "Alvin Kamara",
-        "team": "New Orleans Saints",
+        "team": "New Orleans",
         "position": "RB",
         "game": "New Orleans @ Tampa Bay",
-        "matchup_note": "[Elite] Heavy involvement in both run and pass game",
+        "matchup_note": "[Elite] Dual-threat potential against Tampa Bay's defense.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Total yards and receptions",
-        "why": "Tampa Bay's defense is tough, but Kamara's versatility keeps him in play.",
+        "what_to_target": "Total Yards, Receptions",
+        "why": "Kamara's versatility makes him a constant threat both on the ground and through the air.",
         "sources": [
           {
-            "name": "NFL Network",
+            "name": "CBS Sports",
             "sentiment": "Positive"
           },
           {
-            "name": "Rotoworld",
+            "name": "PFF",
             "sentiment": "Positive"
           },
           {
-            "name": "Yahoo Sports",
+            "name": "FantasyPros",
             "sentiment": "Positive"
           }
         ],
         "suggestions": [
+          {
+            "stat": "Total Yards",
+            "line": 120.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
           {
             "stat": "Receptions",
             "line": 5.5,
@@ -307,33 +261,101 @@
         ]
       },
       {
-        "name": "Nick Chubb",
-        "team": "Cleveland Browns",
+        "name": "Jonathan Taylor",
+        "team": "Indianapolis",
         "position": "RB",
-        "game": "Tennessee @ Cleveland",
-        "matchup_note": "[Elite] Ground-and-pound approach against Tennessee",
+        "game": "Indianapolis @ Jacksonville",
+        "matchup_note": "[Elite] Favorable matchup against a weak run defense.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Rushing yards",
-        "why": "Chubb is the focal point of the Browns' offense.",
+        "what_to_target": "Rushing Yards, Touchdowns",
+        "why": "Taylor's physical running style is well-suited to exploit Jacksonville's defensive weaknesses.",
         "sources": [
           {
-            "name": "Pro Football Focus",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "FantasyPros",
+            "name": "Rotoworld",
             "sentiment": "Positive"
           },
           {
             "name": "Yahoo Sports",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "ESPN",
             "sentiment": "Positive"
           }
         ],
         "suggestions": [
           {
             "stat": "Rushing Yards",
-            "line": 110.5,
+            "line": 105.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
+            "stat": "Touchdowns",
+            "line": 1.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "Aaron Jones",
+        "team": "Green Bay",
+        "position": "RB",
+        "game": "Chicago @ Green Bay",
+        "matchup_note": "[Mid-Tier] Balanced option against a divisional rival.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Total Yards",
+        "why": "Jones' dual-threat capability offers stability in PPR formats.",
+        "sources": [
+          {
+            "name": "NFL.com",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "CBS Sports",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Bleacher Report",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Total Yards",
+            "line": 100.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "Miles Sanders",
+        "team": "Philadelphia",
+        "position": "RB",
+        "game": "Philadelphia @ Los Angeles",
+        "matchup_note": "[Value] Solid matchup against a weak defensive front.",
+        "injury_status": "Healthy",
+        "verified": false,
+        "what_to_target": "Rushing Yards",
+        "why": "Los Angeles has struggled to contain running backs, presenting an opportunity for Sanders.",
+        "sources": [
+          {
+            "name": "The Athletic",
+            "sentiment": "Neutral"
+          },
+          {
+            "name": "Fantasy Alarm",
+            "sentiment": "Neutral"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Rushing Yards",
+            "line": 75.5,
             "type": "Over/Under",
             "lean": "Over"
           }
@@ -343,25 +365,25 @@
     "wrs": [
       {
         "name": "Davante Adams",
-        "team": "Las Vegas Raiders",
+        "team": "Las Vegas",
         "position": "WR",
         "game": "Denver @ Las Vegas",
-        "matchup_note": "[Elite] High-volume target against Denver's secondary",
+        "matchup_note": "[Elite] Prime matchup against a vulnerable secondary.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Receptions and receiving yards",
-        "why": "Adams is a target monster and Denver's secondary can be exploited.",
+        "what_to_target": "Receptions, Receiving Yards",
+        "why": "Denver has struggled against elite wide receivers, making Adams a top play.",
         "sources": [
           {
             "name": "ESPN",
             "sentiment": "Positive"
           },
           {
-            "name": "CBS Sports",
+            "name": "NFL Network",
             "sentiment": "Positive"
           },
           {
-            "name": "NFL Network",
+            "name": "CBS Sports",
             "sentiment": "Positive"
           }
         ],
@@ -371,63 +393,36 @@
             "line": 8.5,
             "type": "Over/Under",
             "lean": "Over"
-          }
-        ]
-      },
-      {
-        "name": "Stefon Diggs",
-        "team": "Buffalo Bills",
-        "position": "WR",
-        "game": "Cincinnati @ Buffalo",
-        "matchup_note": "[Elite] Top play against Cincinnati's secondary",
-        "injury_status": "Healthy",
-        "verified": true,
-        "what_to_target": "Receptions and receiving yards",
-        "why": "Diggs is Allen's primary target in a game with high scoring potential.",
-        "sources": [
-          {
-            "name": "Yahoo Sports",
-            "sentiment": "Positive"
           },
-          {
-            "name": "Rotoworld",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "Pro Football Focus",
-            "sentiment": "Positive"
-          }
-        ],
-        "suggestions": [
           {
             "stat": "Receiving Yards",
-            "line": 95.5,
+            "line": 115.5,
             "type": "Over/Under",
             "lean": "Over"
           }
         ]
       },
       {
-        "name": "Justin Jefferson",
-        "team": "Minnesota Vikings",
+        "name": "Stefon Diggs",
+        "team": "Buffalo",
         "position": "WR",
-        "game": "Washington @ Minnesota",
-        "matchup_note": "[Elite] Prime matchup against Washington's secondary",
+        "game": "Cincinnati @ Buffalo",
+        "matchup_note": "[Elite] Strong play against Cincinnati's inconsistent secondary.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Receiving yards and touchdowns",
-        "why": "Jefferson is a matchup nightmare for Washington's secondary.",
+        "what_to_target": "Receiving Yards, Touchdowns",
+        "why": "Diggs' connection with Allen offers high upside in favorable matchups.",
         "sources": [
           {
+            "name": "Rotoworld",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Yahoo Sports",
+            "sentiment": "Positive"
+          },
+          {
             "name": "FantasyPros",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "CBS Sports",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "NFL Network",
             "sentiment": "Positive"
           }
         ],
@@ -437,22 +432,67 @@
             "line": 105.5,
             "type": "Over/Under",
             "lean": "Over"
+          },
+          {
+            "stat": "Touchdowns",
+            "line": 1.5,
+            "type": "Over/Under",
+            "lean": "Over"
           }
         ]
       },
       {
         "name": "Tyreek Hill",
-        "team": "Miami Dolphins",
+        "team": "Miami",
         "position": "WR",
         "game": "Miami @ New York",
-        "matchup_note": "[Elite] Big play potential against New York's defense",
+        "matchup_note": "[Elite] Explosive playmaker with huge upside.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Receiving yards and touchdowns",
-        "why": "Hill's speed and big-play ability are significant against defenses prone to giving up explosive plays.",
+        "what_to_target": "Receiving Yards, Receptions",
+        "why": "New York's defense may struggle to contain Hill's speed.",
         "sources": [
           {
-            "name": "Pro Football Focus",
+            "name": "Bleacher Report",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "NFL.com",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "CBS Sports",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Receiving Yards",
+            "line": 110.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
+            "stat": "Receptions",
+            "line": 7.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "DeAndre Hopkins",
+        "team": "Arizona",
+        "position": "WR",
+        "game": "Los Angeles @ Arizona",
+        "matchup_note": "[Mid-Tier] Reliable option with potential for high volume.",
+        "injury_status": "Healthy",
+        "verified": true,
+        "what_to_target": "Receptions, Receiving Yards",
+        "why": "Hopkins remains a primary target, offering consistent production.",
+        "sources": [
+          {
+            "name": "FantasyPros",
             "sentiment": "Positive"
           },
           {
@@ -460,40 +500,7 @@
             "sentiment": "Positive"
           },
           {
-            "name": "Rotoworld",
-            "sentiment": "Positive"
-          }
-        ],
-        "suggestions": [
-          {
-            "stat": "Receiving Yards",
-            "line": 90.5,
-            "type": "Over/Under",
-            "lean": "Over"
-          }
-        ]
-      },
-      {
-        "name": "A.J. Brown",
-        "team": "Philadelphia Eagles",
-        "position": "WR",
-        "game": "Philadelphia @ Los Angeles",
-        "matchup_note": "[Elite] Dominant WR1 against Los Angeles",
-        "injury_status": "Healthy",
-        "verified": true,
-        "what_to_target": "Receptions and receiving yards",
-        "why": "Brown is a go-to target for Hurts and faces a defense that allows significant yardage to WRs.",
-        "sources": [
-          {
-            "name": "CBS Sports",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "Yahoo Sports",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "NFL Network",
+            "name": "PFF",
             "sentiment": "Positive"
           }
         ],
@@ -503,6 +510,41 @@
             "line": 7.5,
             "type": "Over/Under",
             "lean": "Over"
+          },
+          {
+            "stat": "Receiving Yards",
+            "line": 95.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "Darnell Mooney",
+        "team": "Chicago",
+        "position": "WR",
+        "game": "Chicago @ Green Bay",
+        "matchup_note": "[Value] Potential breakout against Green Bay's secondary.",
+        "injury_status": "Healthy",
+        "verified": false,
+        "what_to_target": "Receiving Yards",
+        "why": "Mooney's speed and target share make him a sleeper pick.",
+        "sources": [
+          {
+            "name": "NBC Sports",
+            "sentiment": "Neutral"
+          },
+          {
+            "name": "Fantasy Alarm",
+            "sentiment": "Neutral"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Receiving Yards",
+            "line": 65.5,
+            "type": "Over/Under",
+            "lean": "Over"
           }
         ]
       }
@@ -510,17 +552,17 @@
     "tes": [
       {
         "name": "Travis Kelce",
-        "team": "Kansas City Chiefs",
+        "team": "Kansas City",
         "position": "TE",
         "game": "Houston @ Kansas City",
-        "matchup_note": "[Elite] Unstoppable force in Kansas City's offense",
+        "matchup_note": "[Elite] Top tight end play with high target volume.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Receptions and receiving yards",
-        "why": "Houston struggles to contain elite tight ends, making Kelce a top play.",
+        "what_to_target": "Receptions, Receiving Yards",
+        "why": "Kelce remains Mahomes' go-to target, especially in the red zone.",
         "sources": [
           {
-            "name": "Rotoworld",
+            "name": "ESPN",
             "sentiment": "Positive"
           },
           {
@@ -528,14 +570,20 @@
             "sentiment": "Positive"
           },
           {
-            "name": "Pro Football Focus",
+            "name": "CBS Sports",
             "sentiment": "Positive"
           }
         ],
         "suggestions": [
           {
+            "stat": "Receptions",
+            "line": 7.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
             "stat": "Receiving Yards",
-            "line": 85.5,
+            "line": 90.5,
             "type": "Over/Under",
             "lean": "Over"
           }
@@ -543,25 +591,25 @@
       },
       {
         "name": "Mark Andrews",
-        "team": "Baltimore Ravens",
+        "team": "Baltimore",
         "position": "TE",
         "game": "Pittsburgh @ Baltimore",
-        "matchup_note": "[Elite] Key target in the Ravens' passing attack",
+        "matchup_note": "[Elite] Consistent production against divisional rival.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Receptions and receiving yards",
-        "why": "Pittsburgh's defense has trouble with tight ends, enhancing Andrews' value.",
+        "what_to_target": "Receptions, Touchdowns",
+        "why": "Andrews is a reliable target for Jackson, especially in crucial situations.",
         "sources": [
           {
-            "name": "ESPN",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "CBS Sports",
-            "sentiment": "Positive"
-          },
-          {
             "name": "NFL Network",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Yahoo Sports",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "Rotoworld",
             "sentiment": "Positive"
           }
         ],
@@ -571,30 +619,36 @@
             "line": 6.5,
             "type": "Over/Under",
             "lean": "Over"
+          },
+          {
+            "stat": "Touchdowns",
+            "line": 1.5,
+            "type": "Over/Under",
+            "lean": "Over"
           }
         ]
       },
       {
-        "name": "George Kittle",
-        "team": "San Francisco 49ers",
+        "name": "Darren Waller",
+        "team": "Las Vegas",
         "position": "TE",
-        "game": "Los Angeles @ Arizona",
-        "matchup_note": "[Elite] High ceiling with big play ability",
+        "game": "Denver @ Las Vegas",
+        "matchup_note": "[Mid-Tier] Solid option with potential for high target share.",
         "injury_status": "Healthy",
         "verified": true,
-        "what_to_target": "Receiving yards and touchdowns",
-        "why": "Arizona's defense ranks poorly against tight ends, making Kittle a prime target.",
+        "what_to_target": "Receiving Yards, Receptions",
+        "why": "Waller's athleticism gives him an edge against slower defenders.",
         "sources": [
           {
-            "name": "Yahoo Sports",
+            "name": "Bleacher Report",
             "sentiment": "Positive"
           },
           {
-            "name": "Rotoworld",
+            "name": "PFF",
             "sentiment": "Positive"
           },
           {
-            "name": "FantasyPros",
+            "name": "ESPN",
             "sentiment": "Positive"
           }
         ],
@@ -604,34 +658,7 @@
             "line": 75.5,
             "type": "Over/Under",
             "lean": "Over"
-          }
-        ]
-      },
-      {
-        "name": "T.J. Hockenson",
-        "team": "Minnesota Vikings",
-        "position": "TE",
-        "game": "Washington @ Minnesota",
-        "matchup_note": "[Mid-Tier] Solid play against Washington's defense",
-        "injury_status": "Healthy",
-        "verified": true,
-        "what_to_target": "Receptions",
-        "why": "Hockenson is a reliable target, especially in the red zone.",
-        "sources": [
-          {
-            "name": "CBS Sports",
-            "sentiment": "Positive"
           },
-          {
-            "name": "ESPN",
-            "sentiment": "Positive"
-          },
-          {
-            "name": "NFL Network",
-            "sentiment": "Positive"
-          }
-        ],
-        "suggestions": [
           {
             "stat": "Receptions",
             "line": 5.5,
@@ -642,32 +669,67 @@
       },
       {
         "name": "Kyle Pitts",
-        "team": "Atlanta Falcons",
+        "team": "Atlanta",
         "position": "TE",
         "game": "Seattle @ Atlanta",
-        "matchup_note": "[Mid-Tier] Potential breakout against Seattle's defense",
+        "matchup_note": "[Mid-Tier] High upside against a vulnerable defense.",
         "injury_status": "Healthy",
-        "verified": false,
-        "what_to_target": "Receiving yards",
-        "why": "While Pitts has underperformed, Seattle's defense may offer a chance for a breakout.",
+        "verified": true,
+        "what_to_target": "Receiving Yards, Touchdowns",
+        "why": "Seattle's defense has been susceptible to tight ends, offering Pitts a chance to shine.",
         "sources": [
           {
+            "name": "CBS Sports",
+            "sentiment": "Positive"
+          },
+          {
             "name": "FantasyPros",
+            "sentiment": "Positive"
+          },
+          {
+            "name": "NFL.com",
+            "sentiment": "Positive"
+          }
+        ],
+        "suggestions": [
+          {
+            "stat": "Receiving Yards",
+            "line": 85.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          },
+          {
+            "stat": "Touchdowns",
+            "line": 1.5,
+            "type": "Over/Under",
+            "lean": "Over"
+          }
+        ]
+      },
+      {
+        "name": "Mike Gesicki",
+        "team": "Miami",
+        "position": "TE",
+        "game": "Miami @ New York",
+        "matchup_note": "[Value] Sneaky play with potential for big plays.",
+        "injury_status": "Healthy",
+        "verified": false,
+        "what_to_target": "Receiving Yards",
+        "why": "New York's defense may overlook Gesicki, allowing opportunities for big gains.",
+        "sources": [
+          {
+            "name": "NBC Sports",
             "sentiment": "Neutral"
           },
           {
-            "name": "Yahoo Sports",
-            "sentiment": "Neutral"
-          },
-          {
-            "name": "Rotoworld",
+            "name": "Fantasy Alarm",
             "sentiment": "Neutral"
           }
         ],
         "suggestions": [
           {
             "stat": "Receiving Yards",
-            "line": 50.5,
+            "line": 60.5,
             "type": "Over/Under",
             "lean": "Over"
           }
@@ -678,67 +740,35 @@
   "long_shots": {
     "players": [
       {
-        "name": "Kenneth Gainwell",
-        "team": "Philadelphia Eagles",
-        "position": "RB",
-        "game": "Philadelphia @ Los Angeles",
-        "long_shot": {
-          "label": "Score Anytime Touchdown",
-          "prediction": {
-            "yards": null,
-            "touchdowns": 1,
-            "receptions": null,
-            "targets": null,
-            "carries": null,
-            "completions": null,
-            "attempts": null
-          },
-          "odds_bucket_estimate": "+250 to +400"
-        },
-        "ultra_long_shot": {
-          "label": "Two or More Touchdowns",
-          "prediction": {
-            "yards": null,
-            "touchdowns": 2,
-            "receptions": null,
-            "targets": null,
-            "carries": null,
-            "completions": null,
-            "attempts": null
-          },
-          "odds_bucket_estimate": "+1000 to +1500"
-        }
-      },
-      {
-        "name": "Darnell Mooney",
-        "team": "Chicago Bears",
+        "name": "Kadarius Toney",
+        "team": "New York Giants",
         "position": "WR",
-        "game": "Chicago @ Green Bay",
+        "game": "Miami @ New York",
         "long_shot": {
-          "label": "Over 100 Receiving Yards",
+          "label": "Breakout Game",
           "prediction": {
-            "yards": 100,
-            "touchdowns": null,
-            "receptions": null,
+            "yards": 120,
+            "touchdowns": 2,
+            "receptions": 8,
             "targets": null,
             "carries": null,
             "completions": null,
             "attempts": null
           },
-          "odds_bucket_estimate": "+400 to +600"
+          "odds_bucket_estimate": "+900"
         },
         "ultra_long_shot": {
-          "label": "150+ Receiving Yards and Touchdown",
+          "label": "Massive Upside",
           "prediction": {
-            "yards": 150,
-            "touchdowns": 1,
-            "receptions": null,
+            "yards": 200,
+            "touchdowns": 3,
+            "receptions": 10,
             "targets": null,
             "carries": null,
             "completions": null,
             "attempts": null
           },
-          "odds_bucket_estimate": "+2000 to +2500"
+          "odds_bucket_estimate": "+2500"
         }
       }
     ]

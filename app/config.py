@@ -17,6 +17,9 @@ class Settings(BaseSettings):
     # Game Focus
     focus_games: str = "all"  # "all", "afternoon_only", "early_only", "primetime_only", or comma-separated list
     
+    # Prop Focus
+    prop_focus: str = "mix"  # "overs", "unders", or "mix"
+    
     # AI Generation Settings
     min_articles_for_sentiment: int = 3
     include_long_shots: bool = True

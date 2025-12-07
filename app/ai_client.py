@@ -51,6 +51,7 @@ def render_prompt() -> str:
     prompt = template.replace("{{SLATE_DESCRIPTION}}", settings.slate_description)
     prompt = prompt.replace("{{NOTE}}", settings.note)
     prompt = prompt.replace("{{FOCUS_GAMES}}", settings.focus_games)
+    prompt = prompt.replace("{{PROP_FOCUS}}", settings.prop_focus)
     prompt = prompt.replace("{{MIN_ARTICLES_FOR_SENTIMENT}}", str(settings.min_articles_for_sentiment))
     prompt = prompt.replace("{{INCLUDE_LONG_SHOTS}}", str(settings.include_long_shots).lower())
     prompt = prompt.replace("{{ESPN_GAME_DATA_LINK}}", settings.espn_game_data_link)

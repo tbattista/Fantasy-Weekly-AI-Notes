@@ -73,6 +73,18 @@
                         </small>
                     </div>
                     
+                    <div class="form-group mb-3">
+                        <label for="prop_focus" class="form-label">Prop Focus</label>
+                        <select class="form-select" id="prop_focus" name="prop_focus" required>
+                            <option value="mix" {% if settings.prop_focus == "mix" %}selected{% endif %}>Mix of Overs and Unders</option>
+                            <option value="overs" {% if settings.prop_focus == "overs" %}selected{% endif %}>Focus on Overs</option>
+                            <option value="unders" {% if settings.prop_focus == "unders" %}selected{% endif %}>Focus on Unders</option>
+                        </select>
+                        <small class="form-text text-muted">
+                            Choose whether to focus on over props, under props, or a balanced mix
+                        </small>
+                    </div>
+                    
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-3">
@@ -116,6 +128,7 @@
                 <input type="hidden" name="slate_description" id="hidden_slate_desc">
                 <input type="hidden" name="note" id="hidden_note">
                 <input type="hidden" name="focus_games" id="hidden_focus">
+                <input type="hidden" name="prop_focus" id="hidden_prop_focus">
                 <input type="hidden" name="min_articles_for_sentiment" id="hidden_min_articles">
                 <input type="hidden" name="include_long_shots" id="hidden_long_shots">
                 
@@ -168,6 +181,7 @@ function updatePromptPreview() {
     const slateDesc = document.getElementById('slate_description').value;
     const note = document.getElementById('note').value;
     const focusGames = document.getElementById('focus_games').value;
+    const propFocus = document.getElementById('prop_focus').value;
     const minArticles = document.getElementById('min_articles_for_sentiment').value;
     const includeLongShots = document.getElementById('include_long_shots').checked;
     
@@ -200,6 +214,7 @@ Focus on: {{FOCUS_GAMES}}
 # Analysis Requirements
 - Minimum {{MIN_ARTICLES_FOR_SENTIMENT}} articles for sentiment analysis
 - Include long shots: {{INCLUDE_LONG_SHOTS}}
+- Prop focus: {{PROP_FOCUS}}
 
 # CRITICAL: Minimum Player Requirements
 You MUST provide AT LEAST the following number of players per category:
@@ -285,6 +300,7 @@ Return your analysis in valid JSON format matching the WeeklyPicksModel schema.`
         .replace(/\{\{SLATE_DESCRIPTION\}\}/g, slateDesc)
         .replace(/\{\{NOTE\}\}/g, note)
         .replace(/\{\{FOCUS_GAMES\}\}/g, focusGames)
+        .replace(/\{\{PROP_FOCUS\}\}/g, propFocus)
         .replace(/\{\{MIN_ARTICLES_FOR_SENTIMENT\}\}/g, minArticles)
         .replace(/\{\{INCLUDE_LONG_SHOTS\}\}/g, includeLongShots.toString())
         .replace(/\{\{ESPN_GAME_DATA_LINK\}\}/g, espnLink)
@@ -305,6 +321,7 @@ function copyFormValuesToHidden() {
     document.getElementById('hidden_slate_desc').value = document.getElementById('slate_description').value;
     document.getElementById('hidden_note').value = document.getElementById('note').value;
     document.getElementById('hidden_focus').value = document.getElementById('focus_games').value;
+    document.getElementById('hidden_prop_focus').value = document.getElementById('prop_focus').value;
     document.getElementById('hidden_min_articles').value = document.getElementById('min_articles_for_sentiment').value;
     document.getElementById('hidden_long_shots').value = document.getElementById('include_long_shots').checked;
 }
@@ -397,6 +414,7 @@ document.getElementById('updatePromptBtn').addEventListener('click', function() 
     const slateDesc = document.getElementById('slate_description').value;
     const note = document.getElementById('note').value;
     const focusGames = document.getElementById('focus_games').value;
+    const propFocus = document.getElementById('prop_focus').value;
     const minArticles = document.getElementById('min_articles_for_sentiment').value;
     const includeLongShots = document.getElementById('include_long_shots').checked;
     
@@ -406,6 +424,7 @@ document.getElementById('updatePromptBtn').addEventListener('click', function() 
     formData.append('slate_description', slateDesc);
     formData.append('note', note);
     formData.append('focus_games', focusGames);
+    formData.append('prop_focus', propFocus);
     formData.append('min_articles_for_sentiment', minArticles);
     formData.append('include_long_shots', includeLongShots);
     
@@ -457,6 +476,7 @@ const formInputs = [
     'slate_description',
     'note',
     'focus_games',
+    'prop_focus',
     'min_articles_for_sentiment',
     'include_long_shots'
 ];
