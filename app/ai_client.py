@@ -6,6 +6,12 @@ from openai import OpenAI
 from .models import WeeklyPicksModel
 from .config import settings
 from .espn_scraper import scrape_espn_schedule, format_games_for_prompt
+from .depth_chart_parser import (
+    parse_depth_chart,
+    format_all_depth_charts_compact,
+    validate_player_team,
+    get_player_team
+)
 
 
 def render_prompt() -> str:
@@ -47,6 +53,18 @@ def render_prompt() -> str:
     except Exception as e:
         game_data = f"Unable to fetch live game data: {str(e)}\nPlease verify the ESPN URL is correct."
     
+    # Load and format depth chart data
+    depth_chart_data = ""
+    try:
+        depth_chart_path = Path(__file__).parent.parent / "data" / "FantasyPros_Fantasy_Football_2025_Depth_Charts.csv"
+        if depth_chart_path.exists():
+            depth_chart = parse_depth_chart(str(depth_chart_path))
+            depth_chart_data = format_all_depth_charts_compact(depth_chart)
+        else:
+            depth_chart_data = "Depth chart data not available."
+    except Exception as e:
+        depth_chart_data = f"Unable to load depth chart data: {str(e)}"
+    
     # Replace all variables
     prompt = template.replace("{{SLATE_DESCRIPTION}}", settings.slate_description)
     prompt = prompt.replace("{{NOTE}}", settings.note)
@@ -61,6 +79,9 @@ def render_prompt() -> str:
     
     # Replace the game data placeholder with actual game data
     prompt = prompt.replace("[LIVE GAME DATA WILL BE INSERTED HERE]", game_data)
+    
+    # Replace depth chart placeholder
+    prompt = prompt.replace("{{DEPTH_CHART_DATA}}", depth_chart_data)
     
     return prompt
 
@@ -109,11 +130,78 @@ def generate_picks() -> WeeklyPicksModel:
     
     # Check if parsing was successful
     if message.parsed:
-        return message.parsed  # Already a WeeklyPicksModel instance!
+        # Validate against depth chart
+        depth_chart_path = Path(__file__).parent.parent / "data" / "FantasyPros_Fantasy_Football_2025_Depth_Charts.csv"
+        if depth_chart_path.exists():
+            try:
+                depth_chart = parse_depth_chart(str(depth_chart_path))
+                validated_picks = validate_and_correct_picks(message.parsed, depth_chart)
+                return validated_picks
+            except Exception as e:
+                print(f"⚠️  Warning: Could not validate against depth chart: {str(e)}")
+                return message.parsed
+        else:
+            print("⚠️  Warning: Depth chart file not found, skipping validation")
+            return message.parsed
     elif message.refusal:
         raise Exception(f"Model refused to generate picks: {message.refusal}")
     else:
         raise Exception("Failed to parse response from OpenAI")
+
+
+def validate_and_correct_picks(picks: WeeklyPicksModel, depth_chart: dict) -> WeeklyPicksModel:
+    """
+    Validate player-team assignments and flag/correct errors.
+    
+    Args:
+        picks: Generated picks from AI
+        depth_chart: Parsed depth chart data
+        
+    Returns:
+        Validated picks with corrections and warnings
+    """
+    warnings = []
+    
+    # Validate each category
+    for category_name in ['qbs', 'rbs', 'wrs', 'tes']:
+        category = getattr(picks.categories, category_name)
+        for player in category:
+            # Check if player-team combo is valid
+            if not validate_player_team(player.name, player.team, depth_chart):
+                correct_team = get_player_team(player.name, depth_chart)
+                if correct_team:
+                    warnings.append(f"⚠️  {player.name}: Corrected team from '{player.team}' to '{correct_team}'")
+                    player.team = correct_team
+                    player.verified = False  # Mark as unverified due to correction
+                    # Update matchup note to indicate correction
+                    player.matchup_note = f"[TEAM CORRECTED] {player.matchup_note}"
+                else:
+                    warnings.append(f"❌ {player.name}: Not found in depth charts (claimed team: {player.team})")
+                    player.verified = False
+                    player.matchup_note = f"[NOT IN DEPTH CHART] {player.matchup_note}"
+    
+    # Validate long shots
+    for player in picks.long_shots.players:
+        if not validate_player_team(player.name, player.team, depth_chart):
+            correct_team = get_player_team(player.name, depth_chart)
+            if correct_team:
+                warnings.append(f"⚠️  {player.name} (long shot): Corrected team from '{player.team}' to '{correct_team}'")
+                player.team = correct_team
+            else:
+                warnings.append(f"❌ {player.name} (long shot): Not found in depth charts (claimed team: {player.team})")
+    
+    # Log warnings
+    if warnings:
+        print("\n" + "=" * 50)
+        print("DEPTH CHART VALIDATION WARNINGS")
+        print("=" * 50)
+        for warning in warnings:
+            print(warning)
+        print("=" * 50 + "\n")
+    else:
+        print("\n✅ All players validated against depth charts - no corrections needed\n")
+    
+    return picks
 
 
 def save_picks(picks: WeeklyPicksModel, filepath: str = "app/data/current_picks.json") -> None:

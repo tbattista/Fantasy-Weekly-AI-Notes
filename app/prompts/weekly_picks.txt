@@ -42,6 +42,33 @@ Example: "[Mid-Tier] Favorable matchup against weak secondary..."
 # Live Game Data
 [LIVE GAME DATA WILL BE INSERTED HERE]
 
+# Current NFL Depth Charts (2025 Season)
+{{DEPTH_CHART_DATA}}
+
+# CRITICAL PLAYER VALIDATION RULES
+
+**YOU MUST FOLLOW THESE RULES STRICTLY:**
+
+1. **ONLY recommend players listed in the depth charts above**
+2. **Verify each player's team matches the depth chart data EXACTLY**
+3. **Cross-reference player names exactly as shown in depth charts**
+4. **If a player is not in the depth charts, DO NOT include them**
+5. **Focus on players mentioned in articles who are ALSO on current rosters**
+6. **When in doubt about a player's current team, CHECK THE DEPTH CHART FIRST**
+
+**Common Mistakes to Avoid:**
+- DO NOT use outdated team assignments (e.g., Derrick Henry is on Baltimore Ravens, NOT Tennessee Titans)
+- DO NOT include players who have been traded or released
+- DO NOT guess at team assignments - use the depth chart as your source of truth
+- DO NOT include practice squad players not listed in depth charts
+
+**Validation Process:**
+For EVERY player you recommend:
+1. Find their name in the depth chart above
+2. Confirm their current team from the depth chart
+3. Use that exact team name in your recommendation
+4. If you cannot find them in the depth chart, exclude them from recommendations
+
 # Task
 Provide comprehensive DFS and prop betting recommendations based on the games above:
 
@@ -73,10 +100,13 @@ Provide comprehensive DFS and prop betting recommendations based on the games ab
    - Provide reasoning even with uncertainty
 
 IMPORTANT:
+- **VERIFY ALL PLAYERS AGAINST THE DEPTH CHART ABOVE BEFORE INCLUDING THEM**
 - Base recommendations on specific games and matchups listed above
 - Reference actual team names and matchups from game data
+- Use EXACT team names from the depth chart (e.g., "Baltimore Ravens" not "Ravens")
 - MUST meet minimum player counts per category (5 each for QB/RB/WR/TE)
 - Include value tier tag for EVERY player in matchup_note
 - Flag data quality issues appropriately with verified field
+- **Double-check that every player's team assignment matches the depth chart**
 
 Return your analysis in valid JSON format matching the WeeklyPicksModel schema.
