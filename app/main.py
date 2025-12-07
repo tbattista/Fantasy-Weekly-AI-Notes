@@ -305,6 +305,23 @@ async def get_config():
     })
 
 
+@app.get("/api/prompt-template")
+async def get_prompt_template():
+    """
+    Get the raw prompt template content.
+    
+    Returns:
+        JSON response with the template content.
+    """
+    try:
+        prompt_path = Path(__file__).parent / "prompts" / "weekly_picks.txt"
+        with open(prompt_path, "r", encoding="utf-8") as f:
+            template = f.read()
+        return JSONResponse(content={"template": template})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error reading template: {str(e)}")
+
+
 @app.get("/api/games")
 async def get_games():
     """

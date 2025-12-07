@@ -175,8 +175,29 @@
 </div>
 
 <script>
+// Store the template globally
+let promptTemplate = '';
+
+// Fetch the prompt template from the server
+async function fetchPromptTemplate() {
+    try {
+        const response = await fetch('/api/prompt-template');
+        const data = await response.json();
+        promptTemplate = data.template;
+        // Update preview after fetching template
+        updatePromptPreview();
+    } catch (error) {
+        console.error('Error fetching prompt template:', error);
+        promptTemplate = 'Error loading template. Please refresh the page.';
+    }
+}
+
 // Live prompt preview update function
 function updatePromptPreview() {
+    if (!promptTemplate) {
+        return; // Wait for template to load
+    }
+    
     const espnLink = document.getElementById('espn_game_data_link').value;
     const slateDesc = document.getElementById('slate_description').value;
     const note = document.getElementById('note').value;
@@ -194,109 +215,8 @@ function updatePromptPreview() {
     // Get current date
     const currentDate = new Date().toISOString().split('T')[0];
     
-    // Get the base prompt template (without variable substitution)
-    // We'll use the initial prompt preview as the template
-    const baseTemplate = `You are an expert NFL fantasy and DFS analyst. Generate detailed weekly picks for specified slate.
-
-
-
-# Context
-
-- **NFL Season:** {{YEAR}}
-- **Week:** {{WEEK_NUMBER}}
-- **Date:** {{DATE}}
-- **Slate Description:** {{SLATE_DESCRIPTION}}
-- **ESPN Game Data:** {{ESPN_GAME_DATA_LINK}}
-
-# Game Focus
-Focus on: {{FOCUS_GAMES}}
-
-# Analysis Requirements
-- Minimum {{MIN_ARTICLES_FOR_SENTIMENT}} articles for sentiment analysis
-- Include long shots: {{INCLUDE_LONG_SHOTS}}
-- Prop focus: {{PROP_FOCUS}}
-
-# CRITICAL: Minimum Player Requirements
-You MUST provide AT LEAST the following number of players per category:
-- **QBs**: Minimum 5 players
-- **RBs**: Minimum 5 players
-- **WRs**: Minimum 5 players
-- **TEs**: Minimum 5 players
-
-If fewer quality options exist, include lower-confidence plays but mark them with verified: false.
-
-# Value Tier Guidelines
-Categorize each player's value tier in the matchup_note (prepend to existing note):
-- **[Elite]** ($8,000+) - Premium plays with high floors
-- **[Mid-Tier]** ($6,000-$7,999) - Balanced value options
-- **[Value]** ($4,000-$5,999) - Budget-friendly plays
-- **[Punt]** (<$4,000) - Minimum salary options
-
-Example: "[Mid-Tier] Favorable matchup against weak secondary..."
-
-# Data Quality Standards
-- Set verified: true only when 3+ quality sources agree
-- Set verified: false when data is limited or conflicting
-- In matchup_note, mention if data is sparse (e.g., "Limited data available")
-- Always provide reasoning even with limited data
-
-# Live Game Data
-
-The following games are scheduled for this slate. Use this information to provide matchup-specific analysis:
-
-
-
-[LIVE GAME DATA WILL BE INSERTED HERE]
-
-
-
-# Task
-
-Provide comprehensive DFS and prop betting recommendations based on the actual games listed above:
-
-
-
-1. **Top DFS Core Plays by Position**
-
-   - QB, RB, WR, TE picks (MINIMUM 5 EACH - NON-NEGOTIABLE)
-   - Include value tier tag in matchup_note
-   - Salary considerations and stacking opportunities
-   - Matchup analysis based on actual opponents
-
-
-
-2. **Prop Betting Recommendations**
-
-   - Player props (TDs, yards, receptions)
-   - Game-specific props based on matchups
-   - Confidence levels tied to data quality (verified field)
-
-
-
-3. **Sleepers and Value Plays**
-
-   - Under-the-radar options from the games above
-   - Stack recommendations for specific games
-   - Highlight [Value] and [Punt] tier plays
-
-
-
-4. **Data Quality Notes**
-
-   - Flag players with limited data (verified: false)
-   - Note when consensus is weak
-   - Provide reasoning even with uncertainty
-
-
-
-IMPORTANT: Base your recommendations on the specific games and matchups listed in the Live Game Data section above. Reference actual team names and matchups from that data.
-
-
-
-Return your analysis in valid JSON format matching the WeeklyPicksModel schema.`;
-    
     // Replace all variables in the template
-    let preview = baseTemplate
+    let preview = promptTemplate
         .replace(/\{\{SLATE_DESCRIPTION\}\}/g, slateDesc)
         .replace(/\{\{NOTE\}\}/g, note)
         .replace(/\{\{FOCUS_GAMES\}\}/g, focusGames)
@@ -436,24 +356,25 @@ document.getElementById('updatePromptBtn').addEventListener('click', function() 
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Update the preview
-            updatePromptPreview();
-            
-            // Show success message
-            btn.classList.remove('btn-warning');
-            btn.classList.add('btn-success');
-            btn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Updated!';
-            
-            // Reset button after 2 seconds
-            setTimeout(() => {
-                btn.classList.remove('btn-success');
-                btn.classList.add('btn-warning');
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }, 2000);
+            // Re-fetch the template from server to get updated version
+            return fetchPromptTemplate();
         } else {
             throw new Error(data.error || 'Update failed');
         }
+    })
+    .then(() => {
+        // Show success message
+        btn.classList.remove('btn-warning');
+        btn.classList.add('btn-success');
+        btn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Updated!';
+        
+        // Reset button after 2 seconds
+        setTimeout(() => {
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-warning');
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }, 2000);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -491,7 +412,10 @@ formInputs.forEach(inputId => {
     }
 });
 
-// Initial update on page load
-document.addEventListener('DOMContentLoaded', updatePromptPreview);
+// Initial setup on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Fetch template first, then update preview
+    fetchPromptTemplate();
+});
 </script>
 {% endblock %}

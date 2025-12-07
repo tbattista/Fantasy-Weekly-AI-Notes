@@ -59,8 +59,8 @@ def render_prompt() -> str:
     prompt = prompt.replace("{{WEEK_NUMBER}}", week_num)
     prompt = prompt.replace("{{DATE}}", current_date)
     
-    # Add live game data section
-    prompt = f"{prompt}\n\n{game_data}"
+    # Replace the game data placeholder with actual game data
+    prompt = prompt.replace("[LIVE GAME DATA WILL BE INSERTED HERE]", game_data)
     
     return prompt
 
