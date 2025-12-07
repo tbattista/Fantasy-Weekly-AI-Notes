@@ -485,6 +485,24 @@ async function fetchAndDisplayGames() {
     fetchBtn.disabled = true;
     
     try {
+        // First, update the ESPN URL in backend settings
+        const espnLink = document.getElementById('espn_game_data_link').value;
+        const formData = new FormData();
+        formData.append('espn_game_data_link', espnLink);
+        formData.append('slate_description', document.getElementById('slate_description').value);
+        formData.append('note', document.getElementById('note').value);
+        formData.append('focus_games', document.getElementById('focus_games').value);
+        formData.append('prop_focus', document.getElementById('prop_focus').value);
+        formData.append('min_articles_for_sentiment', document.getElementById('min_articles_for_sentiment').value);
+        formData.append('include_long_shots', document.getElementById('include_long_shots').checked);
+        
+        // Update config first
+        await fetch('/admin/update-config', {
+            method: 'POST',
+            body: formData
+        });
+        
+        // Now fetch games with updated URL
         const response = await fetch('/api/games');
         const data = await response.json();
         
