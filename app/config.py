@@ -1,6 +1,7 @@
 """Configuration management using pydantic-settings."""
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import List
 
 
 class Settings(BaseSettings):
@@ -14,8 +15,12 @@ class Settings(BaseSettings):
     slate_description: str = "Sunday main slate"
     note: str = "All players checked against latest depth charts, injury reports, and preview/fantasy articles."
     
-    # Game Focus
+    # Game Focus (Legacy - kept for backward compatibility)
     focus_games: str = "all"  # "all", "afternoon_only", "early_only", "primetime_only", or comma-separated list
+    
+    # Game Selection (New System)
+    use_game_selection: bool = True  # Toggle between old focus_games and new game selection
+    selected_game_ids: List[str] = []  # List of selected game IDs
     
     # Prop Focus
     prop_focus: str = "mix"  # "overs", "unders", or "mix"

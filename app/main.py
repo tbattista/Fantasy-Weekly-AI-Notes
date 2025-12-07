@@ -9,7 +9,8 @@ from fastapi.templating import Jinja2Templates
 from .ai_client import generate_picks, save_picks, load_picks, render_prompt
 from .config import settings
 from .models import WeeklyPicksModel
-from .espn_scraper import scrape_espn_schedule, format_games_for_prompt
+from .espn_scraper import scrape_espn_schedule, format_games_for_prompt, group_games_by_time_slot
+from typing import List
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -325,22 +326,64 @@ async def get_prompt_template():
 @app.get("/api/games")
 async def get_games():
     """
-    Fetch and return live game data from ESPN.
+    Fetch and return live game data from ESPN with time slot grouping.
     
     Returns:
-        JSON response with scraped game data.
+        JSON response with scraped game data grouped by time slots.
     """
     try:
         games, metadata = scrape_espn_schedule(settings.espn_game_data_link)
         game_list = [game.to_dict() for game in games]
         
+        # Group games by time slot
+        grouped = group_games_by_time_slot(games)
+        time_slots = {
+            slot: [game.to_dict() for game in games_in_slot]
+            for slot, games_in_slot in grouped.items()
+        }
+        
         return JSONResponse(content={
             "metadata": metadata,
             "games": game_list,
-            "formatted": format_games_for_prompt(games, settings.focus_games)
+            "time_slots": time_slots,
+            "formatted": format_games_for_prompt(games, settings.focus_games, settings.selected_game_ids if settings.use_game_selection else None)
         })
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching games: {str(e)}")
+
+
+@app.post("/api/games/select")
+async def select_games(request: Request):
+    """
+    Store selected game IDs for prompt generation.
+    
+    Expects JSON body with:
+        {
+            "game_ids": ["game_id_1", "game_id_2", ...]
+        }
+    
+    Returns:
+        JSON response with success status and selected games.
+    """
+    try:
+        data = await request.json()
+        game_ids = data.get("game_ids", [])
+        
+        # Validate that game_ids is a list
+        if not isinstance(game_ids, list):
+            raise HTTPException(status_code=400, detail="game_ids must be a list")
+        
+        # Update settings
+        settings.selected_game_ids = game_ids
+        settings.use_game_selection = True
+        
+        return JSONResponse(content={
+            "success": True,
+            "selected_count": len(game_ids),
+            "selected_game_ids": game_ids
+        })
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error selecting games: {str(e)}")
 
 
 @app.get("/health")

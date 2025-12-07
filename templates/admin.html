@@ -107,6 +107,39 @@
                 </div>
             </div>
             
+            <!-- Game Selection Card (NEW) -->
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="bi bi-calendar-check"></i> Select Games to Analyze</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <button type="button" class="btn btn-info" id="fetchGamesBtn">
+                            <i class="bi bi-cloud-download"></i> Fetch Games from ESPN
+                        </button>
+                        <div id="selectionSummary" class="text-muted" style="display: none;">
+                            <strong><span id="selectedCount">0</span></strong> games selected
+                        </div>
+                    </div>
+                    
+                    <!-- Loading State -->
+                    <div id="gamesLoading" style="display: none;" class="text-center py-4">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2 text-muted">Fetching games from ESPN...</p>
+                    </div>
+                    
+                    <!-- Error State -->
+                    <div id="gamesError" style="display: none;" class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle"></i> <span id="errorMessage"></span>
+                    </div>
+                    
+                    <!-- Game Selection Groups -->
+                    <div id="gameSelectionContainer"></div>
+                </div>
+            </div>
+            
             <!-- Live Prompt Preview -->
             <div class="card mb-4">
                 <div class="card-header bg-info text-white">
@@ -177,6 +210,32 @@
 <script>
 // Store the template globally
 let promptTemplate = '';
+let selectedGameIds = [];
+let allGames = [];
+
+// Time slot configuration
+const timeSlotConfig = {
+    'early': {
+        label: '🕐 EARLY GAMES (1:00 PM ET)',
+        badgeClass: 'bg-primary'
+    },
+    'afternoon': {
+        label: '🕓 AFTERNOON GAMES (4:00 PM ET)',
+        badgeClass: 'bg-warning text-dark'
+    },
+    'night': {
+        label: '🌙 NIGHT GAMES (8:00+ PM ET)',
+        badgeClass: 'bg-dark'
+    },
+    'monday': {
+        label: '🏈 MONDAY NIGHT FOOTBALL',
+        badgeClass: 'bg-danger'
+    },
+    'thursday': {
+        label: '🏈 THURSDAY NIGHT FOOTBALL',
+        badgeClass: 'bg-success'
+    }
+};
 
 // Fetch the prompt template from the server
 async function fetchPromptTemplate() {
@@ -411,6 +470,162 @@ formInputs.forEach(inputId => {
         element.addEventListener('change', updatePromptPreview);
     }
 });
+
+// Fetch and display games
+async function fetchAndDisplayGames() {
+    const container = document.getElementById('gameSelectionContainer');
+    const loading = document.getElementById('gamesLoading');
+    const errorDiv = document.getElementById('gamesError');
+    const fetchBtn = document.getElementById('fetchGamesBtn');
+    
+    // Show loading state
+    loading.style.display = 'block';
+    errorDiv.style.display = 'none';
+    container.innerHTML = '';
+    fetchBtn.disabled = true;
+    
+    try {
+        const response = await fetch('/api/games');
+        const data = await response.json();
+        
+        allGames = data.games;
+        const timeSlots = data.time_slots;
+        
+        // Hide loading
+        loading.style.display = 'none';
+        fetchBtn.disabled = false;
+        
+        // Render time slot groups
+        const slotsOrder = ['early', 'afternoon', 'night', 'thursday', 'monday'];
+        
+        for (const slot of slotsOrder) {
+            const games = timeSlots[slot];
+            if (!games || games.length === 0) continue;
+            
+            const config = timeSlotConfig[slot];
+            const slotDiv = document.createElement('div');
+            slotDiv.className = 'game-time-slot mb-4';
+            slotDiv.innerHTML = `
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h6 class="mb-0">
+                        <span class="badge ${config.badgeClass}">${config.label}</span>
+                        <small class="text-muted ms-2">(<span class="slot-count-${slot}">0</span>/${games.length} selected)</small>
+                    </h6>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-primary select-all-btn" data-slot="${slot}">
+                            <i class="bi bi-check-all"></i> Select All
+                        </button>
+                        <button class="btn btn-outline-secondary deselect-all-btn" data-slot="${slot}">
+                            <i class="bi bi-x"></i> Deselect All
+                        </button>
+                    </div>
+                </div>
+                <div class="game-checkboxes ps-3" id="slot-${slot}"></div>
+            `;
+            
+            container.appendChild(slotDiv);
+            
+            // Add game checkboxes
+            const checkboxContainer = document.getElementById(`slot-${slot}`);
+            games.forEach(game => {
+                const checkboxDiv = document.createElement('div');
+                checkboxDiv.className = 'form-check mb-2';
+                checkboxDiv.innerHTML = `
+                    <input class="form-check-input game-checkbox"
+                           type="checkbox"
+                           value="${game.game_id}"
+                           id="game_${game.game_id}"
+                           data-time-slot="${slot}">
+                    <label class="form-check-label" for="game_${game.game_id}">
+                        <strong>${game.matchup}</strong> - ${game.time}
+                        ${game.day_of_week ? `<small class="text-muted">(${game.day_of_week})</small>` : ''}
+                    </label>
+                `;
+                checkboxContainer.appendChild(checkboxDiv);
+            });
+        }
+        
+        // Attach event listeners
+        attachGameSelectionListeners();
+        
+        // Show selection summary
+        document.getElementById('selectionSummary').style.display = 'block';
+        
+    } catch (error) {
+        loading.style.display = 'none';
+        fetchBtn.disabled = false;
+        errorDiv.style.display = 'block';
+        document.getElementById('errorMessage').textContent = error.message || 'Failed to fetch games';
+    }
+}
+
+// Attach event listeners to game selection elements
+function attachGameSelectionListeners() {
+    // Individual checkbox listeners
+    document.querySelectorAll('.game-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', updateSelectedGames);
+    });
+    
+    // Select all buttons
+    document.querySelectorAll('.select-all-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const slot = this.dataset.slot;
+            document.querySelectorAll(`input[data-time-slot="${slot}"]`).forEach(cb => {
+                cb.checked = true;
+            });
+            updateSelectedGames();
+        });
+    });
+    
+    // Deselect all buttons
+    document.querySelectorAll('.deselect-all-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const slot = this.dataset.slot;
+            document.querySelectorAll(`input[data-time-slot="${slot}"]`).forEach(cb => {
+                cb.checked = false;
+            });
+            updateSelectedGames();
+        });
+    });
+}
+
+// Update selected games and send to backend
+async function updateSelectedGames() {
+    // Collect all checked game IDs
+    selectedGameIds = Array.from(document.querySelectorAll('.game-checkbox:checked'))
+        .map(cb => cb.value);
+    
+    // Update selection summary
+    document.getElementById('selectedCount').textContent = selectedGameIds.length;
+    
+    // Update per-slot counts
+    ['early', 'afternoon', 'night', 'thursday', 'monday'].forEach(slot => {
+        const slotCheckboxes = document.querySelectorAll(`input[data-time-slot="${slot}"]`);
+        const slotSelected = Array.from(slotCheckboxes).filter(cb => cb.checked).length;
+        const countElement = document.querySelector(`.slot-count-${slot}`);
+        if (countElement) {
+            countElement.textContent = slotSelected;
+        }
+    });
+    
+    // Send selected games to backend
+    try {
+        await fetch('/api/games/select', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                game_ids: selectedGameIds
+            })
+        });
+    } catch (error) {
+        console.error('Error saving game selection:', error);
+    }
+}
+
+// Fetch games button handler
+document.getElementById('fetchGamesBtn').addEventListener('click', fetchAndDisplayGames);
 
 // Initial setup on page load
 document.addEventListener('DOMContentLoaded', function() {

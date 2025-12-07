@@ -49,7 +49,11 @@ def render_prompt() -> str:
     # Fetch live game data from ESPN
     try:
         games, metadata = scrape_espn_schedule(settings.espn_game_data_link)
-        game_data = format_games_for_prompt(games, settings.focus_games)
+        # Use new game selection system if enabled, otherwise fall back to focus_games
+        if settings.use_game_selection and settings.selected_game_ids:
+            game_data = format_games_for_prompt(games, settings.focus_games, settings.selected_game_ids)
+        else:
+            game_data = format_games_for_prompt(games, settings.focus_games, None)
     except Exception as e:
         game_data = f"Unable to fetch live game data: {str(e)}\nPlease verify the ESPN URL is correct."
     

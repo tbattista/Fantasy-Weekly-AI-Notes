@@ -4,24 +4,86 @@ import requests
 from bs4 import BeautifulSoup
 from typing import List, Dict, Optional
 from datetime import datetime
+import re
 
 
 class GameData:
-    """Data structure for NFL game information."""
-    def __init__(self, away_team: str, home_team: str, time: str, status: str = "Scheduled"):
+    """Data structure for NFL game information with time slot categorization."""
+    def __init__(self, away_team: str, home_team: str, time: str, status: str = "Scheduled", day_of_week: str = ""):
         self.away_team = away_team
         self.home_team = home_team
         self.time = time
         self.status = status
         self.matchup = f"{away_team} @ {home_team}"
+        self.day_of_week = day_of_week
+        self.time_slot = self._categorize_time_slot()
+        self.game_id = self._generate_game_id()
+    
+    def _categorize_time_slot(self) -> str:
+        """
+        Categorize game into time slot based on time string and day.
+        
+        Returns:
+            One of: 'early', 'afternoon', 'night', 'monday', 'thursday'
+        """
+        time_lower = self.time.lower()
+        day_lower = self.day_of_week.lower()
+        
+        # Check for specific days first
+        if 'monday' in day_lower or 'mon' in day_lower:
+            return 'monday'
+        elif 'thursday' in day_lower or 'thu' in day_lower:
+            return 'thursday'
+        
+        # Parse time for Sunday games
+        # Extract hour from time string (e.g., "1:00 PM", "4:05 PM", "8:20 PM")
+        time_match = re.search(r'(\d+):(\d+)', self.time)
+        if time_match:
+            hour = int(time_match.group(1))
+            
+            # Determine if PM (most NFL games are PM)
+            is_pm = 'pm' in time_lower or 'p.m.' in time_lower
+            
+            # Convert to 24-hour for easier comparison
+            if is_pm and hour != 12:
+                hour += 12
+            elif not is_pm and hour == 12:
+                hour = 0
+            
+            # Categorize by time
+            if 13 <= hour < 16:  # 1:00 PM - 3:59 PM
+                return 'early'
+            elif 16 <= hour < 20:  # 4:00 PM - 7:59 PM
+                return 'afternoon'
+            elif hour >= 20:  # 8:00 PM and later
+                return 'night'
+        
+        # Default to early if can't determine
+        return 'early'
+    
+    def _generate_game_id(self) -> str:
+        """
+        Generate unique game ID.
+        
+        Returns:
+            Format: {away_team}_{home_team}_{time_slot}
+        """
+        # Clean team names (remove spaces, special chars)
+        away_clean = re.sub(r'[^A-Za-z0-9]', '', self.away_team)
+        home_clean = re.sub(r'[^A-Za-z0-9]', '', self.home_team)
+        return f"{away_clean}_{home_clean}_{self.time_slot}"
     
     def to_dict(self) -> Dict[str, str]:
+        """Convert to dictionary for JSON serialization."""
         return {
             "away_team": self.away_team,
             "home_team": self.home_team,
             "time": self.time,
             "status": self.status,
-            "matchup": self.matchup
+            "matchup": self.matchup,
+            "day_of_week": self.day_of_week,
+            "time_slot": self.time_slot,
+            "game_id": self.game_id
         }
 
 
@@ -47,17 +109,31 @@ def scrape_espn_schedule(espn_url: str) -> tuple[List[GameData], Dict[str, any]]
         games = []
         
         # Extract week and year from URL
-        import re
         week_match = re.search(r'/week/(\d+)', espn_url)
         year_match = re.search(r'/year/(\d+)', espn_url)
         week = int(week_match.group(1)) if week_match else None
         year = int(year_match.group(1)) if year_match else None
+        
+        # Try to extract day of week from section headers
+        current_day = ""
         
         # Parse using table rows - ESPN's current structure
         table_rows = soup.find_all('tr', class_='Table__TR')
         
         for row in table_rows:
             try:
+                # Check if this row is a date header
+                header = row.find('th', class_='Table__TH')
+                if header:
+                    # Extract day of week from header (e.g., "Thursday, December 5")
+                    header_text = header.get_text(strip=True)
+                    if header_text:
+                        # Extract day name (first word before comma)
+                        day_match = re.match(r'(\w+)', header_text)
+                        if day_match:
+                            current_day = day_match.group(1)
+                    continue
+                
                 # Get all table cells
                 cells = row.find_all('td')
                 
@@ -79,7 +155,7 @@ def scrape_espn_schedule(espn_url: str) -> tuple[List[GameData], Dict[str, any]]
                     
                     # Only create game if we have both teams
                     if away_team and home_team:
-                        game = GameData(away_team, home_team, game_time, "Scheduled")
+                        game = GameData(away_team, home_team, game_time, "Scheduled", current_day)
                         games.append(game)
             except Exception as e:
                 # Skip rows that don't match expected format
@@ -105,12 +181,23 @@ def scrape_espn_schedule(espn_url: str) -> tuple[List[GameData], Dict[str, any]]
 def _parse_alternative_format(soup: BeautifulSoup) -> List[GameData]:
     """Alternative parser for different ESPN HTML structures."""
     games = []
+    current_day = ""
     
     # Try finding by table rows (same as primary now, but kept for compatibility)
     rows = soup.find_all('tr', class_='Table__TR')
     
     for row in rows:
         try:
+            # Check for date header
+            header = row.find('th', class_='Table__TH')
+            if header:
+                header_text = header.get_text(strip=True)
+                if header_text:
+                    day_match = re.match(r'(\w+)', header_text)
+                    if day_match:
+                        current_day = day_match.group(1)
+                continue
+            
             # Get all table cells
             cells = row.find_all('td')
             
@@ -132,7 +219,7 @@ def _parse_alternative_format(soup: BeautifulSoup) -> List[GameData]:
                 
                 # Only create game if we have both teams
                 if away_team and home_team:
-                    game = GameData(away_team, home_team, game_time, "Scheduled")
+                    game = GameData(away_team, home_team, game_time, "Scheduled", current_day)
                     games.append(game)
         except:
             continue
@@ -140,13 +227,40 @@ def _parse_alternative_format(soup: BeautifulSoup) -> List[GameData]:
     return games
 
 
-def format_games_for_prompt(games: List[GameData], focus_games: str = "all") -> str:
+def group_games_by_time_slot(games: List[GameData]) -> Dict[str, List[GameData]]:
+    """
+    Group games by their time slot category.
+    
+    Args:
+        games: List of GameData objects
+    
+    Returns:
+        Dictionary with time slots as keys and lists of games as values
+    """
+    grouped = {
+        'early': [],
+        'afternoon': [],
+        'night': [],
+        'monday': [],
+        'thursday': []
+    }
+    
+    for game in games:
+        time_slot = game.time_slot
+        if time_slot in grouped:
+            grouped[time_slot].append(game)
+    
+    return grouped
+
+
+def format_games_for_prompt(games: List[GameData], focus_games: str = "all", selected_game_ids: Optional[List[str]] = None) -> str:
     """
     Format game data for inclusion in AI prompt.
     
     Args:
         games: List of GameData objects
-        focus_games: Filter for specific games ("all", "afternoon_only", or specific matchups)
+        focus_games: Filter for specific games ("all", "afternoon_only", or specific matchups) - legacy parameter
+        selected_game_ids: List of game IDs to include (None = use focus_games parameter)
     
     Returns:
         Formatted string with game information
@@ -154,10 +268,11 @@ def format_games_for_prompt(games: List[GameData], focus_games: str = "all") -> 
     if not games:
         return "No game data available. Please check the ESPN URL."
     
-    # Filter games based on focus_games parameter
-    filtered_games = games
-    
-    if focus_games != "all":
+    # New system: Filter by selected game IDs
+    if selected_game_ids is not None:
+        filtered_games = [g for g in games if g.game_id in selected_game_ids]
+    # Legacy system: Filter by focus_games string
+    elif focus_games != "all":
         if "afternoon" in focus_games.lower():
             # Filter for afternoon games (typically 4:05 PM ET and later)
             filtered_games = [g for g in games if "4:" in g.time or "8:" in g.time]
@@ -171,12 +286,34 @@ def format_games_for_prompt(games: List[GameData], focus_games: str = "all") -> 
             # Assume it's a comma-separated list of specific matchups
             focus_list = [m.strip() for m in focus_games.split(",")]
             filtered_games = [g for g in games if any(team in g.matchup for team in focus_list)]
+    else:
+        filtered_games = games
     
-    # Format output
+    if not filtered_games:
+        return "No games match the selected criteria."
+    
+    # Group by time slot for better organization
+    grouped = group_games_by_time_slot(filtered_games)
+    
+    # Format output with time slot headers
     lines = ["# NFL Games for Analysis\n"]
-    for i, game in enumerate(filtered_games, 1):
-        lines.append(f"{i}. **{game.matchup}** - {game.time} ({game.status})")
+    game_count = 0
     
-    lines.append(f"\nTotal games to analyze: {len(filtered_games)}")
+    time_slot_labels = {
+        'early': '🕐 EARLY GAMES (1:00 PM ET)',
+        'afternoon': '🕓 AFTERNOON GAMES (4:00 PM ET)',
+        'night': '🌙 NIGHT GAMES (8:00+ PM ET)',
+        'monday': '🏈 MONDAY NIGHT FOOTBALL',
+        'thursday': '🏈 THURSDAY NIGHT FOOTBALL'
+    }
+    
+    for slot in ['early', 'afternoon', 'night', 'thursday', 'monday']:
+        if grouped[slot]:
+            lines.append(f"\n## {time_slot_labels[slot]}")
+            for game in grouped[slot]:
+                game_count += 1
+                lines.append(f"{game_count}. **{game.matchup}** - {game.time}")
+    
+    lines.append(f"\n**Total games to analyze: {game_count}**")
     
     return "\n".join(lines)
