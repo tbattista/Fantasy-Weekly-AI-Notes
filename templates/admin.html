@@ -63,15 +63,8 @@
                         <textarea class="form-control" id="note" name="note" rows="2" required>{{ settings.note }}</textarea>
                     </div>
                     
-                    <div class="form-group mb-3">
-                        <label for="focus_games" class="form-label">Focus Games</label>
-                        <input type="text" class="form-control" id="focus_games" name="focus_games"
-                               value="{{ settings.focus_games }}" required
-                               placeholder="all, afternoon_only, or comma-separated list">
-                        <small class="form-text text-muted">
-                            Options: "all", "afternoon_only", "early_only", "primetime_only", or specific games
-                        </small>
-                    </div>
+                    <!-- Focus Games field hidden - now using game selection UI below -->
+                    <input type="hidden" id="focus_games" name="focus_games" value="all">
                     
                     <div class="form-group mb-3">
                         <label for="prop_focus" class="form-label">Prop Focus</label>
@@ -160,7 +153,7 @@
                 <input type="hidden" name="espn_game_data_link" id="hidden_espn_link">
                 <input type="hidden" name="slate_description" id="hidden_slate_desc">
                 <input type="hidden" name="note" id="hidden_note">
-                <input type="hidden" name="focus_games" id="hidden_focus">
+                <input type="hidden" name="focus_games" value="all">
                 <input type="hidden" name="prop_focus" id="hidden_prop_focus">
                 <input type="hidden" name="min_articles_for_sentiment" id="hidden_min_articles">
                 <input type="hidden" name="include_long_shots" id="hidden_long_shots">
@@ -260,7 +253,6 @@ function updatePromptPreview() {
     const espnLink = document.getElementById('espn_game_data_link').value;
     const slateDesc = document.getElementById('slate_description').value;
     const note = document.getElementById('note').value;
-    const focusGames = document.getElementById('focus_games').value;
     const propFocus = document.getElementById('prop_focus').value;
     const minArticles = document.getElementById('min_articles_for_sentiment').value;
     const includeLongShots = document.getElementById('include_long_shots').checked;
@@ -278,7 +270,7 @@ function updatePromptPreview() {
     let preview = promptTemplate
         .replace(/\{\{SLATE_DESCRIPTION\}\}/g, slateDesc)
         .replace(/\{\{NOTE\}\}/g, note)
-        .replace(/\{\{FOCUS_GAMES\}\}/g, focusGames)
+        .replace(/\{\{FOCUS_GAMES\}\}/g, "User-selected games")
         .replace(/\{\{PROP_FOCUS\}\}/g, propFocus)
         .replace(/\{\{MIN_ARTICLES_FOR_SENTIMENT\}\}/g, minArticles)
         .replace(/\{\{INCLUDE_LONG_SHOTS\}\}/g, includeLongShots.toString())
@@ -299,7 +291,6 @@ function copyFormValuesToHidden() {
     document.getElementById('hidden_espn_link').value = document.getElementById('espn_game_data_link').value;
     document.getElementById('hidden_slate_desc').value = document.getElementById('slate_description').value;
     document.getElementById('hidden_note').value = document.getElementById('note').value;
-    document.getElementById('hidden_focus').value = document.getElementById('focus_games').value;
     document.getElementById('hidden_prop_focus').value = document.getElementById('prop_focus').value;
     document.getElementById('hidden_min_articles').value = document.getElementById('min_articles_for_sentiment').value;
     document.getElementById('hidden_long_shots').value = document.getElementById('include_long_shots').checked;
@@ -392,7 +383,6 @@ document.getElementById('updatePromptBtn').addEventListener('click', function() 
     const espnLink = document.getElementById('espn_game_data_link').value;
     const slateDesc = document.getElementById('slate_description').value;
     const note = document.getElementById('note').value;
-    const focusGames = document.getElementById('focus_games').value;
     const propFocus = document.getElementById('prop_focus').value;
     const minArticles = document.getElementById('min_articles_for_sentiment').value;
     const includeLongShots = document.getElementById('include_long_shots').checked;
@@ -402,7 +392,7 @@ document.getElementById('updatePromptBtn').addEventListener('click', function() 
     formData.append('espn_game_data_link', espnLink);
     formData.append('slate_description', slateDesc);
     formData.append('note', note);
-    formData.append('focus_games', focusGames);
+    formData.append('focus_games', 'all');
     formData.append('prop_focus', propFocus);
     formData.append('min_articles_for_sentiment', minArticles);
     formData.append('include_long_shots', includeLongShots);
@@ -455,7 +445,6 @@ const formInputs = [
     'espn_game_data_link',
     'slate_description',
     'note',
-    'focus_games',
     'prop_focus',
     'min_articles_for_sentiment',
     'include_long_shots'
@@ -491,7 +480,7 @@ async function fetchAndDisplayGames() {
         formData.append('espn_game_data_link', espnLink);
         formData.append('slate_description', document.getElementById('slate_description').value);
         formData.append('note', document.getElementById('note').value);
-        formData.append('focus_games', document.getElementById('focus_games').value);
+        formData.append('focus_games', 'all');
         formData.append('prop_focus', document.getElementById('prop_focus').value);
         formData.append('min_articles_for_sentiment', document.getElementById('min_articles_for_sentiment').value);
         formData.append('include_long_shots', document.getElementById('include_long_shots').checked);
