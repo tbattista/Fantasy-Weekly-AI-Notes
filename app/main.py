@@ -323,6 +323,21 @@ async def get_prompt_template():
         raise HTTPException(status_code=500, detail=f"Error reading template: {str(e)}")
 
 
+@app.get("/api/prompt-preview")
+async def get_prompt_preview():
+    """
+    Get the fully rendered prompt with current settings and selected games.
+    
+    Returns:
+        JSON response with the rendered prompt.
+    """
+    try:
+        prompt = render_prompt()
+        return JSONResponse(content={"prompt": prompt})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error rendering prompt: {str(e)}")
+
+
 @app.get("/api/games")
 async def get_games():
     """

@@ -237,19 +237,16 @@ async function fetchPromptTemplate() {
         const data = await response.json();
         promptTemplate = data.template;
         // Update preview after fetching template
-        updatePromptPreview();
+        await refreshPromptPreview();
     } catch (error) {
         console.error('Error fetching prompt template:', error);
         promptTemplate = 'Error loading template. Please refresh the page.';
     }
 }
 
-// Live prompt preview update function
-function updatePromptPreview() {
-    if (!promptTemplate) {
-        return; // Wait for template to load
-    }
-    
+// Live prompt preview update function - now updates config then fetches rendered prompt
+async function updatePromptPreview() {
+    // First update the backend config with current form values
     const espnLink = document.getElementById('espn_game_data_link').value;
     const slateDesc = document.getElementById('slate_description').value;
     const note = document.getElementById('note').value;
@@ -257,32 +254,26 @@ function updatePromptPreview() {
     const minArticles = document.getElementById('min_articles_for_sentiment').value;
     const includeLongShots = document.getElementById('include_long_shots').checked;
     
-    // Extract year and week from ESPN link
-    const weekMatch = espnLink.match(/\/week\/(\d+)/);
-    const yearMatch = espnLink.match(/\/year\/(\d+)/);
-    const week = weekMatch ? weekMatch[1] : '13';
-    const year = yearMatch ? yearMatch[1] : '2025';
+    const formData = new FormData();
+    formData.append('espn_game_data_link', espnLink);
+    formData.append('slate_description', slateDesc);
+    formData.append('note', note);
+    formData.append('focus_games', 'all');
+    formData.append('prop_focus', propFocus);
+    formData.append('min_articles_for_sentiment', minArticles);
+    formData.append('include_long_shots', includeLongShots);
     
-    // Get current date
-    const currentDate = new Date().toISOString().split('T')[0];
-    
-    // Replace all variables in the template
-    let preview = promptTemplate
-        .replace(/\{\{SLATE_DESCRIPTION\}\}/g, slateDesc)
-        .replace(/\{\{NOTE\}\}/g, note)
-        .replace(/\{\{FOCUS_GAMES\}\}/g, "User-selected games")
-        .replace(/\{\{PROP_FOCUS\}\}/g, propFocus)
-        .replace(/\{\{MIN_ARTICLES_FOR_SENTIMENT\}\}/g, minArticles)
-        .replace(/\{\{INCLUDE_LONG_SHOTS\}\}/g, includeLongShots.toString())
-        .replace(/\{\{ESPN_GAME_DATA_LINK\}\}/g, espnLink)
-        .replace(/\{\{YEAR\}\}/g, year)
-        .replace(/\{\{WEEK_NUMBER\}\}/g, week)
-        .replace(/\{\{DATE\}\}/g, currentDate);
-    
-    // Update the live preview section
-    const previewElement = document.getElementById('livePromptPreview');
-    if (previewElement) {
-        previewElement.textContent = preview;
+    try {
+        // Update config
+        await fetch('/admin/update-config', {
+            method: 'POST',
+            body: formData
+        });
+        
+        // Then refresh the preview from backend
+        await refreshPromptPreview();
+    } catch (error) {
+        console.error('Error updating prompt preview:', error);
     }
 }
 
@@ -626,8 +617,25 @@ async function updateSelectedGames() {
                 game_ids: selectedGameIds
             })
         });
+        
+        // Refresh the prompt preview to show selected games
+        await refreshPromptPreview();
     } catch (error) {
         console.error('Error saving game selection:', error);
+    }
+}
+
+// Refresh prompt preview from backend
+async function refreshPromptPreview() {
+    try {
+        const response = await fetch('/api/prompt-preview');
+        const data = await response.json();
+        const previewElement = document.getElementById('livePromptPreview');
+        if (previewElement && data.prompt) {
+            previewElement.textContent = data.prompt;
+        }
+    } catch (error) {
+        console.error('Error refreshing prompt preview:', error);
     }
 }
 
