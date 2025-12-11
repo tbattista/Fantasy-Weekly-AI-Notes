@@ -51,12 +51,8 @@
                         </small>
                     </div>
                     
-                    <div class="form-group mb-3">
-                        <label for="slate_description" class="form-label">Slate Description</label>
-                        <input type="text" class="form-control" id="slate_description" name="slate_description"
-                               value="{{ settings.slate_description }}" required
-                               placeholder="e.g., Sunday main slate">
-                    </div>
+                    <!-- Slate Description hidden - automatically determined by selected games -->
+                    <input type="hidden" id="slate_description" name="slate_description" value="Selected Games">
                     
                     <div class="form-group mb-3">
                         <label for="note" class="form-label">Note</label>
@@ -151,7 +147,7 @@
             <!-- Generate Button -->
             <form method="POST" action="/admin/run" id="configForm">
                 <input type="hidden" name="espn_game_data_link" id="hidden_espn_link">
-                <input type="hidden" name="slate_description" id="hidden_slate_desc">
+                <input type="hidden" name="slate_description" value="Selected Games">
                 <input type="hidden" name="note" id="hidden_note">
                 <input type="hidden" name="focus_games" value="all">
                 <input type="hidden" name="prop_focus" id="hidden_prop_focus">
@@ -248,7 +244,6 @@ async function fetchPromptTemplate() {
 async function updatePromptPreview() {
     // First update the backend config with current form values
     const espnLink = document.getElementById('espn_game_data_link').value;
-    const slateDesc = document.getElementById('slate_description').value;
     const note = document.getElementById('note').value;
     const propFocus = document.getElementById('prop_focus').value;
     const minArticles = document.getElementById('min_articles_for_sentiment').value;
@@ -256,7 +251,7 @@ async function updatePromptPreview() {
     
     const formData = new FormData();
     formData.append('espn_game_data_link', espnLink);
-    formData.append('slate_description', slateDesc);
+    formData.append('slate_description', 'Selected Games');
     formData.append('note', note);
     formData.append('focus_games', 'all');
     formData.append('prop_focus', propFocus);
@@ -280,7 +275,6 @@ async function updatePromptPreview() {
 // Copy form values to hidden fields before submission
 function copyFormValuesToHidden() {
     document.getElementById('hidden_espn_link').value = document.getElementById('espn_game_data_link').value;
-    document.getElementById('hidden_slate_desc').value = document.getElementById('slate_description').value;
     document.getElementById('hidden_note').value = document.getElementById('note').value;
     document.getElementById('hidden_prop_focus').value = document.getElementById('prop_focus').value;
     document.getElementById('hidden_min_articles').value = document.getElementById('min_articles_for_sentiment').value;
@@ -372,7 +366,6 @@ document.getElementById('updatePromptBtn').addEventListener('click', function() 
     
     // Get current form values
     const espnLink = document.getElementById('espn_game_data_link').value;
-    const slateDesc = document.getElementById('slate_description').value;
     const note = document.getElementById('note').value;
     const propFocus = document.getElementById('prop_focus').value;
     const minArticles = document.getElementById('min_articles_for_sentiment').value;
@@ -381,7 +374,7 @@ document.getElementById('updatePromptBtn').addEventListener('click', function() 
     // Create form data
     const formData = new FormData();
     formData.append('espn_game_data_link', espnLink);
-    formData.append('slate_description', slateDesc);
+    formData.append('slate_description', 'Selected Games');
     formData.append('note', note);
     formData.append('focus_games', 'all');
     formData.append('prop_focus', propFocus);
@@ -434,7 +427,6 @@ document.getElementById('updatePromptBtn').addEventListener('click', function() 
 // Add event listeners to all form inputs for live preview
 const formInputs = [
     'espn_game_data_link',
-    'slate_description',
     'note',
     'prop_focus',
     'min_articles_for_sentiment',
@@ -469,7 +461,7 @@ async function fetchAndDisplayGames() {
         const espnLink = document.getElementById('espn_game_data_link').value;
         const formData = new FormData();
         formData.append('espn_game_data_link', espnLink);
-        formData.append('slate_description', document.getElementById('slate_description').value);
+        formData.append('slate_description', 'Selected Games');
         formData.append('note', document.getElementById('note').value);
         formData.append('focus_games', 'all');
         formData.append('prop_focus', document.getElementById('prop_focus').value);
